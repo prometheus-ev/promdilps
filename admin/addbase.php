@@ -499,7 +499,7 @@ $status = 0;
             $path = $add_to_path.'images'.DIRECTORY_SEPARATOR.$path;
         }
         
-		mkdir($path);
+		if (!file_exists($path)) mkdir($path);
 
         mkdir($path.DIRECTORY_SEPARATOR.'cache');
 

@@ -475,7 +475,7 @@ td.queryinputfieldtext {
 	text-align: left;
 	padding-right: 10px;
     padding-bottom: 1px;
-	padding-left: 30px;
+	padding-left: 0px;
 }
 {/literal}
 
@@ -724,4 +724,11 @@ td.right-pad {
     padding-right: 33px;
 }
 {/literal}
+
+{literal}
+a[onClick] {
+        cursor: pointer;
+}
+{/literal}
+
 <!--	END dilps.css	-->

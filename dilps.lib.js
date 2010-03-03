@@ -19,6 +19,13 @@ function editNameElement( sessionid, imageid, element, docelements ) {
 }
 
 
+function editLocElement( sessionid, imageid, element, docelements ) {
+   props = 'toolbar=no,location=no,directories=no,status=yes,scrollbars=yes,resizable=yes,menubar=no,copyhistory=no';
+   win = window.open( 'edit_element.php?PHPSESSID='+sessionid+'&query[id]='+imageid+'&query[element]='+element+'&query[city]='+docelements["edit[locationid]"].value+'&query[citysearch]='+docelements["edit[city]"].value+'&query[cityname]='+docelements["edit[city]"].value+'&query[institution]='+docelements["edit[institution]"].value, 'elementView', props + ',width=900,height=500' );
+   win.focus();
+}
+
+
 function Adjust() {
   if ((document.forms["Main"].elements["view[detail][id]"].value==""))
   if (document.forms["Main"].elements["view[edit][id]"].value=="")

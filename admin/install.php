@@ -493,15 +493,15 @@
 	
 	//temporary default values
 
-	$t_hostname = 'localhost';
+	$t_hostname = '#DBHOST#';
 
-	$t_database_name = 'DILPS';
+	$t_database_name = '#DBNAME#';
 
-	$t_db_username = '';
+	$t_db_username = '#DBUSER#';
 
-	$t_db_password = '';
+	$t_db_password = '#DBPW#';
 
-	$t_db_prefix = 'ng_';
+	$t_db_prefix = 'ng_#NAME#_';
 
 	$t_authdomain = 'not found. Please enter.';
 
@@ -727,7 +727,7 @@
 
 </head>
 
-<body>
+<body onLoad="document.forms[0].admin_password.focus()">
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#ffffff">
 
@@ -1852,7 +1852,7 @@ if ( 1 == $t_install_state ) {
 
 	<td>
 
-		<input  size="80" name="admin_username" type="textbox" value="<?php echo ( ( !empty($f_adm_username )) ? $f_adm_username : $t_db_username ); ?>"></input>
+		<input  size="80" name="admin_username" type="textbox" value="root"></input>
 
 	</td>
 
@@ -1870,7 +1870,7 @@ if ( 1 == $t_install_state ) {
 
 	<td>
 
-		<input  size="80" name="admin_password" type="password" value="<?php echo ( ( !empty($f_adm_password) ) ? $f_adm_password : $t_db_password ); ?>"></input>
+		<input  size="80" name="admin_password" type="password" value="" style="background-color: red"></input>
 
 	</td>
 
@@ -2215,8 +2215,8 @@ if ( 1 == $t_install_state ) {
 	<td>
 	
 		<select name="utf8">
-			<option value="false" <?php if ( $f_utf8 == 'false' ) echo ("selected='selected' "); ?> >					false	</option>
-			<option value="true" <?php if ( $f_utf8 == 'true' ) echo ("selected='selected' "); ?> >						true	</option>		
+			<option value="false" selected='selected'>false</option>
+			<option value="true"  selected='selected'>true</option>		
 		</select>
 	
 	</td>

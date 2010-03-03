@@ -41,17 +41,9 @@ BEGIN default_detail.tpl
       <tr>
         <td colspan="2" class="result_detail_data_image">
         <div class="outer">
-        <img src="image.php?PHPSESSID={$sessionid}&id={$result.id}&resolution=640x480&remoteCollection={$query.remoteCollection}" border="0"><br>
-        [{$row.width|escape:htmlall}x{$row.height|escape:htmlall}]
+        <a href="image.php?PHPSESSID={$sessionid}&id={$result.id}&resolution=original&remoteCollection={$query.remoteCollection}" target="_blank" title="Zur Vollanzeige"><img src="image.php?PHPSESSID={$sessionid}&id={$result.id}&resolution=640x480&remoteCollection={$query.remoteCollection}" border="0"></a>
         </div>
         </td>
-      </tr>
-      <tr style="border-bottom: 6px solid #778898">
-        <td colspan="2">
-	  (<a class="result_detail_image_list" href="image.php?PHPSESSID={$sessionid}&id={$result.id}&resolution=1024x768&remoteCollection={$query.remoteCollection}" target="_blank">1024x768</a>)
-	  (<a class="result_detail_image_list" href="image.php?PHPSESSID={$sessionid}&id={$result.id}&resolution=1280x1024&remoteCollection={$query.remoteCollection}" target="_blank">1280x1024</a>)
-	  (<a class="result_detail_image_list" href="image.php?PHPSESSID={$sessionid}&id={$result.id}&resolution=1600x1200&remoteCollection={$query.remoteCollection}" target="_blank">1600x1200</a>)
-	</td>
       </tr>
     </table>
     </td>

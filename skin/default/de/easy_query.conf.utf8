@@ -4,8 +4,10 @@ title = Titel
 search = Suchen
 collection = Sammlung
 all_collections = Alle Sammlungen
+inserttext = Bilder in Datenbank einfügen
+searchtext = Suche in eigener Datenbank
+showrecords = alle Datensätze anzeigen
 year = Datierung
-
 advancedsearch = Erweiterte Suche
 simplesearch = Einfache Suche
 closewindow = Fenster schliessen
@@ -38,12 +40,12 @@ applychanges = Änderungen übernehmen
 editgroups = Gruppen verwalten
 exportgroup = Gruppe exportieren
 
-sourcefile = Quell-Datei (lokal)
+sourcefile = lokale Bilddatei 
 sourcedirectory = Quell-Verzeichnis (lokal)
 targetdirectory = Ziel-Verzeichnis
 nextstep = wird im nächsten Schritt bestimmt
 continue = weiter
-insertimages = Bilder einfügen
+insertimages = Bild einfügen
 completedir = Quelle ist ein/e?
 file = Datei
 directory = Verzeichnis

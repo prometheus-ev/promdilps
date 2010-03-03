@@ -73,14 +73,14 @@ BEGIN default_edit.tpl
 		   <td class="result_detail_data_head">{#city#|escape:htmlall}</td>
 		   <td colspan="2" class="result_detail_data_data">
 			   <input type="text" name="edit[city]" size="60" value="{$row.city|escape:html}" readonly>
-				[<a onClick="editElement( '{$sessionid}', '{$id}', 'loc', '{$row.name|escape:htmlall}' );">e</a>]
+				[<a onClick="editLocElement( '{$sessionid}', '{$id}', 'loc', document.Main.elements );">e</a>]
 			</td>
 		</tr>
 		<tr>
 		   <td class="result_detail_data_head">{#institution#|escape:htmlall}</td>
 		   <td colspan="2" class="result_detail_data_data">
 		   		<input type="text" name="edit[institution]" size="60" value="{$row.institution|escape:html}" readonly>
-				[<a onClick="editElement( '{$sessionid}', '{$id}', 'loc', '{$row.name|escape:htmlall}' );">e</a>]
+				[<a onClick="editLocElement( '{$sessionid}', '{$id}', 'loc', document.Main.elements );">e</a>]
 		   </td>		   
 		</tr>
 		<tr>
@@ -106,9 +106,7 @@ BEGIN default_edit.tpl
 		<tr>
 		   <td class="result_detail_data_head">{#exportedto#|escape:htmlall}</td>
 		   <td colspan="2" class="result_detail_data_data">
-            <input type="checkbox" name="edit[export][prometheus]" value="true" {if $row.exp_prometheus}checked="checked"{/if}>{#prometheus#|escape:html}<br />
-            <input type="checkbox" name="edit[export][sid]" value="true" {if $row.exp_sid}checked="checked"{/if}>{#sid#|escape:html}<br />
-            <input type="checkbox" name="edit[export][unimedia]" value="true" {if $row.exp_unimedia}checked="checked"{/if}>{#unimedia#|escape:html}<br />
+            <input type="hidden" name="edit[export][prometheus]" value="true">{#prometheus#|escape:html}<br />
 		   </td>
 		</tr>
 		<tr>

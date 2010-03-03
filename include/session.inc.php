@@ -37,6 +37,8 @@ include( $config['includepath'].'db.inc.php' );
 
 ini_set( 'session.use_cookies' , 0 );
 
+register_shutdown_function('session_write_close');
+
 define( "SESS_MAX_LIFETIME", 36000 );
 define( "SESS_MAX_INACTIVE", 1800 );
 

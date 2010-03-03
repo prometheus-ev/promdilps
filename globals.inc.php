@@ -42,7 +42,8 @@
 	ini_set( 'zend.ze1_compatibility_mode', 'On' );
 	
 	// set the default timezone - you may want to adjust this according to your needs
-	date_default_timezone_set('Europe/Berlin');
+	//date_default_timezone_set('Europe/Berlin');
+        if (version_compare(PHP_VERSION, "5.1", ">=")) date_default_timezone_set('Europe/Berlin');
 
 	
 	// configuration for group exports - set when we have values from db
@@ -76,10 +77,10 @@
 	$resolutions_available = array (
 		"0"	=>	"120x90",
 		"1"	=>	"640x480",
-		"2"	=>	"800x600",
-		"3"	=>	"1024x768",
-		"4"	=>	"1280x1024",
-		"5"	=>	"1600x1200"
+//		"2"	=>	"800x600",
+//		"3"	=>	"1024x768",
+//		"4"	=>	"1280x1024",
+//		"5"	=>	"1600x1200"
 	);
 	
 	$formats_available = array (

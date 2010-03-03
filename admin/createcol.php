@@ -128,7 +128,7 @@
 
 </head>
 
-<body>
+<body onLoad="document.forms[0].location.focus()">
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#ffffff">
 
@@ -368,7 +368,7 @@ $status = 0;
 
 	<td bgcolor="#ffffff">
 
-	  <input type="text" name="name" size="80"></input>	  
+	  <input type="text" name="name" size="80" value="#COLL#"></input>	  
 
 	</td>
 
@@ -450,7 +450,7 @@ $status = 0;
 
 	<td bgcolor="#ffffff">
 
-	  <input type="text" name="location" size="80" value="University of Somewhere"</input>	  
+	  <input type="text" name="location" size="80" value="" style="background-color: silver"></input>	  
 
 	</td>
 
@@ -468,7 +468,7 @@ $status = 0;
 
 	<td bgcolor="#ffffff">
 
-	  <input type="text" name="description" size="80" value="Our small collection of art"></input>	  
+	  <input type="text" name="description" size="80" value="" style="background-color: silver"></input>	  
 
 	</td>
 
@@ -486,7 +486,7 @@ $status = 0;
 
 	<td bgcolor="#ffffff">
 
-	  <input type="text" name="email" size="80" value="info@universityofsomewhere.invalid"></input>	  
+	  <input type="text" name="email" size="80" value="" style="background-color: silver"></input>	  
 
 	</td>
 
@@ -504,7 +504,7 @@ $status = 0;
 
 	<td bgcolor="#ffffff">
 
-	  <input type="text" name="url" size="80" value="http://universiityofsomewhere.invalid"></input>	  
+	  <input type="text" name="url" size="80" value="" style="background-color: silver"></input>	  
 
 	</td>
 
@@ -606,7 +606,7 @@ $status = 0;
        
        $values = "'".$cid. "',"."'".$_POST['name']."',"."'".$_POST['host']. "',"."'".$_POST['active']. "',"."'".$_POST['location']. "',"."'".$_POST['description']. "',"."'".$_POST['email']. "',"."'".$_POST['url']. "'";
 
-	    $sql = "insert into {$db_prefix}collection (collectionid, name, host, active,sammlung_ort,descr,email,url) values (";
+	    $sql = "insert into {$db_prefix}collection (collectionid, name, host, active,sammlu{$db_prefix}ort,descr,email,url) values (";
 
 	   $sql .= ($values);
 

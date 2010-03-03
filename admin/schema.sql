@@ -417,22 +417,14 @@ CREATE TABLE `!prefix_!user_passwd` (
 );
 
 
-INSERT INTO `!prefix_!user_passwd` VALUES ('john', '2829fc16ad8ca5a79da932f910afad1c');
+INSERT INTO `!prefix_!user_passwd` VALUES ('admin', '#ADMINPW#');
 
-INSERT INTO `!prefix_!user_passwd` VALUES ('admin', 'a4757d7419ff3b48e92e90596f0e7548');
+INSERT INTO `!prefix_!user_passwd` VALUES ('#NAME#', '#USERPW#');
 
-INSERT INTO `!prefix_!user_passwd` VALUES ('editor', '5ebe2294ecd0e0f08eab7690d2a6ee69');
-
-INSERT INTO `!prefix_!user_passwd` VALUES ('student', '665c403aa19fe701b0ea7093ea4d0f45');
-
-
-INSERT INTO `!prefix_!user_auth` VALUES ('john', 'static', 1, 1, 1, 1, 1, 1);
 
 INSERT INTO `!prefix_!user_auth` VALUES ('admin', 'static', 1, 1, 1, 1, 1, 1);
 
-INSERT INTO `!prefix_!user_auth` VALUES ('editor', 'static', 0, 1, 0, 1, 1, 1);
-
-INSERT INTO `!prefix_!user_auth` VALUES ('student', 'static', 0, 0, 0, 1, 1, 1);
+INSERT INTO `!prefix_!user_auth` VALUES ('#NAME#', 'static', 1, 1, 1, 1, 1, 1);
 
 
 

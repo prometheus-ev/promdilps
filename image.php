@@ -150,7 +150,7 @@ if ($remoteCollectionId) {
     $file_exists_test = false;
     
     foreach ($formats_suffix as $mime => $suffix){
-    	$path = $base.'cache'.DIRECTORY_SEPARATOR.$resolution.DIRECTORY_SEPARATOR.intval($collectionid).'-'.intval($imageid).".".$suffix;
+    	$path = $base.'cache'.DIRECTORY_SEPARATOR.($resolution=="original"?"":$resolution.DIRECTORY_SEPARATOR).intval($collectionid).'-'.intval($imageid).".".$suffix;
     	// $path = $base.$resolution.'/'.intval($collectionid).'-'.intval($imageid).".".$suffix;
     
     	// echo "Test-Path: $path";

@@ -66,7 +66,7 @@ BEGIN grid_detail.tpl
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr>
 <td>
-<form name="Main" action="{$SCRIPT_NAME}" method="POST">
+<form name="Main" action="{$SCRIPT_NAME}" method="POST" enctype="multipart/form-data">
 <input type="hidden" name="view[type]" value="grid_detail">
 <input type="hidden" name="view[detail][id]" value="{$view.detail.id}">
 <input type="hidden" name="view[edit][id]" value="{$view.edit.id}">

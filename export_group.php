@@ -319,7 +319,7 @@ if ($export)
 
 		$copyfilename = $rs->fields['collectionid']."-".$rs->fields['imageid'].".jpg";
 
-		$source = $path.DIRECTORY_SEPARATOR.'cache'.DIRECTORY_SEPARATOR.'1600x1200'.DIRECTORY_SEPARATOR.$copyfilename;
+		$source = $path.DIRECTORY_SEPARATOR.'cache'.DIRECTORY_SEPARATOR.$copyfilename;
 
 		$dest = $exportdir.$user['login'].DIRECTORY_SEPARATOR.$date.DIRECTORY_SEPARATOR.'images'.DIRECTORY_SEPARATOR.$copyfilename;
 

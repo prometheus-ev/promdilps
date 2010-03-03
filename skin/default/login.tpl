@@ -184,7 +184,7 @@ BEGIN login.tpl
 
   <tr>
 
-     <td class="field_name">{#password#|escape:"htmlall"}</td>
+     <td class="field_name">{#password#|escape:"htmlall"} (<a href="changeuserpassword.php">{#change#|escape:"htmlall"}</a>)</td>
 
 	  <td><input type="password" name="auth[pwd]" size="20"></td>
 

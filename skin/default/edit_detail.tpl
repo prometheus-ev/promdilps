@@ -64,16 +64,10 @@ BEGIN edit_detail.tpl
 			   <td rowspan="2"><img src="/icons/blank.gif" width="1" height="91"></td>
 			   <td><img src="/icons/blank.gif" width="121" height="1"></td>
 			</tr>
-			<tr><td style="text-align: center"><img src="image.php?PHPSESSID={$sessionid}&id={$result.id}&resolution=120x90&remoteCollection={$query.remoteCollection}" border="0"></td></tr>
+			<tr><td style="text-align: center"><a href="image.php?PHPSESSID={$sessionid}&id={$result.id}&resolution=original&remoteCollection={$query.remoteCollection}" target="_blank" title="Zur Vollanzeige"><img src="image.php?PHPSESSID={$sessionid}&id={$result.id}&resolution=120x90&remoteCollection={$query.remoteCollection}" border="0"></a></td></tr>
 			</tr>
 			</table>
   		   </td>
-		   <td colspan="2" class="result_detail_data_data">
-  		       [{$rs.width|escape:htmlall}x{$rs.height|escape:htmlall}]
-			   [<a href="image.php?PHPSESSID={$sessionid}&id={$result.id}&resolution=1024x768&remoteCollection={$query.remoteCollection}" target="_blank">1024x768</a>]
-			   [<a href="image.php?PHPSESSID={$sessionid}&id={$result.id}&resolution=1280x1024&remoteCollection={$query.remoteCollection}" target="_blank">1280x1024</a>]
-			   [<a href="image.php?PHPSESSID={$sessionid}&id={$result.id}&resolution=1600x1200&remoteCollection={$query.remoteCollection}" target="_blank">1600x1200</a>]
-			</td>
 			</tr>
 	  		<tr>
 			   <td class="result_detail_data_head">{if $user.admin or $user.editor}{#status#|escape:htmlall}{/if}</td>

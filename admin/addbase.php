@@ -131,7 +131,7 @@
 
 </head>
 
-<body>
+<body onLoad="document.forms[0].go.focus()">
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#ffffff">
 
@@ -423,7 +423,7 @@ $status = 0;
 
 	<td bgcolor="#ffffff">
 
-	  <input type="text" name="path" size="80" value="/path/to/store/your/collection">
+	  <input type="text" name="path" size="80" value="#IMGBASE#">
 
 	</td>
 
@@ -505,15 +505,15 @@ $status = 0;
 
         mkdir($path.DIRECTORY_SEPARATOR.'cache'.DIRECTORY_SEPARATOR.'120x90');
 
-        mkdir($path.DIRECTORY_SEPARATOR.'cache'.DIRECTORY_SEPARATOR.'1600x1200');
+//        mkdir($path.DIRECTORY_SEPARATOR.'cache'.DIRECTORY_SEPARATOR.'1600x1200');
 
-        mkdir($path.DIRECTORY_SEPARATOR.'cache'.DIRECTORY_SEPARATOR.'1280x1024');
+//        mkdir($path.DIRECTORY_SEPARATOR.'cache'.DIRECTORY_SEPARATOR.'1280x1024');
 
-        mkdir($path.DIRECTORY_SEPARATOR.'cache'.DIRECTORY_SEPARATOR.'1024x768');
+//        mkdir($path.DIRECTORY_SEPARATOR.'cache'.DIRECTORY_SEPARATOR.'1024x768');
 
         mkdir($path.DIRECTORY_SEPARATOR.'cache'.DIRECTORY_SEPARATOR.'640x480');
 
-        mkdir($path.DIRECTORY_SEPARATOR.'cache'.DIRECTORY_SEPARATOR.'800x600');
+//        mkdir($path.DIRECTORY_SEPARATOR.'cache'.DIRECTORY_SEPARATOR.'800x600');
 
 
    	    $failure = !is_writable($path);

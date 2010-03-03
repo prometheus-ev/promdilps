@@ -1,0 +1,71 @@
+all = tous les champs 
+name = nom 
+title = titre
+search = chercher
+collection = collection
+all_collections = toutes les collections 
+year = annèe
+
+advancedsearch = recherche approfondie
+simplesearch = recherche simple
+closewindow = fermer la fenêtre
+newwindow = (S'ouvre en une autre fenêtre)
+type = Type
+addition = Texte ajouté
+material = Matériel
+technique = Technique
+format = Format
+literature = Référence bibliographique
+location = Localisation
+institution = Institution
+commentary = Commentaire
+keyword = Mots clés
+all2 = Tout
+like = resemble
+equals = egal	
+soundslike = prononciation ressemblant à
+likesoundslike = écrit où sonne comme
+queryand = ET
+queryor = OÙ
+group = groupe
+nogroup = pas de groupe
+mygroup = mon groupe
+selecthere = pour choisir, cliquer ici
+applychanges = appliquez les changements
+
+editgroups = gérer de groupes 
+exportgroup = exporter un groupe
+sourcefile = fichier source (local)
+sourcedirectory = répertoire source (local)
+targetdirectory = répertoire but
+nextstep = déterminé avec le prochain pas
+continue = autre
+insertimages = insertion des images
+completedir = la source est un?
+file = fichier
+directory = répertoire
+
+imagestatus = statut d'image
+status = statut d'image
+images_all = tout
+images_new = nouvelle entrée
+images_edited = pas d'accès 
+images_reviewed = libre accès
+
+no_subdirs = pas de sous-listes trouvé
+closewindow = fermer la fenêtre
+
+imageid = ID de l'image
+
+deleteimagewithid = L'image avec l'ID suivant doit être supprimée
+rotateimagewithid = L'image avec l'ID suivant doit-elle être tournée
+
+withviewer = Exportation avec des DILPS-Leuchtpult et -Projektor
+withsubgroups = Des sous-groupes avec l'exportation fouiller aussi
+targetsystem = Quel logiciel d'exploitation employez-vous
+
+yes = oui
+no = non
+
+logout = logout
+collectionoverview = Aperçu par collection

@@ -1,0 +1,56 @@
+DILPS:  Process for loading the database with location names from the Getty Thesaurus of Geographical Names (TGN)
+
+An effort is made to transform the "special characters" in the source ASCII-encoded files into valid ISO8859-1 characters.  The characters that can not be successfully transformed are ommitted.
+
+Comment: This process is a real pain in the ass.  Why couldn't they just use a proper utf-8 formatted xml file in the first place?
+
+Note: times noted are for a debian 2.6 kernel running on an AMD 2GHz processor with 1GB of memory
+
+*** PREPARE THE THESAURUS XML FILES ***
+
+Process:
+1.1 Move the main thesaurus xml files (i.e. tgn1.xml, tgn2.xml, etc), but not the accessory files (tgn_merge.xml, tgn_sources.xml, etc) to a new directory.
+
+Ex:
+# mkdir tgn_source
+# mv tgn[1-9].xml tgn_source
+# mv tgn1[0-9].xml tgn_source
+
+
+1.2 fix the thesaurus files by replacing $e with $00e.
+IMPORTANT: It's necessary to edit the fix_tgn.bash file to specify the source and destination directories
+This script will take a few minutes to run.
+
+Ex:
+# mkdir tgn_fix
+# ./fix_tgn.bash
+
+
+2. Create a new directory that will contain the thesaurus files after they've undergone a character-encoding translation.
+
+Ex:
+# mkdir tgn_transformed
+
+3. Edit the file includes/thesauri/thesauri_load_config.inc.php and set appropriate values for the variables
+
+4. From the command line, run transformer.php.  This script has a long execution time. (~15 minutes).  The script outputs messages when it can't find a translation for a character code.  these can be ignored.
+
+Ex:
+# cd includes/thesauri
+# php transformer.php >transformer.log
+
+5. From the command line, run pieces.php.  This breaks the huge xml files into smaller xml files.
+
+
+*** LOAD THE DATABASE WITH DATA FROM THE XML FILES ***
+
+6.1 truncate the database table ng_location
+6.2 Edit reload_location_thesaurus.bash and set appropriate values for the variables.  From the command line, run reload_location_thesaurus.bash. This loads the database with the information from the xml files.  This script has a long execution time. (~ 13 minutes per original 200MB xml file). 
+NOTE: this shell script is used to start php multiple times from a shell script, because php runs out of memory if too many big xml files are run through pear's Unserializer using a loop.
+# ./reload_location_thesaurus.bash >location_load.log 2>&1 &
+# tail -f location_load.log
+
+*** UPDATE THE META AND LOCATION TABLES FROM EACH OTHER ***
+7.1 backup the meta table ...
+# create table meta_table_backup as select * from ng_meta;
+7.2 run update_meta_table_after_location_reload.php from the command line 

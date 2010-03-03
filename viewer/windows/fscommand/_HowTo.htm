@@ -1,0 +1,2249 @@
+<html>
+<head>
+<title>PipeBeama und Pipescript</title>
+</head>
+<body leftmargin="15" link="#000000" vlink="#000000" alink="#000000">
+<p align="left"><b><font face="Arial" size="4"><br>
+</font><font face="Arial" size="5">
+PipeBeama / Pipescript</font><font face="Arial" size="4"><br>
+</font></b><font face="Arial"><b><br>
+Was ist PipeBeama ?<br>
+</b>PipeBeama ist ein Zusatztool für Macromedia Flash-Projector-Files <u> ab</u> der
+Version 5 das&nbsp;<br>
+ den Funktionsumfang durch zusätzliche externe Befehle erweitert. Hierbei wird
+nicht wie<br>
+bei anderen Tools das Projektorfile modifiziert oder ein eigener Player
+verwendet.<br>
+Ein Standard-Projektorfile, das z.B. mit Macromedia Flash erstellt wurde, reicht
+hier völlig<br>
+aus. Macromedia hat aus Sicherheitsgründen das Actionscript-Kommando &quot;fscommand&quot;<br>
+stark eingeschränkt. Dadurch ergeben sich viele Nachteile bei der Produktion von<br>
+Multimediaanwendungen, wie z.B. interaktive Produkt- und oder Installations-CD`s.<br>
+PipeBeama fungiert sozusagen als Bindeglied zwischen Projektor-File und
+Betriebssystem<br>
+und stellt so dem Entwickler nützliche Funktionen zur Verfügung.<br>
+<br>
+<b>Welche Betriebssysteme werden unterstützt ?<br>
+</b>PipeBeama ist zur Zeit nur für die Windows-Plattform erhältlich. Der Code wurde so angelegt,<br>
+daß PipeBeama unter den Betriebssystemen Win95, Win98, Me, NT, 2000 und XP lauffähig<br>
+sein sollte. Bugs, Fehlfunktionen, Anregungen, Tipps, Kritik etc. bitte an:<br>
+pipebeama@webmechaniker.de&nbsp;</font></p>
+<p><font face="Arial"><b>Brauche ich PipeBeama ?<br>
+</b>Ob man PipeBeama benötigt oder nicht, muß man selber erkunden.<br>
+Jedenfalls sind die Möglichkeiten die dieses Tool bietet, bzw. in der Zukunft
+noch bieten wird,&nbsp;<br>
+ theoretisch "unendlich", da PipeBeama als C++ Anwendung natürlich alle Funktionalitäten&nbsp;<br>
+ einer höheren Programmiersprache zur Verfügung stellen kann..&nbsp;<br>
+Zur Zeit befindet sich PipeBeama im Alpha-Release, sodaß noch zahlreiche
+Befehle folgen<br>
+und auch noch evtl. Bugs behoben werden müssen.&nbsp;<br>
+Sachdienliche Hinweise bitte an pipebeama@webmechaniker.de
+<br>
+<br>
+<b>Wie funktioniert PipeBeama ?<br>
+</b>PipeBeama ist ein Socketserver, der auf Befehle (Pipescript) reagiert und so verschiedene&nbsp;<br>
+ Aufgaben für das Flash Projektor-File erledigen kann. Macromedia Flash Actionscript bietet dem<br>
+Entwickler eine sogenannte XML-Socket-Klasse, mit deren Methoden die Pipescriptbefehle<br>
+an PipeBeama gesendet werden. Diese werden dort verarbeitet und senden
+eine&nbsp;entsprechende&nbsp;<br>
+ Antwort an das Flash-Projektor-File zurück. So steht Ihnen eine duplexfähige Kommunikations-<br>
+schnittstelle zur Verfügung. Zum Beispiel werden bald auch Chatsysteme oder
+Netzwerkspiele<br>
+über das lokale Netzwerk möglich sein.<br>
+<br>
+<b>Wie integriert man PipeBeama in Flash-Projektor-Files ?<br>
+</b>Die Integration von PipeBeama ist kinderleicht. Für einen einfachen
+Einstieg empfiehlt es sich das<br>
+Flash-Demofile, daß sich in dem Ordner &quot;FLA&quot; befindet,
+durchzuarbeiten. Hinweis: In dem Demofile<br>
+wird PipeBeama zur Demonstration über eine Schaltfläche gestartet. Es
+empfiehlt sich aber in der<br>
+Praxis ein einfacher direkter Aufruf am Anfang des Flashfilms, damit PipeBeama
+genug Zeit hat sich<br>
+zu initialisieren.<br>
+<br>
+Grundsätzlich muß PipeBeama einmal gestartet werden.&nbsp;<br>
+Hierzu ist das Actionscript-Kommando <i><b>fscommand (&quot;exec&quot;,&quot;PipeBeama.exe&quot;);</b>
+</i>zu verwenden.<br>
+Die Datei <b> PipeBeama.exe</b> muß sich ab der <u>Flash Version 6</u> in dem Ordner <b>&quot;fscommand&quot;</b><b> </b> befinden.<br>
+Flash 5 Anwender können den Ordner&nbsp; noch angeben in dem sich die
+PipeBeama.exe befindet.<br>
+Liegt diese ebenfalls im fscommand Ordner so sieht die Syntax für <u>Flash 5</u>
+wie folgt aus:<br>
+</font><font face="Arial"><i>fscommand (&quot;exec&quot;,&quot;fscommand/PipeBeama.exe&quot;);</i></font><font face="Arial"><br>
+Bevor PipeBeama einen Befehl entgegen nehmen kann, muß sich das Projektor-File einmalig
+anmelden,&nbsp;<br>
+ sozusagen &quot;Hallo da bin ich" sagen. Hierzu erstellen Sie einfach ein
+eigenes Objekt der Klasse XMLSocket.<br>
+In dem Beispiel wurde der Name MyBroadcaster verwendet.<br>
+<i><b><br>
+MyBroadcaster = new XMLSocket();<br>
+MyBroadcaster.connect(&quot;127.0.0.1&quot;,</b></i><b><i>2000</i></b><i><b>);</b></i><br>
+<br>
+Die 127.0.0.1 kennzeichnet Ihren Computer und wird auch in der Computersprache
+als &quot;localhost&quot; bezeichnet.<br>
+Die 2000 ist die Portnummer, die zur Kommunikation mit PipeBeama verwendet wird.&nbsp;<br>
+<br>
+Nach erfolgreicher Anmeldung vergeben Sie einen Kommunikationsnamen, sodaß PipeBeama
+ihren Flash-<br>
+Film eindeutig zuordnen kann.</font></p>
+<table border="0" width="800" cellpadding="2" style="border-style: solid; border-color: #000000">
+  <tr>
+    <td width="89" bgcolor="#C0C0C0"><font face="Arial"><a name="PB_connect"></a>Befehl:</font></td>
+    <td width="773" colspan="4"><font face="Arial"><b>&lt;PB_connect&gt;&lt;user&gt;&lt;/user&gt;&lt;/PB_connect&gt;</b></font></td>
+  </tr>
+  <tr>
+    <td width="89" bgcolor="#C0C0C0"><font face="Arial">Erläuterung:</font></td>
+    <td width="773" colspan="4"><font face="Arial">Verbindet einen Client mit
+      PipeBeama</font></td>
+  </tr>
+  <tr>
+    <td width="89" bgcolor="#C0C0C0"><font face="Arial">Parameter:</font></td>
+    <td width="245"><font face="Arial">&lt;user&gt;&lt;/user&gt;</font></td>
+    <td width="168"><font face="Arial">string</font></td>
+    <td width="168"></td>
+    <td width="168"></td>
+  </tr>
+  <tr>
+    <td width="89" bgcolor="#C0C0C0"><font face="Arial">Rückgabe:</font></td>
+    <td width="245"><font face="Arial">&lt;return&gt;&lt;/return&gt;</font></td>
+    <td width="168"><font face="Arial">1 erfolgreich</font></td>
+    <td width="168"><font face="Arial">-1 Fehler</font></td>
+    <td width="168"></td>
+  </tr>
+  <tr>
+    <td width="89" bgcolor="#C0C0C0">&nbsp;</td>
+    <td width="245"><font face="Arial">&lt;message&gt;&lt;/message&gt;</font></td>
+    <td width="168"><font face="Arial">OK</font></td>
+    <td width="168"></td>
+    <td width="168"></td>
+  </tr>
+  <tr>
+    <td width="89" bgcolor="#C0C0C0">&nbsp;</td>
+    <td width="245"></td>
+    <td width="168"><font face="Arial">user already exists</font></td>
+    <td width="336" colspan="2"><font face="Arial">Der User (Film) ist trotzdem
+      angemeldet. Eine Fehlerbetrachtung wird dem Anwender überlassen.</font></td>
+  </tr>
+</table>
+<p><font face="Arial">Hierzu ein Actionscript Beispiel:<u><br>
+</u><br>
+<i><b>sSend = "&lt;PB_connect>\n" +<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&quot;&lt;user>Testuser&lt;/user>\n"&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++"&lt;/PB_connect>\n";<br>
+<br>
+				MyBroadcaster.send (sSend);</b><br>
+<br>
+</i>sSend ist eine einfache Variable vom Typ String. Die Stringverkettung mit
+den abschließenden Zeilenumbrüchen \n<br>
+wurde nur zur Demonstration gewählt. Natürlich wäre folgende Schreibweise
+auch möglich:<br>
+<b>
+sSend = &quot;&lt;PB_connect&gt;&lt;user&gt;Testuser&lt;/user&gt;&lt;/PB_connect&gt;&quot;;</b><br>
+</font><font face="Arial">
+<i>
+<br>
+</i>Nun sind Sie fertig und können die nachfolgenden Befehle an PipeBeama
+senden und verarbeiten.<br>
+Diese werden mit der Methode "send" der Klasse XML, wie schon oben gesehen,
+versendet.<br>
+<i><b>MyBroadcaster.send (&quot;....&quot;);</b></i><br>
+<br>
+<b>
+Pipescript ist case-sensitive, also unbedingt auf die Groß- Kleinschreibung
+achten!<br>
+<br>
+<u>TIPP:</u> </b>Zur besseren Verarbeitung der Rückgabewerte sollte der Befehl System.useCodepage =
+true;<br>
+am Anfang des Films gesetzt werden. Dieser erlaubt den Zugriff auf den
+erweiterten Zeichensatz des<br>
+Betriebssystems.</font></p>
+<p><font face="Arial"><a name="Befehlsübersicht"></a><u>Befehlsübersicht:</u></font>
+<p style="margin-left: 40"><font face="Arial">
+<font size="2">
+<a href="#PB_about">&lt;PB_about&gt;</a><br>
+<a href="#PB_connect">&lt;PB_connect&gt;</a><br>
+<a href="#PB_copyto">&lt;PB_copyto&gt;</a><br>
+<a href="#PB_createdir">&lt;PB_createdir&gt;</a><br>
+<a href="#PB_cpuspeed">&lt;PB_cpuspeed&gt;</a><br>
+<a href="#PB_driveinfo">&lt;PB_driveinfo&gt;</a><br>
+<a href="#PB_execute">&lt;PB_execute&gt;</a><br>
+<a href="#PB_explorefolder">&lt;PB_explorefolder&gt;</a><br>
+<a href="#PB_filecopy">&lt;PB_filecopy&gt;</a><br>
+<a href="#PB_fileexists">&lt;PB_fileexists&gt;</a><br>
+<a href="#PB_fileinfo">&lt;PB_fileinfo&gt;</a><br>
+<a href="#PB_fpcenterwindow">&lt;PB_fpcenterwindow&gt;</a><br>
+<a href="#PB_fpgetproperties">&lt;PB_fpgetproperties&gt;</a><br>
+<a href="#PB_fpsetproperties">&lt;PB_fpsetproperties&gt;</a><br>
+<a href="#PB_fpminimize">&lt;PB_fpminimize&gt;</a><br>
+<a href="#PB_fpsendtotray">&lt;PB_fpsendtotray&gt;</a><br>
+<a href="#PB_getcomputername">&lt;PB_getcomputername&gt;</a><br>
+<a href="#PB_getdirs">&lt;PB_getdirs&gt;</a><br>
+<a href="#PB_getpbuser">&lt;PB_getpbuser&gt;</a><br>
+<a href="#PB_getpbusers">&lt;PB_getpbusers&gt;</a><br>
+<a href="#PB_getsystemdir">&lt;PB_getsystemdir&gt;</a><br>
+<a href="#PB_getsystemdir">&lt;PB_getsystemmetrics&gt;</a><br>
+<a href="#PB_getusername">&lt;PB_getusername&gt;</a><br>
+<a href="#PB_goodbye">&lt;PB_goodbye&gt;</a><br>
+<a href="#PB_httpdownload">&lt;PB_httpdownload&gt;</a><br>
+<a href="#PB_load">&lt;PB_load&gt;</a><br>
+<a href="#PB_mailto">&lt;PB_mailto&gt;</a><br>
+<a href="#PB_messagebox">&lt;PB_messagebox&gt;</a><br>
+<a href="#PB_midiplayfile">&lt;PB_midiplayfile&gt;</a><br>
+<a href="#PB_midistop">&lt;PB_midistop&gt;</a><br>
+<a href="#PB_open">&lt;PB_open&gt;</a><br>
+<a href="#PB_pathexists">&lt;PB_pathexists&gt;</a><br>
+<a href="#PB_readregkey">&lt;PB_readregkey&gt;</a><br>
+<a href="#PB_runcontrolpanel">&lt;PB_runcontrolpanel&gt;</a><br>
+<a href="#PB_save">&lt;PB_save&gt;</a><br>
+<a href="#PB_sendto">&lt;PB_sendto&gt;</a><br>
+</font>
+
+
+
+<p style="margin-left: 0"><font face="Arial"><b>
+
+<table border="0" width="820" style="border-style: solid; border-color: #000000" cellpadding="2">
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"><font face="Arial"><a name="PB_about"></a>Befehl:</font></td>
+    <td width="88%" colspan="4" valign="top"><b><font face="Arial">&lt;PB_about&gt;&lt;/PB_about&gt;</font></b></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"><font face="Arial">Erläuterung:</font></td>
+    <td width="88%" colspan="4" valign="top"><font face="Arial">Zeigt die
+      Versionsnummer von PipeBeama an. Bitte unbedingt bei Bugmeldungen etc.
+      angeben</font></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"><font face="Arial">Parameter:</font></td>
+    <td width="28%" valign="top"><font face="Arial">keine</font></td>
+    <td width="20%" valign="top"></td>
+    <td width="20%" valign="top"></td>
+    <td width="20%" valign="top"></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"><font face="Arial">Rückgabe:</font></td>
+    <td width="28%" valign="top"><font face="Arial">&lt;return&gt;&lt;/return&gt;</font></td>
+    <td width="20%" valign="top"><font face="Arial">1 erfolgreich</font></td>
+    <td width="20%" valign="top"><font face="Arial">-1 Fehler</font></td>
+    <td width="20%" valign="top"></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="28%" valign="top"><font face="Arial">&lt;version&gt;&lt;/version&gt;</font></td>
+    <td width="20%" valign="top"><font face="Arial">string</font></td>
+    <td width="20%" valign="top"></td>
+    <td width="20%" valign="top"></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="28%" valign="top"><font face="Arial">&lt;copyright&gt;&lt;/copyright&gt;</font></td>
+    <td width="20%" valign="top"><font face="Arial">string</font></td>
+    <td width="20%" valign="top"></td>
+    <td width="20%" valign="top"></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="28%" valign="top"><font face="Arial">&lt;author&gt;&lt;/author&gt;</font></td>
+    <td width="20%" valign="top"><font face="Arial">string</font></td>
+    <td width="20%" valign="top"></td>
+    <td width="20%" valign="top"></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0">&nbsp;</td>
+    <td width="28%" valign="top"><font face="Arial">&lt;contact&gt;&lt;/contact&gt;</font></td>
+    <td width="20%" valign="top"><font face="Arial">string</font></td>
+    <td width="20%" valign="top"></td>
+    <td width="20%" valign="top"></td>
+  </tr>
+</table>
+<p>&nbsp;<a href="#Befehlsübersicht" title="Befehlsübersicht">&lt;&lt;&lt;</a></p>
+
+<table border="0" width="820" style="border-style: solid; border-color: #000000" cellpadding="2">
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"><font face="Arial"><a name="PB_copyto"></a>Befehl:</font></td>
+    <td width="88%" colspan="4" valign="top"><b><font face="Arial">&lt;PB_copyto&gt;&lt;sourcepath&gt;&lt;/sourcepath&gt;&lt;file&gt;&lt;/file>&lt;/PB_copyto&gt;</font></b></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"><font face="Arial">Erläuterung:</font></td>
+    <td width="88%" colspan="4" valign="top"><font face="Arial">Kopiert eine Datei aus einem Quellenverzeichnis in ein Zielverzeichnis.<br>
+      Das Zielverzeichnis ist über einen "Speichern unter Dialog" auswählbar.</font></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"><font face="Arial">Parameter:</font></td>
+    <td width="28%" valign="top"><font face="Arial">&lt;sourcepath>&lt;/sourcepath></font></td>
+    <td width="60%" colspan="3" valign="top"><font face="Arial">string z.B.
+      c:\\MeinVerzeichnis\\MeinUnterVerzeichnis<br>
+      Spezialfälle:<br>
+      &lt;sourcepath&gt;&lt;/sourcepath&gt; Der Quellenordner ist fscommand<br>
+      &lt;sourcepath&gt;..\\&lt;/sourcepath&gt; Eine Ebene über fscommand </font></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="28%" valign="top"><font face="Arial">&lt;file&gt;&lt;/file&gt;</font></td>
+    <td width="60%" colspan="3" valign="top"><font face="Arial">string z.B.
+      Test.txt<br>
+      </font></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"><font face="Arial">Rückgabe:</font></td>
+    <td width="28%" valign="top"><font face="Arial">&lt;return&gt;&lt;/return&gt;</font></td>
+    <td width="20%" valign="top"><font face="Arial">1 erfolgreich</font></td>
+    <td width="20%" valign="top"><font face="Arial">-1 Fehler</font></td>
+    <td width="20%" valign="top"></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="28%" valign="top"><font face="Arial">&lt;message&gt;&lt;/message&gt;</font></td>
+    <td width="60%" colspan="3" valign="top"><font face="Arial">string mit erweiterten Informationen zur Ausführung des Befehls</font></td>
+  </tr>
+</table>
+<p>&nbsp;<font face="Arial"><b><a href="#Befehlsübersicht" title="Befehlsübersicht">&lt;&lt;&lt;</a>
+
+</b>
+
+</font></p>
+
+<table border="0" width="820" style="border-style: solid; border-color: #000000" cellpadding="2">
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"><font face="Arial"><a name="PB_cpuspeed"></a>Befehl:</font></td>
+    <td width="88%" colspan="4" valign="top"><b><font face="Arial">&lt;PB_cpuspeed&gt;&lt;/PB_cpuspeed&gt;</font></b></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"><font face="Arial">Erläuterung:</font></td>
+    <td width="88%" colspan="4" valign="top"><font face="Arial">Führt eine
+      Taktfrequenzmessung nach folgenden Kriterien durch:<br>
+      <i>Dauer der Messung: 100ms<br>
+      Thread Priorität: THREAD_PRIORITY_HIGHEST<br>
+      Messverfahren: REALTIME_PRIORITY_CLASS</i></font></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"><font face="Arial">Parameter:</font></td>
+    <td width="28%" valign="top"><font face="Arial">keine</font></td>
+    <td width="60%" colspan="3" valign="top"></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"><font face="Arial">Rückgabe:</font></td>
+    <td width="28%" valign="top"><font face="Arial">&lt;return&gt;&lt;/return&gt;</font></td>
+    <td width="20%" valign="top"><font face="Arial">1 erfolgreich</font></td>
+    <td width="20%" valign="top"><font face="Arial">-1 Fehler</font></td>
+    <td width="20%" valign="top"></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="28%" valign="top"><font face="Arial">&lt;message&gt;&lt;/message&gt;</font></td>
+    <td width="60%" colspan="3" valign="top"><font face="Arial">string Aktuelle
+      Taktmessung in MHz</font></td>
+  </tr>
+</table>
+<p>&nbsp;<font face="Arial"><b><a href="#Befehlsübersicht" title="Befehlsübersicht">&lt;&lt;&lt;</a>
+
+</b>
+
+</font></p>
+<table border="0" width="820" style="border-style: solid; border-color: #000000" cellpadding="2">
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"><font face="Arial"><a name="PB_createdir"></a>Befehl:</font></td>
+    <td width="88%" colspan="4" valign="top"><b><font face="Arial">&lt;PB_createdir&gt;&lt;path&gt;&lt;/path&gt;&lt;/PB_createdir&gt;</font></b></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"><font face="Arial">Erläuterung:</font></td>
+    <td width="88%" colspan="4" valign="top"><font face="Arial">Erstellt Verzeichnisse. Vorhandene Verzeichnisse werden nicht "überschrieben&quot;.</font></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"><font face="Arial">Parameter:</font></td>
+    <td width="28%" valign="top"><font face="Arial">&lt;path&gt;&lt;/path&gt;</font></td>
+    <td width="60%" colspan="3" valign="top"><font face="Arial">string z.B. </font><font face="Arial">c:\\MeinVerzeichnis\\MeinUnterVerzeichnis</font></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"><font face="Arial">Rückgabe:</font></td>
+    <td width="28%" valign="top"><font face="Arial">&lt;return&gt;&lt;/return&gt;</font></td>
+    <td width="20%" valign="top"><font face="Arial">1 erfolgreich</font></td>
+    <td width="20%" valign="top"><font face="Arial">-1 Fehler</font></td>
+    <td width="20%" valign="top"></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="28%" valign="top"><font face="Arial">&lt;message&gt;&lt;/message&gt;</font></td>
+    <td width="60%" colspan="3" valign="top"><font face="Arial">string mit erweiterten Informationen zur Ausführung des Befehls</font></td>
+  </tr>
+</table>
+<p>&nbsp;<font face="Arial"><b><a href="#Befehlsübersicht" title="Befehlsübersicht">&lt;&lt;&lt;</a>
+
+</b>
+
+</font></p>
+<table border="0" width="820" style="border-style: solid; border-color: #000000" cellpadding="2">
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"><font face="Arial"><a name="PB_driveinfo"></a>Befehl:</font></td>
+    <td width="88%" colspan="2" valign="top"><b><font face="Arial">&lt;PB_driveinfo&gt;&lt;/PB_driveinfo&gt;</font></b></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"><font face="Arial">Erläuterung:</font></td>
+    <td width="88%" colspan="2" valign="top"><font face="Arial">Gibt die
+      vorhandenen Festplatten (mit Zusatzinformationen) und CD / DVD Laufwerke
+      wieder</font></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"><font face="Arial">Parameter:</font></td>
+    <td width="28%" valign="top"><font face="Arial">keine</font></td>
+    <td width="60%" valign="top"></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"><font face="Arial">Rückgabe:</font></td>
+    <td width="28%" valign="top"><font face="Arial">&lt;hd_drive&gt;&lt;/hd_drive&gt;</font></td>
+    <td width="60%" valign="top"><font face="Arial">string Laufwerksbuchstabe</font></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="28%" valign="top"><font face="Arial">&lt;total_mb&gt;&lt;/total_mb&gt;</font></td>
+    <td width="60%" valign="top"><font face="Arial">string Gesamtspeichergröße
+      in Mega Bytes</font></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="28%" valign="top"><font face="Arial">&lt;used_mb&gt;&lt;/used_mb&gt;</font></td>
+    <td width="60%" valign="top"><font face="Arial">string verwendete
+      Speichergröße in Mega Bytes</font></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="28%" valign="top"><font face="Arial">&lt;free_mb&gt;&lt;/free_mb&gt;</font></td>
+    <td width="60%" valign="top"><font face="Arial">string freie Speichergröße
+      in Mega Bytes</font></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="28%" valign="top"><font face="Arial">&lt;serial&gt;&lt;/serial&gt;</font></td>
+    <td width="60%" valign="top"><font face="Arial">string Seriennummer des
+      Laufwerks</font></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="28%" valign="top"><font face="Arial">&lt;filesystem&gt;&lt;/filesystem&gt;</font></td>
+    <td width="60%" valign="top"><font face="Arial">string Dateisystem z.B. NTFS,
+      FAT</font></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="88%" valign="top" colspan="2"><font face="Arial"><b>Sollten
+      weitere Festplatten gefunden werden, wiederholen sich diese Informationen!</b></font></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="28%" valign="top"><font face="Arial">&lt;disc_drive&gt;&lt;/disc_drive&gt;</font></td>
+    <td width="60%" valign="top"><font face="Arial">string Laufwerksbuchstabe</font></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="88%" valign="top" colspan="2"><font face="Arial"><b>Sollten
+      weitere CD / DVD Laufwerke gefunden werden, wiederholt sich diese
+      Information!</b></font></td>
+  </tr>
+</table>
+<p>&nbsp;<font face="Arial"><b><a href="#Befehlsübersicht" title="Befehlsübersicht">&lt;&lt;&lt;</a>
+
+</b>
+
+</font></p>
+<table border="0" width="820" style="border-style: solid; border-color: #000000" cellpadding="2">
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"><font face="Arial"><a name="PB_execute"></a>Befehl:</font></td>
+    <td width="88%" colspan="4" valign="top"><b><font face="Arial">&lt;PB_execute&gt;&lt;path&gt;&lt;/path&gt;&lt;file&gt;&lt;/file&gt;&lt;param&gt;&lt;/param&gt;&lt;/PB_execute&gt;</font></b></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"><font face="Arial">Erläuterung:</font></td>
+    <td width="88%" colspan="4" valign="top"><font face="Arial">Führt eine Datei in dem angegebenen Ort aus.</font></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"><font face="Arial">Parameter:</font></td>
+    <td width="28%" valign="top"><font face="Arial">&lt;path&gt;&lt;/path&gt;</font></td>
+    <td width="60%" colspan="3" valign="top"><font face="Arial">string z.B. c:\\MeinVerzeichnis\\MeinUnterVerzeichnis<br>
+      Spezialfälle:<br>
+      &lt;path>&lt;/path> Der Quellenordner ist fscommand<br>
+      &lt;path>..\\&lt;/path> Eine Ebene über fscommand </font></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="28%" valign="top"><font face="Arial">&lt;file&gt;&lt;/file&gt;</font></td>
+    <td width="60%" colspan="3" valign="top"><font face="Arial">string z.B. Test.pdf
+      oder eine Anwendung z.B. ppviewer.exe </font></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="28%" valign="top"><font face="Arial">&lt;param&gt;&lt;/param&gt;</font></td>
+    <td width="60%" colspan="3" valign="top"><font face="Arial">string der den Parameter
+      an die in &lt;file&gt; angegebene Anwendung<br>
+      übergeben kann. Wird ein Dateiname übergeben, so kann ein relativer Pfad
+      aus Sicht des PipeBeama's&nbsp; durch <b>..\\</b> eingeleitet<br>
+      werden. (Bsp.: ..\\EinOrdner\\EinOrdner\\Dateiname.ext)<br>
+      Hinweis: &lt;param&gt; kann von PipeBeama nicht auf Plausibilität<br>
+      geprüft werden.</font></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"><font face="Arial">Rückgabe:</font></td>
+    <td width="28%" valign="top"><font face="Arial">&lt;return&gt;&lt;/return&gt;</font></td>
+    <td width="20%" valign="top"><font face="Arial">1 erfolgreich</font></td>
+    <td width="20%" valign="top"><font face="Arial">-1 Fehler</font></td>
+    <td width="20%" valign="top"></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="28%" valign="top"><font face="Arial">&lt;message&gt;&lt;/message&gt;</font></td>
+    <td width="60%" colspan="3" valign="top"><font face="Arial">string mit erweiterten Informationen zur Ausführung des Befehls</font></td>
+  </tr>
+</table>
+<p>&nbsp;<font face="Arial"><b><a href="#Befehlsübersicht" title="Befehlsübersicht">&lt;&lt;&lt;</a>
+
+</b>
+
+</font></p>
+<table border="0" width="820" style="border-style: solid; border-color: #000000" cellpadding="2">
+  <tr>
+    <td width="86" valign="top" bgcolor="#C0C0C0"><font face="Arial"><a name="PB_explorefolder"></a>Befehl:</font></td>
+    <td width="696" colspan="4" valign="top"><b><font face="Arial">&lt;PB_explorefolder&gt;&lt;path&gt;&lt;/path&gt;&lt;/PB_explorefolder&gt;</font></b></td>
+  </tr>
+  <tr>
+    <td width="86" valign="top" bgcolor="#C0C0C0"><font face="Arial">Erläuterung:</font></td>
+    <td width="696" colspan="4" valign="top"><font face="Arial">Öffnet ein
+      Verzeichnis</font></td>
+  </tr>
+  <tr>
+    <td width="86" valign="top" bgcolor="#C0C0C0"><font face="Arial">Parameter:</font></td>
+    <td width="218" valign="top"><font face="Arial">&lt;path&gt;&lt;/path&gt;</font></td>
+    <td width="470" colspan="3" valign="top"><font face="Arial">string z.B. c:\\MeinVerzeichnis\\MeinUnterVerzeichnis<br>
+      Spezialfälle:<br>
+      &lt;path>&lt;/path> Der Pfad ist fscommand<br>
+      &lt;path>..\\&lt;/path> Eine Ebene über fscommand </font></td>
+  </tr>
+  <tr>
+    <td width="86" valign="top" bgcolor="#C0C0C0"><font face="Arial">Rückgabe:</font></td>
+    <td width="218" valign="top"><font face="Arial">&lt;return&gt;&lt;/return&gt;</font></td>
+    <td width="152" valign="top"><font face="Arial">1 erfolgreich</font></td>
+    <td width="151" valign="top"><font face="Arial">-1 Fehler</font></td>
+    <td width="151" valign="top"></td>
+  </tr>
+  <tr>
+    <td width="86" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="218" valign="top"><font face="Arial">&lt;message&gt;&lt;/message&gt;</font></td>
+    <td width="470" colspan="3" valign="top"><font face="Arial">string mit erweiterten Informationen zur Ausführung des Befehls</font></td>
+  </tr>
+</table>
+<p><a href="#Befehlsübersicht" title="Befehlsübersicht">&lt;&lt;&lt;</a>
+
+</p>
+<table border="0" width="820" style="border-style: solid; border-color: #000000" cellpadding="2">
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"><font face="Arial"><a name="PB_filecopy"></a>Befehl:</font></td>
+    <td width="88%" colspan="4" valign="top"><b><font face="Arial">&lt;PB_filecopy&gt;&lt;sourcepath&gt;&lt;/sourcepath&gt;&lt;destpath&gt;&lt;/destpath&gt;<br>
+      &lt;file&gt;&lt;/file&gt;&lt;rename&gt;&lt;/rename&gt;&lt;/PB_filecopy&gt;</font></b></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"><font face="Arial">Erläuterung:</font></td>
+    <td width="88%" colspan="4" valign="top"><font face="Arial">Kopiert eine Datei aus einem Quellenverzeichnis in ein Zielverzeichnis.
+      Das Zielverzeichnis wird bei Bedarf automatisch angelegt.</font></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"><font face="Arial">Parameter:</font></td>
+    <td width="28%" valign="top"><font face="Arial">&lt;sourcepath&gt;&lt;/sourcepath&gt;</font></td>
+    <td width="60%" colspan="3" valign="top"><font face="Arial">string z.B. </font><font face="Arial">c:\\MeinVerzeichnis\\MeinUnterVerzeichnis<br>
+      Spezialfälle:<br>
+      &lt;sourcepath>&lt;/sourcepath> Der Quellenordner ist fscommand<br>
+      &lt;sourcepath>..\\&lt;/sourcepath> Eine Ebene über fscommand</font></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="28%" valign="top"><font face="Arial">&lt;destpath&gt;&lt;/destpath&gt;</font></td>
+    <td width="60%" colspan="3" valign="top"><font face="Arial">string z.B. </font><font face="Arial">c:\\MeinNeuesVerzeichnis\\MeinNeuesUnterVerzeichnis<br>
+      Spezialfälle:<br>
+      &lt;destpath&gt;&lt;/destpath&gt; Der Zielordner ist fscommand<br>
+      &lt;destpath&gt;..\\&lt;/destpath&gt; Eine Ebene über fscommand</font></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="28%" valign="top"><font face="Arial">&lt;file&gt;&lt;/file&gt;</font></td>
+    <td width="60%" colspan="3" valign="top"><font face="Arial">string z.B.
+      Test.txt</font></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0">&nbsp;</td>
+    <td width="28%" valign="top">&lt;rename&gt;&lt;/rename&gt;</td>
+    <td width="60%" colspan="3" valign="top">string z.B. Hallo.txt der den neuen
+      Namen der Datei beinhaltet.<br>
+      Wird rename leer gelassen, wird der Dateiname aus file verwendet.</td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"><font face="Arial">Rückgabe:</font></td>
+    <td width="28%" valign="top"><font face="Arial">&lt;return&gt;&lt;/return&gt;</font></td>
+    <td width="20%" valign="top"><font face="Arial">1 erfolgreich</font></td>
+    <td width="20%" valign="top"><font face="Arial">-1 Fehler</font></td>
+    <td width="20%" valign="top"></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="28%" valign="top"><font face="Arial">&lt;message&gt;&lt;/message&gt;</font></td>
+    <td width="60%" colspan="3" valign="top"><font face="Arial">string mit erweiterten Informationen zur Ausführung des Befehls</font></td>
+  </tr>
+</table>
+<font face="Arial"><b>
+
+<p><a href="#Befehlsübersicht" title="Befehlsübersicht">&lt;&lt;&lt;</a>
+
+</p>
+<table border="0" width="820" style="border-style: solid; border-color: #000000" cellpadding="2">
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"><font face="Arial"><a name="PB_fileexists"></a>Befehl:</font></td>
+    <td width="88%" colspan="4" valign="top"><b><font face="Arial">&lt;PB_fileexists&gt;&lt;path&gt;&lt;/path&gt;&lt;file&gt;&lt;/file&gt;&lt;/PB_fileexists&gt;</font></b></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"><font face="Arial">Erläuterung:</font></td>
+    <td width="88%" colspan="4" valign="top">Überprüft, ob es die Datei schon
+      gibt</td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"><font face="Arial">Parameter:</font></td>
+    <td width="28%" valign="top"><font face="Arial">&lt;path&gt;&lt;/path&gt;</font></td>
+    <td width="60%" colspan="3" valign="top"><font face="Arial">string z.B. c:\\MeinVerzeichnis\\MeinUnterVerzeichnis<br>
+      Spezialfälle:<br>
+      &lt;path>&lt;/path> Der Quellenordner ist fscommand<br>
+      &lt;path>..\\&lt;/path> Eine Ebene über fscommand </font></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="28%" valign="top"><font face="Arial">&lt;file&gt;&lt;/file&gt;</font></td>
+    <td width="60%" colspan="3" valign="top"><font face="Arial">string z.B. Test.pdf&nbsp;</font></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"><font face="Arial">Rückgabe:</font></td>
+    <td width="28%" valign="top"><font face="Arial">&lt;return&gt;&lt;/return&gt;</font></td>
+    <td width="20%" valign="top"><font face="Arial">1 erfolgreich</font></td>
+    <td width="20%" valign="top"><font face="Arial">-1 Fehler</font></td>
+    <td width="20%" valign="top"></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="28%" valign="top"><font face="Arial">&lt;message&gt;&lt;/message&gt;</font></td>
+    <td width="60%" colspan="3" valign="top"><font face="Arial">string mit erweiterten Informationen zur Ausführung des Befehls</font></td>
+  </tr>
+</table>
+</b><font face="Arial"><b>
+
+<p><a href="#Befehlsübersicht" title="Befehlsübersicht">&lt;&lt;&lt;</a>
+
+</p>
+<table border="0" width="820" style="border-style: solid; border-color: #000000" cellpadding="2">
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"><font face="Arial"><a name="PB_fileinfo"></a>Befehl:</font></td>
+    <td width="88%" colspan="4" valign="top"><b><font face="Arial">&lt;PB_fileinfo&gt;&lt;path&gt;&lt;/path&gt;&lt;file&gt;&lt;/file&gt;&lt;/PB_fileinfo&gt;</font></b></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"><font face="Arial">Erläuterung:</font></td>
+    <td width="88%" colspan="4" valign="top">Gibt Versions- und
+      Dateiinformationen aus.</td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"><font face="Arial">Parameter:</font></td>
+    <td width="28%" valign="top"><font face="Arial">&lt;path&gt;&lt;/path&gt;</font></td>
+    <td width="60%" colspan="3" valign="top"><font face="Arial">string z.B. c:\\MeinVerzeichnis\\MeinUnterVerzeichnis<br>
+      Spezialfälle:<br>
+      &lt;path>&lt;/path> Der Quellenordner ist fscommand<br>
+      &lt;path>..\\&lt;/path> Eine Ebene über fscommand </font></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="28%" valign="top"><font face="Arial">&lt;file&gt;&lt;/file&gt;</font></td>
+    <td width="60%" colspan="3" valign="top"><font face="Arial">string z.B.
+      Test.exe&nbsp;</font></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"><font face="Arial">Rückgabe:</font></td>
+    <td width="28%" valign="top"><font face="Arial">&lt;return&gt;&lt;/return&gt;</font></td>
+    <td width="20%" valign="top"><font face="Arial">1 erfolgreich</font></td>
+    <td width="20%" valign="top"><font face="Arial">-1 Fehler</font></td>
+    <td width="20%" valign="top"></td>
+  </tr>
+  <tr>
+    <font face="Arial">
+
+    <td width="12%" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="28%" valign="top"><font face="Arial">&lt;message&gt;&lt;/message&gt;</font></td>
+    <td width="60%" colspan="3" valign="top"><font face="Arial">string mit erweiterten Informationen zur Ausführung des Befehls</font></td>
+</font>
+  </tr>
+  <tr>
+    <font face="Arial">
+
+    <td width="12%" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="28%" valign="top">&lt;filedescription&gt;&lt;/filedescription&gt;<br>
+      &lt;fileversion&gt;&lt;/fileversion&gt;<br>
+      &lt;internalname&gt;&lt;/internalname&gt;<br>
+      &lt;companyname&gt;&lt;/companyname&gt;<br>
+      &lt;legalcopyright&gt;&lt;/legalcopyright&gt;<br>
+      &lt;originalfilename&gt;&lt;/originalfilename&gt;<br>
+      &lt;productname&gt;&lt;/productname&gt;<br>
+      &lt;productversion&gt;&lt;/productversion&gt;<br>
+      &lt;accesstime&gt;&lt;/accesstime&gt;<br>
+      &lt;createtime&gt;&lt;/createtime&gt;<br>
+      &lt;writetime&gt;&lt;/writetime&gt;<br>
+      &lt;size_b&gt;&lt;/size_b&gt;</td>
+    <td width="60%" colspan="3" valign="top">&nbsp;
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>Letzter Zugriff am (UTC)<br>
+      Erstellt am (UTC)<br>
+      Geändert am (UTC)<br>
+      Dateigröße in Bytes</p>
+    </td>
+</font>
+  </tr>
+</table>
+<p><a href="#Befehlsübersicht" title="Befehlsübersicht">&lt;&lt;&lt;</a>
+
+</p>
+<table border="0" width="820" style="border-style: solid; border-color: #000000" cellpadding="2">
+  <tr>
+    <td width="86" valign="top" bgcolor="#C0C0C0"><font face="Arial"><a name="PB_fpcenterwindow"></a>Befehl:</font></td>
+    <td width="696" colspan="4" valign="top"><b><font face="Arial">&lt;PB_fpcenterwindow&gt;&lt;/PB_fpcenterwindow&gt;</font></b></td>
+  </tr>
+  <tr>
+    <td width="86" valign="top" bgcolor="#C0C0C0"><font face="Arial">Erläuterung:</font></td>
+    <td width="696" colspan="4" valign="top">Zentriert den Flashprojektor <u>
+      (Hinweis: Dieser Befehl wird nur im Projektor ausgeführt)</u></td>
+  </tr>
+  <tr>
+    <font face="Arial">
+
+    <td width="86" valign="top" bgcolor="#C0C0C0"><font face="Arial">Parameter:</font></td>
+    <td width="218" valign="top">keine</td>
+    <td width="470" colspan="3" valign="top">
+    </td>
+
+
+
+    </font>
+  </tr>
+  <tr>
+    <td width="86" valign="top" bgcolor="#C0C0C0"><font face="Arial">Rückgabe:</font></td>
+    <td width="218" valign="top"><font face="Arial">&lt;return&gt;&lt;/return&gt;</font></td>
+    <td width="152" valign="top"><font face="Arial">1 erfolgreich</font></td>
+    <td width="151" valign="top"><font face="Arial">-1 Fehler</font></td>
+    <td width="151" valign="top"></td>
+  </tr>
+  <tr>
+    <td width="86" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="218" valign="top"><font face="Arial">&lt;message&gt;&lt;/message&gt;</font></td>
+    <td width="470" colspan="3" valign="top"><font face="Arial">string mit erweiterten Informationen zur Ausführung des Befehls</font></td>
+  </tr>
+</table>
+<font face="Arial"><b>
+
+<p><a href="#Befehlsübersicht" title="Befehlsübersicht">&lt;&lt;&lt;</a>
+
+</p>
+<table border="0" width="820" style="border-style: solid; border-color: #000000" cellpadding="2">
+  <tr>
+    <td width="86" valign="top" bgcolor="#C0C0C0"><font face="Arial"><a name="PB_fpgetproperties"></a>Befehl:</font></td>
+    <td width="696" colspan="4" valign="top"><b><font face="Arial">&lt;PB_fpgetproperties&gt;&lt;/PB_fpgetproperties&gt;</font></b></td>
+  </tr>
+  <tr>
+    <td width="86" valign="top" bgcolor="#C0C0C0"><font face="Arial">Erläuterung:</font></td>
+    <td width="696" colspan="4" valign="top">Gibt Fenstereigenschaften des Flashprojektors
+      zurück.<br>
+      <u>
+      (Hinweis: Dieser Befehl wird nur im Projektor ausgeführt)</u></td>
+  </tr>
+  <tr>
+    <font face="Arial">
+
+    <td width="86" valign="top" bgcolor="#C0C0C0"><font face="Arial">Parameter:</font></td>
+    <td width="218" valign="top">keine</td>
+    <td width="470" colspan="3" valign="top">
+    </td>
+
+
+
+    </font>
+  </tr>
+  <tr>
+    <td width="86" valign="top" bgcolor="#C0C0C0"><font face="Arial">Rückgabe:</font></td>
+    <td width="218" valign="top"><font face="Arial">&lt;return&gt;&lt;/return&gt;</font></td>
+    <td width="152" valign="top"><font face="Arial">1 erfolgreich</font></td>
+    <td width="151" valign="top"><font face="Arial">-1 Fehler</font></td>
+    <td width="151" valign="top"></td>
+  </tr>
+  <tr>
+    <font face="Arial">
+
+    <td width="86" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="218" valign="top"><font face="Arial">&lt;message&gt;&lt;/message&gt;
+</font></td>
+    <td width="470" colspan="3" valign="top"><font face="Arial">string mit erweiterten Informationen zur Ausführung des Befehls
+</font></td>
+</font>
+  </tr>
+  <tr>
+    <font face="Arial">
+
+    <td width="86" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="218" valign="top"><font face="Arial">&lt;title&gt;&lt;/title>
+</font></td>
+    <td width="470" colspan="3" valign="top">Fenstertitel des Flashprojektors</td>
+</font>
+  </tr>
+  <tr>
+    <font face="Arial">
+
+    <td width="86" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="218" valign="top"><font face="Arial">&lt;xpos&gt;&lt;/xpos&gt;
+</font></td>
+    <td width="470" colspan="3" valign="top">X-Position des Flashprojektors</td>
+</font>
+  </tr>
+  <tr>
+    <font face="Arial">
+
+    <td width="86" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="218" valign="top"><font face="Arial">
+
+&lt;ypos&gt;&lt;/ypos&gt;
+</b></font></td>
+    <td width="470" colspan="3" valign="top">Y-Position des Flashprojektors</td>
+</font>
+  </tr>
+  <tr>
+    <font face="Arial">
+
+    <td width="86" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="218" valign="top">&lt;width&gt;&lt;/width&gt;</td>
+    <td width="470" colspan="3" valign="top">Breite des Flashprojektors</td>
+</font>
+  </tr>
+  <tr>
+    <td width="86" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="218" valign="top">&lt;height&gt;&lt;/height&gt;</td>
+    <td width="470" colspan="3" valign="top">Höhe des Flashprojektors</td>
+  </tr>
+</table>
+</b></font>
+</b></font></font>
+<font face="Arial"><b>
+
+<p><a href="#Befehlsübersicht" title="Befehlsübersicht">&lt;&lt;&lt;</a>
+
+</p>
+<table border="0" width="820" style="border-style: solid; border-color: #000000" cellpadding="2">
+  <tr>
+    <td width="86" valign="top" bgcolor="#C0C0C0"><font face="Arial"><a name="PB_fpsetproperties"></a>Befehl:</font></td>
+    <td width="696" colspan="4" valign="top"><b><font face="Arial">&lt;PB_fpsetproperties&gt;&lt;/PB_fpsetproperties&gt;</font></b></td>
+  </tr>
+  <tr>
+    <td width="86" valign="top" bgcolor="#C0C0C0"><font face="Arial">Erläuterung:</font></td>
+    <td width="696" colspan="4" valign="top">Setzt die Fenstereigenschaften des Flashprojektors.<br>
+      <u>
+      (Hinweis: Dieser Befehl wird nur im Projektor ausgeführt)</u></td>
+  </tr>
+  <tr>
+    <td width="86" valign="top" bgcolor="#C0C0C0">Parameter:<font face="Arial">:</font></td>
+    <td width="218" valign="top"><font face="Arial">&lt;return&gt;&lt;/return&gt;</font></td>
+    <td width="152" valign="top"><font face="Arial">1 erfolgreich</font></td>
+    <td width="151" valign="top"><font face="Arial">-1 Fehler</font></td>
+    <td width="151" valign="top"></td>
+  </tr>
+  <tr>
+    <font face="Arial">
+
+    <td width="86" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="218" valign="top"><font face="Arial">&lt;message&gt;&lt;/message&gt;
+</font></td>
+    <td width="470" colspan="3" valign="top"><font face="Arial">string mit erweiterten Informationen zur Ausführung des Befehls
+</font></td>
+</font>
+  </tr>
+  <tr>
+    <font face="Arial">
+
+    <td width="86" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="218" valign="top"><font face="Arial">&lt;title&gt;&lt;/title>
+</font></td>
+    <td width="470" colspan="3" valign="top">string Fenstertitel des Flashprojektors.
+      Wird &lt;title&gt; leergelassen,&nbsp;<br>
+ so bleibt der derzeitige Titel erhalten.</td>
+</font>
+  </tr>
+  <tr>
+    <font face="Arial">
+
+    <td width="86" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="218" valign="top"><font face="Arial">&lt;xpos&gt;&lt;/xpos&gt;
+</font></td>
+    <td width="470" colspan="3" valign="top">Ganzzahl X-Position des Flashprojektors.<br>
+      &lt;xpos&gt;<b>NULL</b>&lt;/xpos&gt; Keine Veränderung</td>
+
+</font>
+  </tr>
+
+  <tr>
+    <font face="Arial">
+
+    <td width="86" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="218" valign="top"><font face="Arial">
+
+&lt;ypos&gt;&lt;/ypos&gt;</font></td>
+    <td width="470" colspan="3" valign="top">Ganzzahl Y-Position des Flashprojektors<br>
+<font face="Arial">
+
+&lt;ypos&gt;<b>NULL</b>&lt;/ypos&gt; Keine Veränderung</b></font>
+    </td>
+</font>
+  </tr>
+  <tr>
+    <font face="Arial">
+
+    <td width="86" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="218" valign="top">&lt;width&gt;&lt;/width&gt;</td>
+    <td width="470" colspan="3" valign="top">Ganzzahl Breite des Flashprojektors<br>
+      <font face="Arial">&lt;width&gt;<b>NULL</b>&lt;/width&gt; Keine Veränderung</font></td>
+</font>
+  </tr>
+  <tr>
+    <td width="86" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="218" valign="top">&lt;height&gt;&lt;/height&gt;</td>
+    <td width="470" colspan="3" valign="top">Ganzzahl Höhe des Flashprojektors<br>
+      <font face="Arial">&lt;height&gt;<b>NULL</b>&lt;/height&gt; Keine Veränderung</font></td>
+  </tr>
+  <tr>
+    <td width="86" valign="top" bgcolor="#C0C0C0">&nbsp;</td>
+    <td width="218" valign="top">&lt;menubar>&lt;/menubar&gt;</td>
+    <td width="470" colspan="3" valign="top">
+<font face="Arial">&lt;menubar&gt;</font>hide<font face="Arial">&lt;/menubar&gt;
+</font>
+      Blendet die Menüleiste des Flashprojektors aus<br>
+      <font face="Arial">&lt;menubar&gt;</font>show<font face="Arial">&lt;/menubar&gt;
+      Blendet die Menüleiste des Flashprojektors
+</font>
+      wieder ein</td>
+  </tr>
+  <tr>
+    <td width="86" valign="top" bgcolor="#C0C0C0">&nbsp;</td>
+    <td width="218" valign="top">&lt;titlebar&gt;<font face="Arial">&lt;titlebar&gt;
+</font>
+    </td>
+    <td width="470" colspan="3" valign="top"><font face="Arial">&lt;titlebar&gt;hide&lt;titlebar&gt;
+      Blendet die Titelleiste des Flashprojektors aus
+</font>
+    </td>
+  </tr>
+  <tr>
+    <td width="86" valign="top" bgcolor="#C0C0C0">&nbsp;</td>
+    <td width="218" valign="top"></td>
+    <td width="470" colspan="3" valign="top"><font face="Arial">&lt;titlebar&gt;hideminmaxclose&lt;titlebar&gt;
+      Blendet die Schaltflächen Minimieren, Maximieren und Schließen aus.</font></td>
+  </tr>
+  <tr>
+    <td width="86" valign="top" bgcolor="#C0C0C0">&nbsp;</td>
+    <td width="218" valign="top"></td>
+    <td width="470" colspan="3" valign="top"><font face="Arial">&lt;titlebar&gt;hideminmax&lt;titlebar&gt;
+      Blendet die Schaltflächen Minimieren und Maximieren aus.
+</font>
+    </td>
+  </tr>
+  <tr>
+    <td width="86" valign="top" bgcolor="#C0C0C0">&nbsp;</td>
+    <td width="218" valign="top"></td>
+    <td width="470" colspan="3" valign="top"><font face="Arial">&lt;titlebar&gt;disablemin&lt;titlebar&gt;
+      Deaktiviert die Schaltfläche Minimimieren</font></td>
+  </tr>
+  <tr>
+    <td width="86" valign="top" bgcolor="#C0C0C0">&nbsp;</td>
+    <td width="218" valign="top"></td>
+    <td width="470" colspan="3" valign="top"><font face="Arial">&lt;titlebar&gt;disablemax&lt;titlebar&gt;
+      Deaktiviert die Schaltfläche M</font>aximieren</td>
+  </tr>
+  <tr>
+    <td width="86" valign="top" bgcolor="#C0C0C0">&nbsp;</td>
+    <td width="218" valign="top"></td>
+    <td width="470" colspan="3" valign="top">
+<font face="Arial">&lt;titlebar&gt;restore&lt;titlebar&gt; Setzt den Projektor
+bezüglich der Titlebar-Einstellungen wieder zurück</font></td>
+  </tr>
+  <tr>
+    <td width="86" valign="top" bgcolor="#C0C0C0"><font face="Arial">Rückgabe:</font></td>
+    <td width="218" valign="top">&lt;return&gt;&lt;/return&gt;</td>
+    <td width="470" colspan="3" valign="top">1
+      erfolgreich&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      -1 Fehler</td>
+  </tr>
+  <tr>
+    <td width="86" valign="top" bgcolor="#C0C0C0">&nbsp;</td>
+    <td width="218" valign="top">&lt;message&gt;&lt;/message&gt;</td>
+    <td width="470" colspan="3" valign="top"><font face="Arial">string mit erweiterten Informationen zur Ausführung des Befehls
+</font></td>
+  </tr>
+  <tr>
+    <td width="86" valign="top" bgcolor="#C0C0C0">&nbsp;</td>
+    <td width="688" valign="top" colspan="4"><font face="Arial"><b>Hinweis: Für
+      eventuelle Animationseffekte sollte In der Praxis mit den
+      Actionscript-Befehlen &quot;setInterval&quot; und &quot;clearInterval&quot;
+      gearbeitet werden!</b></font></td>
+  </tr>
+</table>
+</font>
+<p><a href="#Befehlsübersicht" title="Befehlsübersicht"><b>&lt;&lt;&lt;</b></a>
+
+</p>
+<table border="0" width="820" style="border-style: solid; border-color: #000000" cellpadding="2">
+  <tr>
+    <td width="86" valign="top" bgcolor="#C0C0C0"><font face="Arial"><a name="PB_fpminimize"></a>Befehl:</font></td>
+    <td width="696" colspan="4" valign="top"><b><font face="Arial">&lt;PB_fpminimize&gt;&lt;/PB_fpminimize&gt;</font></b></td>
+  </tr>
+  <tr>
+    <td width="86" valign="top" bgcolor="#C0C0C0"><font face="Arial">Erläuterung:</font></td>
+    <td width="696" colspan="4" valign="top">Minimiert den Flashprojektor<u>
+      (Hinweis: Dieser Befehl wird nur im Projektor ausgeführt)</u></td>
+  </tr>
+  <tr>
+    <font face="Arial">
+
+    <td width="86" valign="top" bgcolor="#C0C0C0"><font face="Arial">Parameter:</font></td>
+    <td width="218" valign="top">keine</td>
+    <td width="470" colspan="3" valign="top">
+    </td>
+
+
+
+    </font>
+  </tr>
+  <tr>
+    <td width="86" valign="top" bgcolor="#C0C0C0"><font face="Arial">Rückgabe:</font></td>
+    <td width="218" valign="top"><font face="Arial">&lt;return&gt;&lt;/return&gt;</font></td>
+    <td width="152" valign="top"><font face="Arial">1 erfolgreich</font></td>
+    <td width="151" valign="top"><font face="Arial">-1 Fehler</font></td>
+    <td width="151" valign="top"></td>
+  </tr>
+  <tr>
+    <td width="86" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="218" valign="top"><font face="Arial">&lt;message&gt;&lt;/message&gt;</font></td>
+    <td width="470" colspan="3" valign="top"><font face="Arial">string mit erweiterten Informationen zur Ausführung des Befehls</font></td>
+  </tr>
+</table>
+<p><a href="#Befehlsübersicht" title="Befehlsübersicht"><b>&lt;&lt;&lt;</b></a>
+
+</p>
+<table border="0" width="820" style="border-style: solid; border-color: #000000" cellpadding="2">
+  <tr>
+    <td width="86" valign="top" bgcolor="#C0C0C0"><font face="Arial"><a name="PB_fpsendtotray"></a>Befehl:</font></td>
+    <td width="696" colspan="4" valign="top"><b><font face="Arial">&lt;PB_fpsendtotray&gt;&lt;/PB_fpsendtotray&gt;</font></b></td>
+  </tr>
+  <tr>
+    <td width="86" valign="top" bgcolor="#C0C0C0"><font face="Arial">Erläuterung:</font></td>
+    <td width="696" colspan="4" valign="top">Verschiebt den Flashprojektor in
+      das Systray<br>
+      <u>
+      (Hinweis: Dieser Befehl wird nur im Projektor ausgeführt)</u></td>
+  </tr>
+  <tr>
+
+    <td width="86" valign="top" bgcolor="#C0C0C0"><font face="Arial">Parameter:</font></td>
+    <td width="218" valign="top"><font face="Arial">&lt;icofile&gt;&lt;/icofile&gt;</font></td>
+    <td width="470" colspan="3" valign="top"><font face="Arial">string zu einer
+      Ico-Datei oder einer Datei die Ico's beinhaltet (z.B. Exe- oder Dll-
+      Dateien).<br>
+      z.B.: &lt;icofile&gt;C:\\WINNT\\explorer.exe&lt;/icofile&gt;<br>
+      Kann die Datei nicht gefunden werden, so wird das PipeBeama Icon
+      verwendet.<br>
+      Spezialfall:<br>
+      <b>_url</b>  (AS Command) Es wird das Icon der Projektor.exe verwendet.</font>
+    </td>
+
+
+
+  </tr>
+  <tr>
+    <td width="86" valign="top" bgcolor="#C0C0C0"><font face="Arial">Parameter:</font></td>
+    <td width="218" valign="top"><font face="Arial">&lt;resid&gt;&lt;/resid&gt;</font></td>
+    <td width="470" colspan="3" valign="top"><font face="Arial">Ganzahl<br>
+      In Exe-, Dll- oder Ico-Dateien können mehrere Icons hinterlegt sein.
+      Diese können über diesen Parameter angesprochen werden. Das Macromedia
+      Projektorfile stellt z.B. bei &lt; resid&gt;1&lt;/resid&gt; ein Dokumentenblatt da. Wird
+      hier ein Wert angegeben, der nicht existiert, so erscheint ein leeres Icon.</font>
+    </td>
+  </tr>
+  <tr>
+    <td width="86" valign="top" bgcolor="#C0C0C0">Parameter:</td>
+    <td width="218" valign="top">&lt;tooltip&gt;&lt;/tooltip&gt;</td>
+    <td width="470" colspan="3" valign="top">String der einen typischen Tooltip
+      anzeigt. Die Länge ist betriebssystembedingt auf 63 Zeichen begrenzt.<br>
+      Ein zu langer String wird automatisch abgeschnitten.
+    </td>
+  </tr>
+  <tr>
+    <td width="86" valign="top" bgcolor="#C0C0C0"><font face="Arial">Rückgabe:</font></td>
+    <td width="218" valign="top"><font face="Arial">&lt;return&gt;&lt;/return&gt;</font></td>
+    <td width="152" valign="top"><font face="Arial">1 erfolgreich</font></td>
+    <td width="151" valign="top"><font face="Arial">-1 Fehler</font></td>
+    <td width="151" valign="top"></td>
+  </tr>
+  <tr>
+    <td width="86" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="218" valign="top"><font face="Arial">&lt;message&gt;&lt;/message&gt;</font></td>
+    <td width="470" colspan="3" valign="top"><font face="Arial">string mit erweiterten Informationen zur Ausführung des Befehls</font></td>
+  </tr>
+</table>
+<p><a href="#Befehlsübersicht" title="Befehlsübersicht"><b>&lt;&lt;&lt;</b></a>
+
+</p>
+<table border="0" width="820" style="border-style: solid; border-color: #000000" cellpadding="2">
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"><font face="Arial"><a name="PB_getcomputername"></a>Befehl:</font></td>
+    <td width="88%" colspan="2" valign="top"><b><font face="Arial">&lt;PB_getcomputername&gt;&lt;/PB_getcomputername&gt;</font></b></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"><font face="Arial">Erläuterung:</font></td>
+    <td width="88%" colspan="2" valign="top"><font face="Arial">Gibt den
+      Computernamen des aktuellen Systems zurück.</font></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"><font face="Arial">Parameter:</font></td>
+    <td width="28%" valign="top"><font face="Arial">keine</font></td>
+    <td width="60%" valign="top"></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"><font face="Arial">Rückgabe:</font></td>
+    <td width="28%" valign="top"><font face="Arial">&lt;message&gt;&lt;/message&gt;</font></td>
+    <td width="60%" valign="top"><font face="Arial">string&nbsp;mit
+      Rückgabewert bzw. erweiterten Informationen zur Ausführung des Befehls </font></td>
+  </tr>
+</table>
+<p><a href="#Befehlsübersicht" title="Befehlsübersicht"><b>&lt;&lt;&lt;</b></a>
+
+</p>
+<table border="0" width="820" style="border-style: solid; border-color: #000000" cellpadding="2">
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"><font face="Arial"><a name="PB_getmouseposition"></a>Befehl:</font></td>
+    <td width="88%" colspan="2" valign="top"><b><font face="Arial">&lt;PB_getmouseposition&gt;&lt;/PB_getmouseposition&gt;</font></b></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"><font face="Arial">Erläuterung:</font></td>
+    <td width="88%" colspan="2" valign="top"><font face="Arial">Gibt die
+      aktuelle Mausposition systemweit zurück</font>.</td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"><font face="Arial">Parameter:</font></td>
+    <td width="28%" valign="top"><font face="Arial">keine</font></td>
+    <td width="60%" valign="top"></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"><font face="Arial">Rückgabe:</font></td>
+    <td width="28%" valign="top"><font face="Arial">&lt;message&gt;&lt;/message&gt;</font></td>
+    <td width="60%" valign="top"><font face="Arial">string&nbsp;mit
+      Rückgabewert bzw. erweiterten Informationen zur Ausführung des Befehls </font></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0">Anmerkung:</td>
+    <td width="88%" valign="top" colspan="2">
+      <font face="Arial">
+      <b>Hinweis: In der Praxis sollte mit den Actionscript-Befehlen &quot;setInterval&quot;
+      und &quot;clearInterval&quot; gearbeitet werden!</b></font></td>
+  </tr>
+</table>
+<p><b><a href="#Befehlsübersicht" title="Befehlsübersicht">&lt;&lt;&lt;</a>
+
+</b>
+
+</p>
+<table border="0" width="820" style="border-style: solid; border-color: #000000" cellpadding="2">
+  <tr>
+    <td width="105" valign="top" bgcolor="#C0C0C0"><font face="Arial"><a name="PB_getdirs"></a>Befehl:</font></td>
+    <td width="880" colspan="3" valign="top"><b><font face="Arial">&lt;PB_getdirs&gt;&lt;path&gt;&lt;/path&gt;&lt;recursive&gt;&lt;/recursive&gt;&lt;filefilter&gt;&lt;/filefilter&gt;<br>
+      &lt;showfolders&gt;&lt;/showfolders>&lt;maxfiles&gt;&lt;/maxfiles&gt;&lt;/PB_getdirs&gt;</font></b></td>
+  </tr>
+  <tr>
+    <td width="105" valign="top" bgcolor="#C0C0C0"><font face="Arial">Erläuterung:</font></td>
+    <td width="880" colspan="3" valign="top"><font face="Arial">Gibt
+      Verzeichnisse (Unterverzeichnisse) und die darin enthaltenen Dateien nach
+      &quot;Wildcard-Regeln&quot; zurück.</font></td>
+  </tr>
+  <tr>
+    <td width="105" valign="top" bgcolor="#C0C0C0"><font face="Arial">Parameter:</font></td>
+    <td width="272" valign="top"><font face="Arial">&lt;path&gt;&lt;/path&gt;</font></td>
+    <td width="600" colspan="2" valign="top"><font face="Arial">Gibt das
+      Startverzeichnis an, ab dem gesucht werden soll.<br>
+      string z.B. c:\\Programme<br>
+      Spezialfälle:<br>
+      &lt;sourcepath&gt;&lt;/sourcepath&gt; Der Quellenordner ist fscommand<br>
+      &lt;sourcepath&gt;..\\&lt;/sourcepath&gt; Eine Ebene über fscommand </font></td>
+  </tr>
+  <tr>
+    <td width="105" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="272" valign="top"><font face="Arial">&lt;recursive&gt;&lt;/recursive&gt;</font></td>
+    <td width="600" colspan="2" valign="top"><font face="Arial">string<br>
+      <b>
+      true</b> Es sollen zusätzlich alle Unterverzeichnisse durchsucht werden.<br>
+      <b>
+      false</b> Es wird nur in dem angegebenen Pfad gesucht&nbsp; (default).</font></td>
+  </tr>
+  <tr>
+    <td width="105" valign="top" bgcolor="#C0C0C0" rowspan="2"></td>
+    <td width="272" valign="top" rowspan="2"><font face="Arial">&lt;filefilter&gt;&lt;/filefilter&gt;</font></td>
+    <td width="600" colspan="2" valign="top"><font face="Arial">string<br>
+      Hier können Wildcard-Filter vorgegeben werden.<br>
+      Beispiele:&nbsp;</font></td>
+  </tr>
+  <tr>
+    <td width="125" valign="top"><font face="Arial">*.*</font></td>
+    <td width="467" valign="top"><font face="Arial">Gibt alle Dateien zurück (default).</font></td>
+  </tr>
+  <tr>
+    <td width="105" valign="top" bgcolor="#C0C0C0">&nbsp;</td>
+    <td width="272" valign="top"></td>
+    <td width="125" valign="top"><font face="Arial">*.pdf&nbsp;</font></td>
+    <td width="467" valign="top"><font face="Arial">Gibt alle Dateien mit der
+      Endung .pdf zurück.</font></td>
+  </tr>
+  <tr>
+    <td width="105" valign="top" bgcolor="#C0C0C0">&nbsp;</td>
+    <td width="272" valign="top"></td>
+    <td width="125" valign="top"><font face="Arial">d*.txt</font></td>
+    <td width="467" valign="top"><font face="Arial">Gibt alle Dateien mit dem
+      Buchstaben d&nbsp;<br>
+      und der Dateiendung .txt zurück.</font></td>
+  </tr>
+  <tr>
+    <td width="105" valign="top" bgcolor="#C0C0C0">&nbsp;</td>
+    <td width="272" valign="top">&lt;showfolders&gt;&lt;/showfolders&gt;</td>
+    <td width="600" valign="top" colspan="2">string<br>
+      <font face="Arial"><b>false</b> Es werden keine Ordner zurückgegeben</font>
+      <br>
+      <b>true</b> Es werden zusätzlich alle gefundenen Ordner zurückgegeben (default)</td>
+  </tr>
+  <tr>
+    <td width="105" valign="top" bgcolor="#C0C0C0">&nbsp;</td>
+    <td width="272" valign="top">&lt;maxfiles&gt;&lt;/maxfiles&gt;</td>
+    <td width="600" valign="top" colspan="2"><font face="Arial">
+
+Ganzzahl&nbsp;<br>
+      Setzt die maximale Anzahl der Dateien und Ordner die zurückgegeben werden
+      sollen. Wird dieser Parameter leer gelassen, werden alle
+      gefundenen Dateien und Ordner zurückgegeben.</font></td>
+  </tr>
+  <tr>
+    <td width="105" valign="top" bgcolor="#C0C0C0"><font face="Arial">Rückgabe:</font></td>
+    <td width="272" valign="top"><font face="Arial">&lt;return&gt;&lt;/return&gt;</font></td>
+    <td width="600" valign="top" colspan="2"><font face="Arial">1 erfolgreich&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      -1 Fehler</font></td>
+  </tr>
+  <tr>
+    <td width="105" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="272" valign="top"><font face="Arial">&lt;message&gt;&lt;/message&gt;</font></td>
+    <td width="600" colspan="2" valign="top"><font face="Arial">string mit den
+      gefundenen Dateien und Ordnern.</font></td>
+  </tr>
+  <tr>
+    <td width="105" valign="top" bgcolor="#C0C0C0">&nbsp;</td>
+    <td width="272" valign="top"></td>
+    <td width="600" colspan="2" valign="top"><font face="Arial"><b>Bei mehreren
+      Suchtreffern wiederholt sich diese
+      Information!
+      </b></font></td>
+  </tr>
+</table>
+<p><b><a href="#Befehlsübersicht" title="Befehlsübersicht">&lt;&lt;&lt;</a>
+
+</b>
+
+</p>
+<table border="0" width="820" style="border-style: solid; border-color: #000000" cellpadding="2">
+  <tr>
+    <td width="99" valign="top" bgcolor="#C0C0C0"><font face="Arial"><a name="PB_getpbuser"></a>Befehl:</font></td>
+    <td width="886" colspan="2" valign="top"><b><font face="Arial">&lt;PB_getpbuser&gt;&lt;/PB_getpbuser&gt;</font></b></td>
+  </tr>
+  <tr>
+    <td width="99" valign="top" bgcolor="#C0C0C0"><font face="Arial">Erläuterung:</font></td>
+    <td width="886" colspan="2" valign="top"><font face="Arial">Gibt den Namen
+      des anfragenden Users zurück&nbsp;</font></td>
+  </tr>
+  <tr>
+    <td width="99" valign="top" bgcolor="#C0C0C0"><font face="Arial">Parameter:</font></td>
+    <td width="278" valign="top"><font face="Arial">keine</font></td>
+    <td width="600" valign="top"></td>
+  </tr>
+  <tr>
+    <td width="99" valign="top" bgcolor="#C0C0C0">Rückgabe:</td>
+    <td width="278" valign="top">&lt;return&gt;&lt;/return&gt;</td>
+    <td width="600" valign="top">1
+      erfolgreich&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      -1 Fehler</td>
+  </tr>
+  <tr>
+    <td width="99" valign="top" bgcolor="#C0C0C0">&nbsp;</td>
+    <td width="278" valign="top">&lt;user&gt;&lt;/user&gt;</td>
+    <td width="600" valign="top">
+<font face="Arial">
+string der den Namen des Users enthält
+</font>
+    </td>
+  </tr>
+</table>
+<font face="Arial">
+<p><b><a href="#Befehlsübersicht" title="Befehlsübersicht">&lt;&lt;&lt;</a>
+
+</b>
+
+</p>
+<table border="0" width="820" style="border-style: solid; border-color: #000000" cellpadding="2">
+  <tr>
+    <td width="96" valign="top" bgcolor="#C0C0C0"><font face="Arial"><a name="PB_getpbusers"></a>Befehl:</font></td>
+    <td width="889" colspan="2" valign="top"><b><font face="Arial">&lt;PB_getpbusers&gt;&lt;/PB_getpbusers&gt;</font></b></td>
+  </tr>
+  <tr>
+    <td width="96" valign="top" bgcolor="#C0C0C0">Erläuterung:</td>
+    <td width="889" colspan="2" valign="top">Gibt die zur Zeit angemeldeten User
+      zurück</td>
+  </tr>
+  <tr>
+    <td width="96" valign="top" bgcolor="#C0C0C0"><font face="Arial">Parameter:</font></td>
+    <td width="281" valign="top"><font face="Arial">keine</font></td>
+    <td width="600" valign="top"></td>
+  </tr>
+  <tr>
+    <td width="96" valign="top" bgcolor="#C0C0C0">Rückgabe:</td>
+    <td width="281" valign="top">&lt;return&gt;&lt;/return&gt;</td>
+    <td width="600" valign="top">Ganzahl, Anzahl der
+      User&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -1 Fehler</td>
+  </tr>
+  <tr>
+    <td width="96" valign="top" bgcolor="#C0C0C0">&nbsp;</td>
+    <td width="281" valign="top">&lt;user&gt;&lt;/user&gt;</td>
+    <td width="600" valign="top">string der den Namen des Users enthält</td>
+  </tr>
+  <tr>
+    <td width="96" valign="top" bgcolor="#C0C0C0">&nbsp;</td>
+    <td width="281" valign="top"></td>
+    <td width="600" valign="top"><font face="Arial"><b>Bei mehreren
+      Suchtreffern wiederholt sich diese
+      Information!
+      </b></font></td>
+  </tr>
+</table>
+</font>
+<p>&nbsp;<font face="Arial"><b><a href="#Befehlsübersicht" title="Befehlsübersicht">&lt;&lt;&lt;</a>
+
+</b>
+
+</font></p>
+<table border="0" width="820" style="border-style: solid; border-color: #000000" cellpadding="2">
+  <tr>
+    <td width="90" valign="top" bgcolor="#C0C0C0"><font face="Arial"><a name="PB_getsystemdir"></a>Befehl:</font></td>
+    <td width="712" colspan="2" valign="top"><b><font face="Arial">&lt;PB_getsystemdir&gt;&lt;/PB_getsystemdir&gt;</font></b></td>
+  </tr>
+  <tr>
+    <td width="90" valign="top" bgcolor="#C0C0C0"><font face="Arial">Erläuterung:</font></td>
+    <td width="712" colspan="2" valign="top"><font face="Arial">Gibt den
+      Systempfad zurück.</font></td>
+  </tr>
+  <tr>
+    <td width="90" valign="top" bgcolor="#C0C0C0"><font face="Arial">Parameter:</font></td>
+    <td width="223" valign="top"><font face="Arial">keine</font></td>
+    <td width="481" valign="top"></td>
+  </tr>
+  <tr>
+    <td width="90" valign="top" bgcolor="#C0C0C0"><font face="Arial">Rückgabe:</font></td>
+    <td width="223" valign="top"><font face="Arial">&lt;message&gt;&lt;/message&gt;</font></td>
+    <td width="481" valign="top"><font face="Arial">string&nbsp;mit
+      Rückgabewert bzw. erweiterten Informationen zur Ausführung des Befehls</font></td>
+  </tr>
+</table>
+<p><a href="#Befehlsübersicht" title="Befehlsübersicht"><b>&lt;&lt;&lt;</b></a>
+
+</p>
+<table border="0" width="820" style="border-style: solid; border-color: #000000" cellpadding="2">
+  <tr>
+    <td width="91" valign="top" bgcolor="#C0C0C0"><font face="Arial"><a name="PB_getsystemmetrics"></a>Befehl:</font></td>
+    <td width="711" colspan="2" valign="top"><b><font face="Arial">&lt;PB_getsystemmetrics&gt;&lt;/PB_getsystemmetrics&gt;</font></b></td>
+  </tr>
+  <tr>
+    <td width="91" valign="top" bgcolor="#C0C0C0"><font face="Arial">Erläuterung:</font></td>
+    <td width="711" colspan="2" valign="top"><font face="Arial">Gibt die
+      Bildschirmauflösung zurück.</font></td>
+  </tr>
+  <tr>
+    <td width="91" valign="top" bgcolor="#C0C0C0"><font face="Arial">Parameter:</font></td>
+    <td width="222" valign="top"><font face="Arial">keine</font></td>
+    <td width="481" valign="top"></td>
+  </tr>
+
+<tr>
+  <font face="Arial">
+    <td width="91" valign="top" bgcolor="#C0C0C0">Rückgabe:</td>
+
+
+    <td width="222" valign="top"><font face="Arial">&lt;width&gt;&lt;/width&gt;</font></td>
+
+    <td width="481" valign="top">Horizontale Auflösung</td>
+  </font>
+</tr>
+
+  <tr>
+    <td width="91" valign="top" bgcolor="#C0C0C0">&nbsp;</td>
+    <td width="222" valign="top"><font face="Arial">&lt;height&gt;&lt;/height&gt;</font></td>
+
+
+    <td width="481" valign="top">Vertikale Auflösung</td>
+  </tr>
+</table>
+<b>
+
+<p><a href="#Befehlsübersicht" title="Befehlsübersicht">&lt;&lt;&lt;</a>
+
+</p>
+<table border="0" width="820" style="border-style: solid; border-color: #000000" cellpadding="2">
+  <tr>
+    <td width="91" valign="top" bgcolor="#C0C0C0"><font face="Arial"><a name="PB_getusername"></a>Befehl:</font></td>
+    <td width="711" colspan="2" valign="top"><b><font face="Arial">&lt;PB_getusername&gt;&lt;/PB_getusername&gt;</font></b></td>
+  </tr>
+  <tr>
+    <td width="91" valign="top" bgcolor="#C0C0C0"><font face="Arial">Erläuterung:</font></td>
+    <td width="711" colspan="2" valign="top"><font face="Arial">Gibt den
+      angemeldeten Windows-Benutzer zurück.</font></td>
+  </tr>
+  <tr>
+    <td width="91" valign="top" bgcolor="#C0C0C0"><font face="Arial">Parameter:</font></td>
+    <td width="220" valign="top"><font face="Arial">keine</font></td>
+    <td width="483" valign="top"></td>
+  </tr>
+  <tr>
+    <td width="91" valign="top" bgcolor="#C0C0C0"><font face="Arial">Rückgabe:</font></td>
+    <td width="220" valign="top"><font face="Arial">&lt;message&gt;&lt;/message&gt;</font></td>
+    <td width="483" valign="top"><font face="Arial">string&nbsp;mit
+      Rückgabewert bzw. erweiterten Informationen zur Ausführung des Befehls</font></td>
+  </tr>
+</table>
+<p>&nbsp;<font face="Arial"><b><a href="#Befehlsübersicht" title="Befehlsübersicht">&lt;&lt;&lt;</a>
+
+</b>
+
+</font></p>
+<table border="0" width="820" style="border-style: solid; border-color: #000000" cellpadding="2">
+  <tr>
+    <td width="91" valign="top" bgcolor="#C0C0C0"><font face="Arial"><a name="PB_goodbye"></a>Befehl:</font></td>
+    <td width="711" colspan="4" valign="top"><b><font face="Arial">&lt;PB_goodbye>&lt;/PB_goodbye&gt;</font></b></td>
+  </tr>
+  <tr>
+    <td width="91" valign="top" bgcolor="#C0C0C0"><font face="Arial">Erläuterung:</font></td>
+    <td width="711" colspan="4" valign="top"><font face="Arial">Beendet PipeBeama.<br>
+      PipeBeama arbeitet nach erfolgreicher Initialisierung als Hintergrundprozeß.<br>
+      Auch wenn der Flashfilm beendet wurde, bleibt PipeBeama aktiv, wenn nicht zuvor
+      dieser Befehl aufgerufen wurde. PipeBeama ist in der Programmiersprache
+      C++ entwickelt worden und sehr Systemressourcensparend aufgebaut. Würde
+      PipeBeama durch den Flashfilm nicht beendet werden, ist das folglich auch
+      nicht sehr relevant. Die einzige Aufgabe besteht lediglich auf einen Port
+      anfragen entgegen zu nehmen. Betrachtet man z.B. die Aufgaben einer
+      softwaretechnischen Firewall etc. so muß diese innerhalb von
+      Millisekunden &quot;alle&quot; Ports (das sind immerhin 65536) abhorchen
+      und gleichzeitig noch sonstige Aufgaben erledigen !!!<br>
+      Natürlich ist PipeBeama nach einem Rechnerneustart nicht mehr aktiv.<br>
+      Aber vor allem bei der Entwicklung ist dieses Verhalten sehr angenehm, da
+      PipeBeama nur einmal gestartet&nbsp;werden muß und so alle Befehle immer zur Verfügung
+      gestellt werden können.<br>
+      Mehrfaches (versehentliches) Starten von PipeBeama&nbsp;ist nicht möglich, da PipeBeama den
+      neuen Prozess erkennt und diesen automatisch
+      wieder beendet.</font></td>
+  </tr>
+  <tr>
+    <td width="91" valign="top" bgcolor="#C0C0C0"><font face="Arial">Parameter:</font></td>
+    <td width="220" valign="top"><font face="Arial">keine</font></td>
+    <td width="483" colspan="3" valign="top"></td>
+  </tr>
+  <tr>
+    <td width="91" valign="top" bgcolor="#C0C0C0"><font face="Arial">Rückgabe:</font></td>
+    <td width="220" valign="top"><font face="Arial">keine</font></td>
+    <td width="156" valign="top"></td>
+    <td width="156" valign="top"></td>
+    <td width="155" valign="top"></td>
+  </tr>
+</table>
+<p>&nbsp;<font face="Arial"><b><a href="#Befehlsübersicht" title="Befehlsübersicht">&lt;&lt;&lt;</a>
+
+</b>
+
+</font></p>
+<font face="Arial">
+<table border="0" width="820" style="border-style: solid; border-color: #000000" cellpadding="2">
+  <tr>
+    <td width="88" valign="top" bgcolor="#C0C0C0"><font face="Arial"><a name="PB_load"></a>Befehl:</font></td>
+    <td width="714" colspan="3" valign="top"><b><font face="Arial">&lt;PB_load&gt;&lt;defaultpath&gt;&lt;/defaultpath&gt;&lt;defaultfile&gt;&lt;/defaultfile&gt;&lt;title&gt;&lt;/title&gt;<br>
+      &lt;ext&gt;&lt;/ext&gt;&lt;PB_load&gt;</font></b></td>
+  </tr>
+  <tr>
+    <td width="88" valign="top" bgcolor="#C0C0C0"><font face="Arial">Erläuterung:</font></td>
+    <td width="714" colspan="3" valign="top">Liest eine Textdatei ein</td>
+  </tr>
+  <tr>
+    <td width="88" valign="top" bgcolor="#C0C0C0">Parameter:</td>
+    <td width="223" valign="top"><font face="Arial">&lt;defaultpath&gt;&lt;/defaultpath&gt;</font></td>
+    <td width="483" colspan="2" valign="top"><font face="Arial">string z.B.
+      c:\\Verzeichnis<br>
+      Spezialfälle:<br>
+      &lt;defaultpath&gt;&lt;/defaultpath&gt; Der Vorgabenordner ist fscommand<br>
+      &lt;defaultpath&gt;..\\&lt;/defaultpath&gt; Eine Ebene über fscommand<br>
+      &lt;defaultpath&gt;askuser&lt;/defaultpath&gt; Der Anwender soll den Pfad
+      über einen &quot;Datei Öffnen Dialog&quot; auswählen </font></td>
+  </tr>
+  <tr>
+    <td width="88" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="223" valign="top"><font face="Arial">&lt;defaultfile&gt;&lt;/defaultfile&gt;</font></td>
+    <td width="483" colspan="2" valign="top"><font face="Arial">string z.B.
+      Test.txt<br>
+      Spezialfälle:<br>
+      &lt;defaultfile&gt;&lt;/defaultfile&gt; Der Anwender soll den Dateinamen über einen
+      &quot;Datei Öffnen Dialog" auswählen<br>
+      &lt;defaultfile>askuser&lt;/defaultfile&gt; Der Anwender soll den Dateinamen über einen
+      &quot;Datei Öffnen Dialog&quot; </font>auswählen</td>
+  </tr>
+  <tr>
+    <td width="88" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="223" valign="top"><font face="Arial">&lt;title&gt;&lt;/title&gt;</font></td>
+    <td width="483" colspan="2" valign="top"><font face="Arial">string&nbsp; Setzt
+      den Titel des Dialoges (nur im Dialogmodus notwendig)
+
+
+
+      </font></td>
+  </tr>
+  <tr>
+    <td width="88" valign="top" bgcolor="#C0C0C0" rowspan="2">&nbsp;</td>
+    <td width="223" valign="top" rowspan="2">&lt;ext&gt;&lt;/ext&gt;</td>
+    <td width="483" colspan="2" valign="top"><font face="Arial">Setzt einen Filter nach
+      Wildcard-Regeln&nbsp;<br>
+
+
+(nur im Dialogmodus notwendig)
+
+
+
+      <br>
+      Beispiele:
+
+      </font></td>
+  </tr>
+  <tr>
+    <td valign="top" width="55">*.*</td>
+    <td valign="top" width="420"><font face="Arial">Alle Dateien stehen zur Auswahl
+
+
+
+      </font></td>
+  </tr>
+  <tr>
+    <td width="88" valign="top" bgcolor="#C0C0C0">&nbsp;</td>
+    <td width="223" valign="top"></td>
+    <td valign="top" width="55">*.txt</td>
+    <td valign="top" width="420"><font face="Arial">Dateien mit der Endung
+      'txt' stehen zur Auswahl
+
+
+
+      </font></td>
+  </tr>
+  <tr>
+    <td width="88" valign="top" bgcolor="#C0C0C0">&nbsp;</td>
+    <td width="223" valign="top"></td>
+    <td valign="top" width="55"><font face="Arial">d*.xyz</font></td>
+    <td valign="top" width="420"><font face="Arial">Dateien die mit dem Buchstaben 'd' beginnen und
+      die&nbsp;<br>
+ Endung 'xyz' haben stehen zur Auswahl
+
+
+
+      </font></td>
+  </tr>
+  <tr>
+    <td width="88" valign="top" bgcolor="#C0C0C0"><font face="Arial">Rückgabe:</font></td>
+    <td width="223" valign="top"><font face="Arial">&lt;return&gt;&lt;/return&gt;</font></td>
+    <td width="483" valign="top" colspan="2"><font face="Arial">1 erfolgreich&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-1 Fehler
+
+
+
+      </font></td>
+  </tr>
+  <tr>
+    <td width="88" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="223" valign="top"><font face="Arial">&lt;message&gt;&lt;/message&gt;</font></td>
+    <td width="483" colspan="2" valign="top"><font face="Arial">string mit
+      erweiterten Informationen zur Ausführung des Befehls</font></td>
+  </tr>
+  <tr>
+    <td width="88" valign="top" bgcolor="#C0C0C0">&nbsp;</td>
+    <td width="223" valign="top">&lt;data&gt;&lt;/data&gt;</td>
+    <td width="483" colspan="2" valign="top">string mit den ausgelesenen
+      Informationen<br>
+      <b>Hinweis:</b> Es wird nicht überprüft ob es sich bei der ausgewählten Datei
+      um eine 'reine' Textdatei handelt. Es wird alles zurückgegeben was als
+      solches erkannt werden kann, wie z.B. evtl. vorhandene Headerinformationen einer
+      Binärdatei.</td>
+  </tr>
+</table>
+<b>
+
+<p>&nbsp;<a href="#Befehlsübersicht" title="Befehlsübersicht">&lt;&lt;&lt;</a>
+
+</p>
+<table border="0" width="820" style="border-style: solid; border-color: #000000" cellpadding="2">
+  <tr>
+    <td width="88" valign="top" bgcolor="#C0C0C0"><font face="Arial"><a name="PB_httpdownload"></a>Befehl:</font></td>
+    <td width="714" colspan="2" valign="top"><b><font face="Arial">&lt;PB_httpdownload&gt;&lt;url&gt;&lt;/url&gt;&lt;downloadtopath&gt;&lt;/</font></b><font face="Arial"><b>downloadtopath</b></font><b><font face="Arial">&gt;<br>
+      &lt;</font></b><font face="Arial"><b>downloadtofile</b></font><b><font face="Arial">&gt;&lt;/</font></b><font face="Arial"><b>downloadtofile</b></font><b><font face="Arial">&gt;&lt;username&gt;&lt;/username&gt;&lt;password&gt;&lt;/password&gt;<br>
+      &lt;PB_httpdownload&gt;</font></b></td>
+  </tr>
+  <tr>
+    <td width="88" valign="top" bgcolor="#C0C0C0"><font face="Arial">Erläuterung:</font></td>
+    <td width="714" colspan="2" valign="top">Lädt eine Datei über das HTTP
+      Protokoll herunter und zeigt einen Download-Dialog an.</td>
+  </tr>
+  <tr>
+    <td width="88" valign="top" bgcolor="#C0C0C0">Parameter:</td>
+    <td width="223" valign="top"><font face="Arial">&lt;url&gt;&lt;/url&gt;</font></td>
+    <td width="483" valign="top"><font face="Arial">string z.B.
+      http://www.meineseite.de/datei.pdf<br>
+      Vollständige URL zur Quelldatei</font></td>
+  </tr>
+  <tr>
+    <font face="Arial">
+
+    <td width="88" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="223" valign="top"><font face="Arial">&lt;downloadtopath&gt;<br>
+      &lt;/downloadtopath&gt;</font></td>
+    <td width="483" valign="top"><font face="Arial">string z.B. c:\\temp<br>
+      Spezialfälle:<br>
+      &lt;downloadtopath&gt;&lt;/downloadtopath&gt; Zielordner ist fscommand<br>
+      &lt;downloadtopath&gt;..\\&lt;/downloadtopath&gt; Eine Ebene über fscommand</font></td>
+
+
+    </font>
+  </tr>
+  <tr>
+    <td width="88" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="223" valign="top"><font face="Arial">&lt;downloadtofile&gt;<br>
+      &lt;/downloadtofile&gt;</font></td>
+    <td width="483" valign="top"><font face="Arial">string z.B. test.pdf<br>
+      </font>Wird dieser nicht angegeben, so wird der Dateiname der Quelldatei
+      verwendet.</td>
+  </tr>
+  <tr>
+    <td width="88" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="223" valign="top"><font face="Arial">&lt;username&gt;&lt;/username&gt;</font></td>
+    <td width="483" valign="top"><font face="Arial">string&nbsp; der
+      den Benutzernamen enthält, falls benötigt</font> (optional)</td>
+  </tr>
+  <tr>
+    <td width="88" valign="top" bgcolor="#C0C0C0">&nbsp;</td>
+    <td width="223" valign="top">&lt;password&gt;&lt;/password&gt;</td>
+    <td width="483" valign="top"><font face="Arial">string&nbsp;
+      der das Passwort enthält, falls benötigt (optional)
+
+
+
+      </font></td>
+  </tr>
+  <tr>
+    <td width="88" valign="top" bgcolor="#C0C0C0"><font face="Arial">Rückgabe:</font></td>
+    <td width="223" valign="top"><font face="Arial">&lt;return&gt;&lt;/return&gt;</font></td>
+    <td width="467" valign="top"><font face="Arial">1 erfolgreich&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-1 Fehler
+
+
+
+      </font></td>
+  </tr>
+  <tr>
+    <td width="88" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="223" valign="top"><font face="Arial">&lt;message&gt;&lt;/message&gt;</font></td>
+    <td width="483" valign="top"><font face="Arial">string mit
+      erweiterten Informationen zur Ausführung des Befehls</font></td>
+  </tr>
+</table>
+
+</b>
+
+<p><b><a href="#Befehlsübersicht" title="Befehlsübersicht">&lt;&lt;&lt;</a>
+
+</b>
+
+</p>
+</font>
+<table border="0" width="820" style="border-style: solid; border-color: #000000" cellpadding="2">
+  <tr>
+    <td width="93" valign="top" bgcolor="#C0C0C0"><font face="Arial"><a name="PB_mailto"></a>Befehl:</font></td>
+    <td width="719" colspan="4" valign="top"><b><font face="Arial">&lt;PB_mailto>&lt;to>&lt;/to>&lt;cc>&lt;/cc>&lt;bcc>&lt;/bcc&gt;&lt;subject&gt;&lt;/subject&gt;&lt;body>&lt;/body>&lt;/PB_mailto></font></b></td>
+  </tr>
+  <tr>
+    <td width="93" valign="top" bgcolor="#C0C0C0"><font face="Arial">Erläuterung:</font></td>
+    <td width="719" colspan="4" valign="top"><font face="Arial">Öffnet einen
+      Standard-Mail-Client nach RFC auf dem System</font></td>
+  </tr>
+  <tr>
+    <td width="93" valign="top" bgcolor="#C0C0C0"><font face="Arial">Parameter:</font></td>
+    <td width="231" valign="top"><font face="Arial">&lt;to&gt;&lt;/to&gt;</font></td>
+    <td width="480" colspan="3" valign="top"><font face="Arial">string (Email-Adresse
+      des Haupt-Empfängers). Weitere sind durch ein Semikolon zu trennen.</font></td>
+  </tr>
+  <tr>
+    <td width="93" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="231" valign="top"><font face="Arial">&lt;cc&gt;&lt;/cc&gt;</font></td>
+    <td width="480" colspan="3" valign="top"><font face="Arial">string
+      (Email-Adresse des Kopienempfängers). Weitere sind durch ein Semikolon zu
+      trennen.</font></td>
+  </tr>
+  <tr>
+    <td width="93" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="231" valign="top"><font face="Arial">&lt;bcc&gt;&lt;/bcc&gt;</font></td>
+    <td width="480" colspan="3" valign="top"><font face="Arial">string
+      (Email-Adresse des Blindkopienempfängers). Weitere sind durch ein
+      Semikolon zu trennen.</font></td>
+  </tr>
+  <tr>
+    <td width="93" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="231" valign="top"><font face="Arial">&lt;subject&gt;&lt;/subject&gt;</font></td>
+    <td width="480" colspan="3" valign="top"><font face="Arial">string
+      (Betreffzeile)</font></td>
+  </tr>
+  <tr>
+    <td width="93" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="231" valign="top"><font face="Arial">&lt;body&gt;&lt;/body&gt;</font></td>
+    <td width="480" colspan="3" valign="top"><font face="Arial">string (Inhalt
+      der Mail). Manueller Zeilenumbruch mit \r möglich</font></td>
+  </tr>
+  <tr>
+    <td width="93" valign="top" bgcolor="#C0C0C0"><font face="Arial">Rückgabe:</font></td>
+    <td width="231" valign="top"><font face="Arial">&lt;return&gt;&lt;/return&gt;</font></td>
+    <td width="155" valign="top"><font face="Arial">1 erfolgreich</font></td>
+    <td width="155" valign="top"><font face="Arial">-1 Fehler</font></td>
+    <td width="154" valign="top"></td>
+  </tr>
+  <tr>
+    <td width="93" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="231" valign="top"><font face="Arial">&lt;message&gt;&lt;/message&gt;</font></td>
+    <td width="480" colspan="3" valign="top"><font face="Arial">string mit
+      Rückgabewert bzw. erweiterten Informationen zur Ausführung des Befehls&nbsp;</font></td>
+  </tr>
+</table>
+<font face="Arial"><b>
+
+<p><a href="#Befehlsübersicht" title="Befehlsübersicht">&lt;&lt;&lt;</a>
+</b>
+</p>
+<table border="0" width="820" style="border-style: solid; border-color: #000000" cellpadding="2">
+  <tr>
+    <td width="93" valign="top" bgcolor="#C0C0C0"><font face="Arial"><a name="PB_messagebox"></a>Befehl:</font></td>
+    <td width="719" colspan="2" valign="top"><b>&lt;PB_messagebox>&lt;titlebar>&lt;/titlebar>&lt;text>&lt;/text&gt;<br>
+      &lt;style>&lt;/style&gt;&lt;button&gt;&lt;/button>&lt;PB_messagebox></b></td>
+  </tr>
+  <tr>
+    <td width="93" valign="top" bgcolor="#C0C0C0"><font face="Arial">Erläuterung:</font></td>
+    <td width="719" colspan="2" valign="top">Zeigt eine Messagebox an</td>
+  </tr>
+  <tr>
+    <td width="93" valign="top" bgcolor="#C0C0C0"><font face="Arial">Parameter:</font></td>
+    <td width="231" valign="top"><font face="Arial">&lt;titlebar>&lt;/titlebar&gt;</font></td>
+    <td width="480" valign="top"><font face="Arial">string der die Überschrift
+      der Messagebox enthält.</font></td>
+  </tr>
+  <tr>
+    <td width="93" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="231" valign="top"><font face="Arial">&lt;text></font>&lt;/text></td>
+    <td width="480" valign="top"><font face="Arial">string der den anzuzeigenden
+      Text der Messagebox enthält.</font></td>
+  </tr>
+  <tr>
+    <td width="93" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="231" valign="top"><font face="Arial">&lt;style></font>&lt;/style></td>
+    <td width="480" valign="top"><font face="Arial">string der das Symbol der
+      Messagebox enthält.<br>
+      Mögliche Parameter:<br>
+      ICONWARNING<br>
+      </font>ICONINFORMATION<br>
+      ICONQUESTION<br>
+      ICONERROR</td>
+  </tr>
+  <tr>
+    <td width="93" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="231" valign="top">&lt;button>&lt;/button></td>
+    <td width="480" valign="top"><font face="Arial">string der die anzuzeigenden
+      Buttons enthält<br>
+      Mögliche Parameter:<br>
+      ABORTRETRYIGNORE<br>
+      OK<br>
+      OKCANCEL<br>
+      RETRYCANCEL<br>
+      YESNO<br>
+      YESNOCANCEL</font></td>
+  </tr>
+  <tr>
+    <td width="93" valign="top" bgcolor="#C0C0C0"><font face="Arial">Rückgabe:</font></td>
+    <td width="231" valign="top"><font face="Arial">&lt;return&gt;&lt;/return&gt;</font></td>
+    <td width="464" valign="top">Ganzzahl der den Rückgabewert des
+      entsprechenden Buttons beinhaltet. Mögliche Rückgabewerte:<br>
+      -1 ERROR<br>
+      1 OK<br>
+      2,3 ABORT<br>
+      4 RETRY<br>
+      5 IGNORE<br>
+      6 YES<br>
+      7 NO</td>
+  </tr>
+  <tr>
+    <td width="93" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="231" valign="top"><font face="Arial">&lt;message&gt;&lt;/message&gt;</font></td>
+    <td width="480" valign="top"><font face="Arial">string der den Rückgabewert
+      des entsprechenden Buttons beinhaltet. Mögliche Rückgabewerte:<br>
+      ERROR<br>
+      ABORT<br>
+      RETRY<br>
+      IGNORE<br>
+      YES<br>
+      NO
+      </font></td>
+  </tr>
+</table>
+
+<p><a href="#Befehlsübersicht" title="Befehlsübersicht"><br>
+&lt;&lt;&lt;</a>
+
+</p>
+<table border="0" width="820" style="border-style: solid; border-color: #000000" cellpadding="2">
+  <tr>
+    <td width="93" valign="top" bgcolor="#C0C0C0"><font face="Arial"><a name="PB_midiplayfile"></a>Befehl:</font></td>
+    <td width="719" colspan="4" valign="top"><b><font face="Arial">&lt;PB_midiplayfile&gt;&lt;path&gt;&lt;/path&gt;&lt;file&gt;&lt;/file&gt;&lt;/PB_midiplayfile&gt;</font></b></td>
+  </tr>
+  <tr>
+    <td width="93" valign="top" bgcolor="#C0C0C0"><font face="Arial">Erläuterung:</font></td>
+    <td width="719" colspan="4" valign="top">Spielt ein Midifile mit der im
+      System aktuell angegebenen Standard-Ausgabequelle ab</td>
+  </tr>
+  <tr>
+    <td width="93" valign="top" bgcolor="#C0C0C0"><font face="Arial">Parameter:</font></td>
+    <td width="231" valign="top"><font face="Arial">&lt;path&gt;&lt;/path&gt;</font></td>
+    <td width="480" colspan="3" valign="top"><font face="Arial">string z.B.
+      c:\\MeineMusik\\MeineMidiFiles<br>
+      Spezialfälle:<br>
+      &lt;path&gt;&lt;/path&gt; Der Pfad ist fscommand<br>
+      &lt;path&gt;..\\&lt;/path&gt; Eine Ebene über fscommand</font></td>
+  </tr>
+  <tr>
+    <td width="93" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="231" valign="top"><font face="Arial">&lt;file&gt;&lt;/file&gt;</font></td>
+    <td width="480" colspan="3" valign="top"><font face="Arial">string z.B.
+      Test.mid</font></td>
+  </tr>
+  <tr>
+    <td width="93" valign="top" bgcolor="#C0C0C0"><font face="Arial">Rückgabe:</font></td>
+    <td width="231" valign="top"><font face="Arial">&lt;return&gt;&lt;/return&gt;</font></td>
+    <td width="155" valign="top"><font face="Arial">1 erfolgreich</font></td>
+    <td width="155" valign="top"><font face="Arial">-1 Fehler</font></td>
+    <td width="154" valign="top"></td>
+  </tr>
+  <tr>
+    <td width="93" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="231" valign="top"><font face="Arial">&lt;message&gt;&lt;/message&gt;</font></td>
+    <td width="480" colspan="3" valign="top"><font face="Arial">string mit
+      Rückgabewert bzw. erweiterten Informationen zur Ausführung des Befehls&nbsp;</font></td>
+  </tr>
+</table>
+
+<font face="Arial"><b>
+
+<p><a href="#Befehlsübersicht" title="Befehlsübersicht">&lt;&lt;&lt;</a>
+
+</p>
+<table border="0" width="820" style="border-style: solid; border-color: #000000" cellpadding="2">
+  <tr>
+    <td width="93" valign="top" bgcolor="#C0C0C0"><font face="Arial"><a name="PB_midistop"></a>Befehl:</font></td>
+    <td width="719" colspan="4" valign="top"><b><font face="Arial">&lt;PB_midistop&gt;&lt;/PB_midistop&gt;</font></b></td>
+  </tr>
+  <tr>
+    <td width="93" valign="top" bgcolor="#C0C0C0"><font face="Arial">Erläuterung:</font></td>
+    <td width="719" colspan="4" valign="top">Stoppt das aktuelle Midifile</td>
+  </tr>
+  <tr>
+    <td width="93" valign="top" bgcolor="#C0C0C0"><font face="Arial">Parameter:</font></td>
+    <td width="231" valign="top">keine</td>
+    <td width="480" colspan="3" valign="top"></td>
+  </tr>
+  <tr>
+    <td width="93" valign="top" bgcolor="#C0C0C0"><font face="Arial">Rückgabe:</font></td>
+    <td width="231" valign="top"><font face="Arial">&lt;return&gt;&lt;/return&gt;</font></td>
+    <td width="155" valign="top"><font face="Arial">1 erfolgreich</font></td>
+    <td width="155" valign="top"><font face="Arial">-1 Fehler</font></td>
+    <td width="154" valign="top"></td>
+  </tr>
+  <tr>
+    <td width="93" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="231" valign="top"><font face="Arial">&lt;message&gt;&lt;/message&gt;</font></td>
+    <td width="480" colspan="3" valign="top"><font face="Arial">string mit
+      Rückgabewert bzw. erweiterten Informationen zur Ausführung des Befehls&nbsp;</font></td>
+  </tr>
+</table>
+
+</b>
+
+</font>
+
+<p><a href="#Befehlsübersicht" title="Befehlsübersicht">&lt;&lt;&lt;</a>
+
+</p>
+<table border="0" width="820" style="border-style: solid; border-color: #000000" cellpadding="2">
+  <tr>
+    <td width="91" valign="top" bgcolor="#C0C0C0"><font face="Arial"><a name="PB_open"></a>Befehl:</font></td>
+    <td width="675" colspan="3" valign="top"><b><font face="Arial">&lt;PB_open&gt;&lt;dialog&gt;&lt;/dialog&gt;&lt;title>&lt;/title>&lt;ext>&lt;/ext&gt;&lt;maxfiles&gt;&lt;/maxfiles&gt;&lt;/PB_open&gt;</font></b></td>
+  </tr>
+  <tr>
+    <td width="91" valign="top" bgcolor="#C0C0C0"><font face="Arial">Erläuterung:</font></td>
+    <td width="675" colspan="3" valign="top"><font face="Arial">Öffnet einen
+      File-Open- oder Path-Open-Dialog.</font>&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="91" valign="top" bgcolor="#C0C0C0"><font face="Arial">Parameter:</font></td>
+    <td width="281" valign="top"><font face="Arial">&lt;dialog&gt;&lt;/dialog&gt;</font></td>
+    <td width="448" colspan="2" valign="top"><font face="Arial"><b>singlefile</b> Der
+      Anwender kann eine Datei auswählen</font></td>
+  </tr>
+  <tr>
+    <td width="91" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="281" valign="top">&lt;dialog&gt;&lt;/dialog&gt;</td>
+    <td width="448" colspan="2" valign="top"><b>multifile</b> Der Anwender kann mehrere
+      Dateien selektieren</td>
+  </tr>
+  <tr>
+    <td width="91" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="281" valign="top">&lt;dialog&gt;&lt;/dialog&gt;</td>
+    <td width="448" colspan="2" valign="top"><font face="Arial"><b>path</b> Der
+      Anwender kann einen Pfad auswählen. Dieser kann dann z.B. mit dem Befehl
+      &lt;PB_getdirs&gt;&nbsp; weiter verarbeitet (ausgelesen)&nbsp; werden.</font></td>
+  </tr>
+  <tr>
+    <td width="91" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="281" valign="top"><font face="Arial">&lt;title&gt;&lt;/title&gt;</font></td>
+    <td width="448" colspan="2" valign="top"><font face="Arial">string </font>Setzt
+      den Titel des Dialoges</td>
+  </tr>
+  <tr>
+    <td width="91" valign="top" bgcolor="#C0C0C0" rowspan="2"></td>
+    <td width="281" valign="top" rowspan="4"><font face="Arial">&lt;ext&gt;&lt;/ext&gt;</font></td>
+    <td width="448" colspan="2" valign="top">Setzt einen Filter nach
+      Wildcard-Regeln für die Dialogtypen <b>singlefile</b> oder <b>multifile</b>.<br>
+      Beispiele:</td>
+  </tr>
+  <tr>
+    <td width="55" valign="top">*.*</td>
+    <td width="508" valign="top">Alle Dateien stehen zur Auswahl</td>
+  </tr>
+  <tr>
+    <td width="91" valign="top" bgcolor="#C0C0C0">&nbsp;</td>
+    <td width="55" valign="top">*.pdf</td>
+    <td width="508" valign="top">Dateien mit der Endung 'pdf' stehen zur Auswahl</td>
+  </tr>
+  <tr>
+    <td width="91" valign="top" bgcolor="#C0C0C0">&nbsp;</td>
+    <td width="55" valign="top">d*.mp3</td>
+    <td width="508" valign="top">Dateien die mit dem Buchstaben 'd' beginnen und
+      die&nbsp;<br>
+ Endung 'mp3' haben stehen zur Auswahl</td>
+  </tr>
+  <tr>
+    <td width="91" valign="top" bgcolor="#C0C0C0">&nbsp;</td>
+    <td width="281" valign="top">&lt;maxfiles&gt;&lt;/maxfiles&gt;</td>
+    <td width="432" valign="top" colspan="2">Ganzzahl (nur für multifile
+      Dialog)&nbsp;<br>
+      Setzt die maximale Anzahl der Dateien die zurückgegeben werden sollen,
+      obwohl der Anwender ein höhere Anzahl im multifile Dialog ausgewählt
+      hat. Sollten Sie dem Anwender einen multifile Dialog anbieten, empfiehlt
+      es sich diesen Filter auf eine sinnvolle Anzahl zu reduzieren, da der
+      Flashplayer vor allem auf 'schwachen' System evtl. die Datenmengen nicht mehr
+      verarbeiten kann.<br>
+      Wird maxfiles leer gelassen, so können vom Anwender<br>
+      'unendlich' (&lt;=FreeRAM) viele Dateien ausgewählt werden.</td>
+  </tr>
+  <tr>
+    <td width="91" valign="top" bgcolor="#C0C0C0"><font face="Arial">Rückgabe:</font></td>
+    <td width="281" valign="top"><font face="Arial">&lt;return&gt;&lt;/return&gt;</font></td>
+    <td width="432" valign="top" colspan="2"><font face="Arial">1 erfolgreich&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      -1 Fehler</font></td>
+  </tr>
+  <tr>
+    <td width="91" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="281" valign="top"><font face="Arial">&lt;message&gt;&lt;/message&gt;</font></td>
+    <td width="448" colspan="2" valign="top"><font face="Arial">string mit
+      Rückgabewert bzw. erweiterten Informationen zur Ausführung des Befehls&nbsp;</font></td>
+  </tr>
+</table>
+
+</b>
+
+<font face="Arial"><b>
+
+<p><a href="#Befehlsübersicht" title="Befehlsübersicht">&lt;&lt;&lt;</a>
+
+</p>
+<table border="0" width="820" style="border-style: solid; border-color: #000000" cellpadding="2">
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"><font face="Arial"><a name="PB_pathexists"></a>Befehl:</font></td>
+    <td width="88%" colspan="4" valign="top"><b><font face="Arial">&lt;PB_pathexists&gt;&lt;path&gt;&lt;/path&gt;&lt;/PB_pathexists&gt;</font></b></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"><font face="Arial">Erläuterung:</font></td>
+    <td width="88%" colspan="4" valign="top">Überprüft, ob es einen Ordner schon
+      gibt</td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"><font face="Arial">Parameter:</font></td>
+    <td width="28%" valign="top"><font face="Arial">&lt;path&gt;&lt;/path&gt;</font></td>
+    <td width="60%" colspan="3" valign="top"><font face="Arial">string z.B. c:\\MeinVerzeichnis\\MeinUnterVerzeichnis<br>
+      Spezialfälle:<br>
+      &lt;path>&lt;/path> Der Quellenordner ist fscommand<br>
+      &lt;path>..\\&lt;/path> Eine Ebene über fscommand </font></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"><font face="Arial">Rückgabe:</font></td>
+    <td width="28%" valign="top"><font face="Arial">&lt;return&gt;&lt;/return&gt;</font></td>
+    <td width="20%" valign="top"><font face="Arial">1 erfolgreich</font></td>
+    <td width="20%" valign="top"><font face="Arial">-1 Fehler</font></td>
+    <td width="20%" valign="top"></td>
+  </tr>
+  <tr>
+    <td width="12%" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="28%" valign="top"><font face="Arial">&lt;message&gt;&lt;/message&gt;</font></td>
+    <td width="60%" colspan="3" valign="top"><font face="Arial">string mit erweiterten Informationen zur Ausführung des Befehls</font></td>
+  </tr>
+</table>
+</b></font>
+
+</font>
+<p>
+
+<a href="#Befehlsübersicht" title="Befehlsübersicht">&lt;&lt;&lt;</a>
+
+</p>
+<table border="0" width="820" style="border-style: solid; border-color: #000000" cellpadding="2">
+  <tr>
+    <td width="88" valign="top" bgcolor="#C0C0C0"><font face="Arial"><a name="PB_readregkey"></a>Befehl:</font></td>
+    <td width="694" colspan="4" valign="top"><b><font face="Arial">&lt;PB_readregkey&gt;&lt;hkey&gt;&lt;/hkey&gt;&lt;regpath&gt;&lt;/regpath&gt;&lt;value&gt;&lt;/value&gt;&lt;/PB_readregkey&gt;</font></b></td>
+  </tr>
+  <tr>
+    <td width="88" valign="top" bgcolor="#C0C0C0"><font face="Arial">Erläuterung:</font></td>
+    <td width="694" colspan="4" valign="top"><font face="Arial">Liest einen Wert
+      aus der Registrierung.</font></td>
+  </tr>
+  <tr>
+    <td width="88" valign="top" bgcolor="#C0C0C0"><font face="Arial">Parameter:</font></td>
+    <td width="226" valign="top"><font face="Arial">&lt;hkey&gt;&lt;/hkey&gt;</font></td>
+    <td width="460" colspan="3" valign="top"><font face="Arial">string
+      (auszulesender Schlüssel) </font><br>
+      <font face="Arial">HKEY_CLASSES_ROOT<br>
+	HKEY_CURRENT_CONFIG<br>
+	HKEY_CURRENT_USER<br>
+	HKEY_LOCAL_MACHINE<br>
+	HKEY_USERS<br>
+ HKEY_PERFORMANCE_DATA&nbsp;<br>
+ HKEY_DYN_DATA&nbsp;</font></td>
+  </tr>
+  <tr>
+    <td width="88" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="226" valign="top"><font face="Arial">&lt;regpath&gt;&lt;/regpath&gt;</font></td>
+    <td width="460" colspan="3" valign="top"><font face="Arial">string z.B.
+      Software\\Microsoft\\Windows\\CurrentVersion\\</font></td>
+  </tr>
+  <tr>
+    <td width="88" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="226" valign="top"><font face="Arial">&lt;value&gt;&lt;/value&gt;</font></td>
+    <td width="460" colspan="3" valign="top"><font face="Arial">string
+      (auszulesender Wert) z.B.</font><font face="Arial">ProductId</font></td>
+  </tr>
+  <tr>
+    <td width="88" valign="top" bgcolor="#C0C0C0"><font face="Arial">Rückgabe:</font></td>
+    <td width="226" valign="top"><font face="Arial">&lt;return&gt;&lt;/return&gt;</font></td>
+    <td width="142" valign="top"><font face="Arial">1 erfolgreich</font></td>
+    <td width="151" valign="top"><font face="Arial">-1 Fehler</font></td>
+    <td width="151" valign="top"></td>
+  </tr>
+  <tr>
+    <td width="88" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="226" valign="top"><font face="Arial">&lt;message&gt;&lt;/message&gt;</font></td>
+    <td width="460" colspan="3" valign="top"><font face="Arial">string mit
+      Rückgabewert bzw. erweiterten Informationen zur Ausführung des Befehls&nbsp;</font></td>
+  </tr>
+</table>
+<font face="Arial">
+<b>
+
+<p>
+
+<a href="#Befehlsübersicht" title="Befehlsübersicht">&lt;&lt;&lt;</a>
+
+</p>
+<table border="0" width="820" style="border-style: solid; border-color: #000000" cellpadding="2">
+  <tr>
+    <td width="88" valign="top" bgcolor="#C0C0C0"><font face="Arial"><a name="PB_runcontrolpanel"></a>Befehl:</font></td>
+    <td width="694" colspan="4" valign="top"><b><font face="Arial">&lt;PB_runcontrolpanel&gt;&lt;typ&gt;&lt;/typ&gt;&lt;/PB_</font></b><font face="Arial"><b>runcontrolpanel</b></font><b><font face="Arial">&gt;</font></b></td>
+  </tr>
+  <tr>
+    <td width="88" valign="top" bgcolor="#C0C0C0"><font face="Arial">Erläuterung:</font></td>
+    <td width="694" colspan="4" valign="top">Startet nachfolgende Dialoge des
+      Betriebssystems</td>
+  </tr>
+  <tr>
+    <td width="88" valign="top" bgcolor="#C0C0C0"><font face="Arial">Parameter:</font></td>
+    <td width="226" valign="top"><font face="Arial">&lt;typ&gt;&lt;/typ&gt;</font></td>
+    <td width="460" colspan="3" valign="top">string<br>
+      CP_CONTROLPANEL<br>
+      CP_INPUTHELPER<br>
+      CP_DISPLAY<br>
+      CP_COUNTRYSETTINGS<br>
+      CP_GAMECONTROLLER<br>
+      CP_INPUTS<br>
+      CP_MMEDIAAUDIO<br>
+      CP_SYSTEM<br>
+      CP_DATE_TIME</td>
+  </tr>
+  <tr>
+    <td width="88" valign="top" bgcolor="#C0C0C0"><font face="Arial">Rückgabe:</font></td>
+    <td width="226" valign="top"><font face="Arial">&lt;return&gt;&lt;/return&gt;</font></td>
+    <td width="142" valign="top"><font face="Arial">1 erfolgreich</font></td>
+    <td width="151" valign="top"><font face="Arial">-1 Fehler</font></td>
+    <td width="151" valign="top"></td>
+  </tr>
+  <tr>
+    <td width="88" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="226" valign="top"><font face="Arial">&lt;message&gt;&lt;/message&gt;</font></td>
+    <td width="460" colspan="3" valign="top"><font face="Arial">string mit
+      Rückgabewert bzw. erweiterten Informationen zur Ausführung des Befehls&nbsp;</font></td>
+  </tr>
+</table>
+
+</b>
+
+</font>
+<p>
+
+<a href="#Befehlsübersicht" title="Befehlsübersicht"><b>&lt;&lt;&lt;</b></a>
+
+</p>
+<table border="0" width="820" style="border-style: solid; border-color: #000000" cellpadding="2">
+  <tr>
+    <td width="90" valign="top" bgcolor="#C0C0C0"><font face="Arial"><a name="PB_save"></a>Befehl:</font></td>
+    <td width="712" colspan="4" valign="top"><b><font face="Arial">&lt;PB_save&gt;&lt;data&gt;&lt;/data&gt;&lt;defaultpath&gt;&lt;/defaultpath&gt;&lt;defaultfile&gt;&lt;/defaultfile&gt;&lt;mode&gt;<br>
+      &lt;/mode&gt;&lt;/PB_save&gt;</font></b></td>
+  </tr>
+  <tr>
+    <td width="90" valign="top" bgcolor="#C0C0C0"><font face="Arial">Erläuterung:</font></td>
+    <td width="712" colspan="4" valign="top"><font face="Arial">Speichert eine beliebige Datei mit Textinformationen.</font></td>
+  </tr>
+  <tr>
+    <td width="90" valign="top" bgcolor="#C0C0C0"><font face="Arial">Parameter:</font></td>
+    <td width="233" valign="top"><font face="Arial">&lt;data&gt;&lt;/data&gt;</font></td>
+    <td width="471" colspan="3" valign="top"><font face="Arial">string z.B.
+      Hallo Welt<br>
+      Manuelle Zeilenumbrüche mit \r\n möglich. </font></td>
+  </tr>
+  <tr>
+    <td width="90" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="233" valign="top"><font face="Arial">&lt;defaultpath&gt;&lt;/defaultpath&gt;</font></td>
+    <td width="471" colspan="3" valign="top"><font face="Arial">string z.B.
+      c:\\Verzeichnis<br>
+      Spezialfälle:<br>
+      &lt;defaultpath&gt;&lt;/defaultpath&gt; Der Vorgabenordner ist fscommand<br>
+      &lt;defaultpath&gt;..\\&lt;/defaultpath&gt; Eine Ebene über fscommand<br>
+      &lt;defaultpath&gt;askuser&lt;/defaultpath&gt; Der Anwender soll den Pfad
+      über einen &quot;Speichern unter Dialog&quot; auswählen </font></td>
+  </tr>
+  <tr>
+    <td width="90" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="233" valign="top"><font face="Arial">&lt;defaultfile&gt;&lt;/defaultfile&gt;</font></td>
+    <td width="471" colspan="3" valign="top"><font face="Arial">string z.B.
+      Test.txt<br>
+      Spezialfälle:<br>
+      &lt;defaultfile&gt;&lt;/defaultfile&gt; Der Anwender soll den Dateinamen über einen "Speichern unter Dialog" eingeben<br>
+      &lt;defaultfile>askuser&lt;/defaultfile&gt; Der Anwender soll den Dateinamen über einen "Speichern unter Dialog" eingeben</font></td>
+  </tr>
+  <tr>
+    <td width="90" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="233" valign="top"><font face="Arial">&lt;mode&gt;&lt;/mode&gt;</font></td>
+    <td width="471" colspan="3" valign="top"><font face="Arial">&lt;mode&gt;overwrite&lt;/mode&gt;</font>
+      <font face="Arial">Überschreibt die Datei (default)<br>
+      &lt;mode&gt;append&lt;/mode&gt;</font> <font face="Arial">Fügt die Daten
+      aus &lt;data&gt; am Ende der Datei an. Ist die Datei noch nicht vorhanden, wird Sie angelegt.</font></td>
+  </tr>
+  <tr>
+    <td width="90" valign="top" bgcolor="#C0C0C0"><font face="Arial">Rückgabe:</font></td>
+    <td width="233" valign="top"><font face="Arial">&lt;return&gt;&lt;/return&gt;</font></td>
+    <td width="144" valign="top"><font face="Arial">1 erfolgreich</font></td>
+    <td width="156" valign="top"><font face="Arial">-1 Fehler</font></td>
+    <td width="155" valign="top"></td>
+  </tr>
+  <tr>
+    <td width="90" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="233" valign="top"><font face="Arial">&lt;message&gt;&lt;/message&gt;</font></td>
+    <td width="471" colspan="3" valign="top"><font face="Arial">string mit
+      erweiterten Informationen zur Ausführung des Befehls</font></td>
+  </tr>
+</table>
+<p>&nbsp;<a href="#Befehlsübersicht" title="Befehlsübersicht"><b>&lt;&lt;&lt;</b></a>
+
+</p>
+<table border="0" width="820" style="border-style: solid; border-color: #000000" cellpadding="2">
+  <tr>
+    <td width="90" valign="top" bgcolor="#C0C0C0"><font face="Arial"><a name="PB_sendto"></a>Befehl:</font></td>
+    <td width="712" colspan="4" valign="top"><b><font face="Arial">&lt;PB_sendto&gt;&lt;to&gt;&lt;/to&gt;&lt;data&gt;&lt;/data&gt;&lt;PB_sendto&gt;</font></b></td>
+  </tr>
+  <tr>
+    <td width="90" valign="top" bgcolor="#C0C0C0"><font face="Arial">Erläuterung:</font></td>
+    <td width="712" colspan="4" valign="top"><font face="Arial">Sendet einen
+      Datenblock vom Typ string an alle oder einen bestimmten User</font></td>
+  </tr>
+  <tr>
+    <td width="90" valign="top" bgcolor="#C0C0C0"><font face="Arial">Parameter:</font></td>
+    <td width="233" valign="top"><font face="Arial">&lt;to&gt;&lt;/to&gt;</font></td>
+    <td width="471" colspan="3" valign="top"><font face="Arial">string der&nbsp;den
+      &lt;username&gt; eines Films enthält<br>
+      Spezialfall:<br>
+      <b>all </b>sendet den Datenblock an alle Filme</font></td>
+  </tr>
+  <tr>
+    <td width="90" valign="top" bgcolor="#C0C0C0"></td>
+    <td width="233" valign="top"><font face="Arial">&lt;data&gt;&lt;/data&gt;</font></td>
+    <td width="471" colspan="3" valign="top"><font face="Arial">string&nbsp; </font></td>
+  </tr>
+  <tr>
+    <td width="90" valign="top" bgcolor="#C0C0C0"><font face="Arial">Rückgabe:</font></td>
+    <td width="233" valign="top">Die abgesendete Nachricht<br>
+      aus &lt;Data&gt;&lt;/Data&gt;&nbsp;</td>
+    <td width="144" valign="top"></td>
+    <td width="156" valign="top"></td>
+    <td width="155" valign="top"></td>
+  </tr>
+</table>
+<p><b><a href="#Befehlsübersicht" title="Befehlsübersicht">&lt;&lt;&lt;</a>
+
+</b>
+
+</p>
+<p><font face="Arial" size="2"><b>PipeBeama und Pipescript (c) 2004 - 2005 www.webmechaniker.de (Lars Besmer)<br>
+</b> PipeBeama und Pipescript ist Freeware, also frei kopier- und verwendbar.    Der Autor behält alle Rechte am Programm.&nbsp;<br>
+ Trotzdem wird nicht für Funktion&nbsp;oder nicht-Funktion des Programms, Schäden materieller oder geistiger Art    in&nbsp;<br>
+ irgendeiner Art Haftung übernommen.&nbsp;<br>
+<br>
+Damit PipeBeama einer großen Zielgruppe zugänglich wird, wäre es ein feiner
+Zug die Text- und HTML-Dateien&nbsp;<br>
+( _ChangeLog.txt, _FAQ.txt, _Lizenz.txt, _ToDo.txt, HowTo.htm ) mit in den
+fscommand Ordner eurer Produktion<br>
+abzulegen. Ein Flasher, der diese Produktion in die Finger bekommt, wird es euch
+danken!<br>
+</font><font face="Arial"><br>
+<font size="2"><b>
+Alle hier genannten Marken- und Produktbezeichnungen&nbsp;sind Warenzeichen der entsprechenden Eigentümer.</b></font><br>
+</font></p>
+
+</body>
+
+</html>

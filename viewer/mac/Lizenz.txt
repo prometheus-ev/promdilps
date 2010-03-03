@@ -1,0 +1,15 @@
+-------------------------------------------------------------------
+.: DILPS Leuchtpult und DILPS Bildprojektor (c)2005 Thomas Fabini
+-------------------------------------------------------------------
+
+Dilps Leuchtpult und Dilps Bildprojektor sind für nichtkomerzielle
+Zwecke frei kopier- und verwendbar. Der Autor behält alle Rechte
+am Programm. Für die korrekte Funktion des Programms sowie Schäden
+materieller oder ideeller Art die durch die Nutzung verursacht
+wurden wird keine Haftung übernommen.
+
+.: Autor
+-----------------
+Thomas Fabini
+TheICrow@gmx.net
+-----------------

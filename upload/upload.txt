@@ -1,0 +1,1 @@
+Please put your directories to be uploaded here and make them writeable to the webserver.

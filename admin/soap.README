@@ -1,0 +1,26 @@
+
+To work with remote collections, the following steps are necessary:
+
+1) make necessary changes to database:
+alter table ng_collection add column soap_url varchar(255) not null default '' after url;
+
+create table ng_interdilps_hosts (
+    id  int(10) unsigned not null auto_increment,
+    ip varchar(30) not null default '',
+    access tinyint(3) unsigned not null default 0,
+    description varchar(255) not null default '',
+    primary key (id)
+);
+
+
+2) add the remote collection:
+something like: insert into table ng_collection(...) values (...).
+    - host is the hostname or ip of the remote server (e.g. '214.12.17.12')
+    - soap_url is the path to soapquery.php (e.g. 'dilps/soapquery.php')
+
+3) to be able to see images from the remote collection, the remote dilps server needs to allow the local dilps server access.
+If the local dilps server ip address is 68.142.197.68, the remote dilps server will need to add an entry the interdilps_hosts table:
+insert into ng_interdilps_hosts(ip, access, description) values ('68.142.197.68', 1, 'free-text description of the other dilps system');
+The access column should be 1 to allow image access.  Setting it to 0 will disable image access.
+
+

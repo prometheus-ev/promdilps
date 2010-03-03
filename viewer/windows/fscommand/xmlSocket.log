@@ -1,0 +1,841 @@
+PipeBeamaClone 0.8rc-alpha2 started (c) Simon Frettloeh
+Attempting to Start Server
+Server Started on Port: 2000
+Client 127.0.0.1:3198 connected to the server.
+Client 127.0.0.1:3198 with ip 127.0.0.1: ===> Got command: BEGIN-MESSAGE
+<PB_connect>
+<user>sid1136826406031</user>
+</PB_connect>
+
+END-MESSAGE
+====parsing parameters======================
+user=sid1136826406031
+====command-exec of pipeCommands.PipeConnect@158b649:BEGIN======================
+Adding client Client 127.0.0.1:3198 to Rep sid1136826406031
+Rep-Username-Mapping N/A. Creating sid1136826406031
+====command-exec ofpipeCommands.PipeConnect@158b649:END======================
+Client 127.0.0.1:3198 with ip 127.0.0.1: <=== Sending back: BEGIN-MESSAGE
+<PB_connect><return>1</return>
+<message>OK</message>
+</PB_connect>
+END-MESSAGE
+Client 127.0.0.1:3198 with ip 127.0.0.1: ===> Got command: BEGIN-MESSAGE
+<PB_setflashurl>
+<url>file:///C|/Temp/2006%2D01%2D09%5F%5F18%2D04/dilpsEdit.exe</url>
+</PB_setflashurl>
+
+END-MESSAGE
+====parsing parameters======================
+url=file:///C|/Temp/2006%2D01%2D09%5F%5F18%2D04/dilpsEdit.exe
+====command-exec of pipeCommands.PipeSetFlashurl@8a0d5d:BEGIN======================
+Checking for wrong drive letter seperator character (non-rfc-conform uri) ...Fixed. Done.
+Checking if OS is Mac OS X (volume-name is in uri) ...Done.
+Got flashurl C:\Temp\2006-01-09__18-04\dilpsEdit.exe
+Beginning to strip away App-Name ...
+New workingdirectory: C:\Temp\2006-01-09__18-04\
+====command-exec ofpipeCommands.PipeSetFlashurl@8a0d5d:END======================
+Client 127.0.0.1:3198 with ip 127.0.0.1: <=== Sending back: BEGIN-MESSAGE
+<PB_setflashurl><return>1</return>
+<message>OK</message>
+</PB_setflashurl>
+END-MESSAGE
+Client 127.0.0.1:3198 with ip 127.0.0.1: ===> Got command: BEGIN-MESSAGE
+<PB_save>
+<data><?xml version="1.0" encoding="UTF-8" ?>
+<index>
+ <presentation name="leer">
+  <set>
+    <frame>_void</frame>
+    <frame>_void</frame>
+    <frame>_void</frame>
+  </set>
+ </presentation>
+ <presentation name="simon">
+  <set>
+    <frame>4-7601</frame>
+    <frame>4-7746</frame>
+    <frame>_void</frame>
+  </set>
+  <set>
+    <frame>_void</frame>
+    <frame>4-7784</frame>
+    <frame>4-7791</frame>
+  </set>
+ </presentation>
+ <presentation name="desi">
+  <set>
+    <frame>4-7601</frame>
+    <frame>_void</frame>
+    <frame>_void</frame>
+  </set>
+  <set>
+    <frame>4-7594</frame>
+    <frame>4-7784</frame>
+    <frame>_void</frame>
+  </set>
+  <set>
+    <frame>4-7601</frame>
+    <frame>4-7692</frame>
+    <frame>4-7639</frame>
+  </set>
+ </presentation>
+ <presentation name="firsttest">
+  <set>
+    <frame>4-7594</frame>
+    <frame>4-7787</frame>
+    <frame>4-7791</frame>
+  </set>
+  <set>
+    <frame>_void</frame>
+    <frame>4-7594</frame>
+    <frame>4-7787</frame>
+  </set>
+  <set>
+    <frame>_void</frame>
+    <frame>4-7746</frame>
+    <frame>_void</frame>
+  </set>
+ </presentation>
+ <presentation name="secondtest">
+  <set>
+    <frame>_void</frame>
+    <frame>Kopie von äöü4-7791.jpg</frame>
+    <frame>ßÄäöü4-7791.jpg</frame>
+  </set>
+  <set>
+    <frame>_void</frame>
+    <frame>4-7594.jpg</frame>
+    <frame>4-7746.jpg</frame>
+  </set>
+  <set>
+    <frame>_void</frame>
+    <frame>test.jpg</frame>
+    <frame>_void</frame>
+  </set>
+  <set>
+    <frame>_void</frame>
+    <frame>ßÄäöü4-7791.jpg</frame>
+    <frame>_void</frame>
+  </set>
+  <set>
+    <frame>_void</frame>
+    <frame>4-7601.jpg</frame>
+    <frame>4-7639.jpg</frame>
+  </set>
+ </presentation>
+</index>
+</data>
+<defaultpath>xml/</defaultpath>
+<defaultfile>index.xml</defaultfile>
+<mode>overwrite</mode>
+</PB_save>
+
+END-MESSAGE
+====parsing parameters======================
+data=<?xml version="1.0" encoding="UTF-8" ?>
+<index>
+ <presentation name="leer">
+  <set>
+    <frame>_void</frame>
+    <frame>_void</frame>
+    <frame>_void</frame>
+  </set>
+ </presentation>
+ <presentation name="simon">
+  <set>
+    <frame>4-7601</frame>
+    <frame>4-7746</frame>
+    <frame>_void</frame>
+  </set>
+  <set>
+    <frame>_void</frame>
+    <frame>4-7784</frame>
+    <frame>4-7791</frame>
+  </set>
+ </presentation>
+ <presentation name="desi">
+  <set>
+    <frame>4-7601</frame>
+    <frame>_void</frame>
+    <frame>_void</frame>
+  </set>
+  <set>
+    <frame>4-7594</frame>
+    <frame>4-7784</frame>
+    <frame>_void</frame>
+  </set>
+  <set>
+    <frame>4-7601</frame>
+    <frame>4-7692</frame>
+    <frame>4-7639</frame>
+  </set>
+ </presentation>
+ <presentation name="firsttest">
+  <set>
+    <frame>4-7594</frame>
+    <frame>4-7787</frame>
+    <frame>4-7791</frame>
+  </set>
+  <set>
+    <frame>_void</frame>
+    <frame>4-7594</frame>
+    <frame>4-7787</frame>
+  </set>
+  <set>
+    <frame>_void</frame>
+    <frame>4-7746</frame>
+    <frame>_void</frame>
+  </set>
+ </presentation>
+ <presentation name="secondtest">
+  <set>
+    <frame>_void</frame>
+    <frame>Kopie von äöü4-7791.jpg</frame>
+    <frame>ßÄäöü4-7791.jpg</frame>
+  </set>
+  <set>
+    <frame>_void</frame>
+    <frame>4-7594.jpg</frame>
+    <frame>4-7746.jpg</frame>
+  </set>
+  <set>
+    <frame>_void</frame>
+    <frame>test.jpg</frame>
+    <frame>_void</frame>
+  </set>
+  <set>
+    <frame>_void</frame>
+    <frame>ßÄäöü4-7791.jpg</frame>
+    <frame>_void</frame>
+  </set>
+  <set>
+    <frame>_void</frame>
+    <frame>4-7601.jpg</frame>
+    <frame>4-7639.jpg</frame>
+  </set>
+ </presentation>
+</index>
+
+defaultpath=xml/
+defaultfile=index.xml
+mode=overwrite
+====command-exec of pipeCommands.PipeSave@1971afc:BEGIN======================
+Path=C:\Temp\2006-01-09__18-04\xml\ Filename=index.xml Writing to file C:\Temp\2006-01-09__18-04\xml\index.xml
+====command-exec ofpipeCommands.PipeSave@1971afc:END======================
+Client 127.0.0.1:3198 with ip 127.0.0.1: <=== Sending back: BEGIN-MESSAGE
+<PB_save><return>1</return>
+<message></message>
+</PB_save>
+END-MESSAGE
+Client 127.0.0.1:3199 connected to the server.
+Client 127.0.0.1:3199 with ip 127.0.0.1: ===> Got command: BEGIN-MESSAGE
+<PB_connect>
+<user>sid1136826406031</user>
+</PB_connect>
+
+END-MESSAGE
+====parsing parameters======================
+user=sid1136826406031
+====command-exec of pipeCommands.PipeConnect@13bad12:BEGIN======================
+Adding client Client 127.0.0.1:3199 to Rep sid1136826406031
+====command-exec ofpipeCommands.PipeConnect@13bad12:END======================
+Client 127.0.0.1:3199 with ip 127.0.0.1: <=== Sending back: BEGIN-MESSAGE
+<PB_connect><return>1</return>
+<message>OK</message>
+</PB_connect>
+END-MESSAGE
+Client 127.0.0.1:3199 with ip 127.0.0.1: ===> Got command: BEGIN-MESSAGE
+<PB_setflashurl>
+<url>file:///C|/Temp/2006%2D01%2D09%5F%5F18%2D04/dilpsEdit.exe</url>
+</PB_setflashurl>
+
+END-MESSAGE
+====parsing parameters======================
+url=file:///C|/Temp/2006%2D01%2D09%5F%5F18%2D04/dilpsEdit.exe
+====command-exec of pipeCommands.PipeSetFlashurl@1632c2d:BEGIN======================
+Checking for wrong drive letter seperator character (non-rfc-conform uri) ...Fixed. Done.
+Checking if OS is Mac OS X (volume-name is in uri) ...Done.
+Got flashurl C:\Temp\2006-01-09__18-04\dilpsEdit.exe
+Beginning to strip away App-Name ...
+New workingdirectory: C:\Temp\2006-01-09__18-04\
+====command-exec ofpipeCommands.PipeSetFlashurl@1632c2d:END======================
+Client 127.0.0.1:3199 with ip 127.0.0.1: <=== Sending back: BEGIN-MESSAGE
+<PB_setflashurl><return>1</return>
+<message>OK</message>
+</PB_setflashurl>
+END-MESSAGE
+Client 127.0.0.1:3198 has left the server.
+Client 127.0.0.1:3199 with ip 127.0.0.1: ===> Got command: BEGIN-MESSAGE
+<PB_save>
+<data><?xml version="1.0" encoding="UTF-8" ?>
+<index>
+ <presentation name="leer">
+  <set>
+    <frame>_void</frame>
+    <frame>_void</frame>
+    <frame>_void</frame>
+  </set>
+ </presentation>
+ <presentation name="simon">
+  <set>
+    <frame>4-7601</frame>
+    <frame>4-7746</frame>
+    <frame>_void</frame>
+  </set>
+  <set>
+    <frame>_void</frame>
+    <frame>4-7784</frame>
+    <frame>4-7791</frame>
+  </set>
+ </presentation>
+ <presentation name="firsttest">
+  <set>
+    <frame>4-7594</frame>
+    <frame>4-7787</frame>
+    <frame>4-7791</frame>
+  </set>
+  <set>
+    <frame>_void</frame>
+    <frame>4-7594</frame>
+    <frame>4-7787</frame>
+  </set>
+  <set>
+    <frame>_void</frame>
+    <frame>4-7746</frame>
+    <frame>_void</frame>
+  </set>
+ </presentation>
+ <presentation name="secondtest">
+  <set>
+    <frame>_void</frame>
+    <frame>Kopie von äöü4-7791.jpg</frame>
+    <frame>ßÄäöü4-7791.jpg</frame>
+  </set>
+  <set>
+    <frame>_void</frame>
+    <frame>4-7594.jpg</frame>
+    <frame>4-7746.jpg</frame>
+  </set>
+  <set>
+    <frame>_void</frame>
+    <frame>test.jpg</frame>
+    <frame>_void</frame>
+  </set>
+  <set>
+    <frame>_void</frame>
+    <frame>ßÄäöü4-7791.jpg</frame>
+    <frame>_void</frame>
+  </set>
+  <set>
+    <frame>_void</frame>
+    <frame>4-7601.jpg</frame>
+    <frame>4-7639.jpg</frame>
+  </set>
+ </presentation>
+</index>
+</data>
+<defaultpath>xml/</defaultpath>
+<defaultfile>index.xml</defaultfile>
+<mode>overwrite</mode>
+</PB_save>
+
+END-MESSAGE
+====parsing parameters======================
+data=<?xml version="1.0" encoding="UTF-8" ?>
+<index>
+ <presentation name="leer">
+  <set>
+    <frame>_void</frame>
+    <frame>_void</frame>
+    <frame>_void</frame>
+  </set>
+ </presentation>
+ <presentation name="simon">
+  <set>
+    <frame>4-7601</frame>
+    <frame>4-7746</frame>
+    <frame>_void</frame>
+  </set>
+  <set>
+    <frame>_void</frame>
+    <frame>4-7784</frame>
+    <frame>4-7791</frame>
+  </set>
+ </presentation>
+ <presentation name="firsttest">
+  <set>
+    <frame>4-7594</frame>
+    <frame>4-7787</frame>
+    <frame>4-7791</frame>
+  </set>
+  <set>
+    <frame>_void</frame>
+    <frame>4-7594</frame>
+    <frame>4-7787</frame>
+  </set>
+  <set>
+    <frame>_void</frame>
+    <frame>4-7746</frame>
+    <frame>_void</frame>
+  </set>
+ </presentation>
+ <presentation name="secondtest">
+  <set>
+    <frame>_void</frame>
+    <frame>Kopie von äöü4-7791.jpg</frame>
+    <frame>ßÄäöü4-7791.jpg</frame>
+  </set>
+  <set>
+    <frame>_void</frame>
+    <frame>4-7594.jpg</frame>
+    <frame>4-7746.jpg</frame>
+  </set>
+  <set>
+    <frame>_void</frame>
+    <frame>test.jpg</frame>
+    <frame>_void</frame>
+  </set>
+  <set>
+    <frame>_void</frame>
+    <frame>ßÄäöü4-7791.jpg</frame>
+    <frame>_void</frame>
+  </set>
+  <set>
+    <frame>_void</frame>
+    <frame>4-7601.jpg</frame>
+    <frame>4-7639.jpg</frame>
+  </set>
+ </presentation>
+</index>
+
+defaultpath=xml/
+defaultfile=index.xml
+mode=overwrite
+====command-exec of pipeCommands.PipeSave@1e97676:BEGIN======================
+Path=C:\Temp\2006-01-09__18-04\xml\ Filename=index.xml Writing to file C:\Temp\2006-01-09__18-04\xml\index.xml
+====command-exec ofpipeCommands.PipeSave@1e97676:END======================
+Client 127.0.0.1:3199 with ip 127.0.0.1: <=== Sending back: BEGIN-MESSAGE
+<PB_save><return>1</return>
+<message></message>
+</PB_save>
+END-MESSAGE
+Client 127.0.0.1:3200 connected to the server.
+Client 127.0.0.1:3200 with ip 127.0.0.1: ===> Got command: BEGIN-MESSAGE
+<PB_connect>
+<user>sid1136826406031</user>
+</PB_connect>
+
+END-MESSAGE
+====parsing parameters======================
+user=sid1136826406031
+====command-exec of pipeCommands.PipeConnect@60420f:BEGIN======================
+Adding client Client 127.0.0.1:3200 to Rep sid1136826406031
+====command-exec ofpipeCommands.PipeConnect@60420f:END======================
+Client 127.0.0.1:3200 with ip 127.0.0.1: <=== Sending back: BEGIN-MESSAGE
+<PB_connect><return>1</return>
+<message>OK</message>
+</PB_connect>
+END-MESSAGE
+Client 127.0.0.1:3200 with ip 127.0.0.1: ===> Got command: BEGIN-MESSAGE
+<PB_setflashurl>
+<url>file:///C|/Temp/2006%2D01%2D09%5F%5F18%2D04/dilpsEdit.exe</url>
+</PB_setflashurl>
+
+END-MESSAGE
+====parsing parameters======================
+url=file:///C|/Temp/2006%2D01%2D09%5F%5F18%2D04/dilpsEdit.exe
+====command-exec of pipeCommands.PipeSetFlashurl@540408:BEGIN======================
+Checking for wrong drive letter seperator character (non-rfc-conform uri) ...Fixed. Done.
+Checking if OS is Mac OS X (volume-name is in uri) ...Done.
+Got flashurl C:\Temp\2006-01-09__18-04\dilpsEdit.exe
+Beginning to strip away App-Name ...
+New workingdirectory: C:\Temp\2006-01-09__18-04\
+====command-exec ofpipeCommands.PipeSetFlashurl@540408:END======================
+Client 127.0.0.1:3200 with ip 127.0.0.1: <=== Sending back: BEGIN-MESSAGE
+<PB_setflashurl><return>1</return>
+<message>OK</message>
+</PB_setflashurl>
+END-MESSAGE
+Client 127.0.0.1:3199 has left the server.
+Client 127.0.0.1:3200 with ip 127.0.0.1: ===> Got command: BEGIN-MESSAGE
+<PB_save>
+<data><?xml version="1.0" encoding="UTF-8" ?>
+<index>
+ <presentation name="leer">
+  <set>
+    <frame>_void</frame>
+    <frame>_void</frame>
+    <frame>_void</frame>
+  </set>
+ </presentation>
+ <presentation name="simon">
+  <set>
+    <frame>4-7601</frame>
+    <frame>4-7746</frame>
+    <frame>_void</frame>
+  </set>
+  <set>
+    <frame>_void</frame>
+    <frame>4-7784</frame>
+    <frame>4-7791</frame>
+  </set>
+ </presentation>
+ <presentation name="secondtest">
+  <set>
+    <frame>_void</frame>
+    <frame>Kopie von äöü4-7791.jpg</frame>
+    <frame>ßÄäöü4-7791.jpg</frame>
+  </set>
+  <set>
+    <frame>_void</frame>
+    <frame>4-7594.jpg</frame>
+    <frame>4-7746.jpg</frame>
+  </set>
+  <set>
+    <frame>_void</frame>
+    <frame>test.jpg</frame>
+    <frame>_void</frame>
+  </set>
+  <set>
+    <frame>_void</frame>
+    <frame>ßÄäöü4-7791.jpg</frame>
+    <frame>_void</frame>
+  </set>
+  <set>
+    <frame>_void</frame>
+    <frame>4-7601.jpg</frame>
+    <frame>4-7639.jpg</frame>
+  </set>
+ </presentation>
+</index>
+</data>
+<defaultpath>xml/</defaultpath>
+<defaultfile>index.xml</defaultfile>
+<mode>overwrite</mode>
+</PB_save>
+
+END-MESSAGE
+====parsing parameters======================
+data=<?xml version="1.0" encoding="UTF-8" ?>
+<index>
+ <presentation name="leer">
+  <set>
+    <frame>_void</frame>
+    <frame>_void</frame>
+    <frame>_void</frame>
+  </set>
+ </presentation>
+ <presentation name="simon">
+  <set>
+    <frame>4-7601</frame>
+    <frame>4-7746</frame>
+    <frame>_void</frame>
+  </set>
+  <set>
+    <frame>_void</frame>
+    <frame>4-7784</frame>
+    <frame>4-7791</frame>
+  </set>
+ </presentation>
+ <presentation name="secondtest">
+  <set>
+    <frame>_void</frame>
+    <frame>Kopie von äöü4-7791.jpg</frame>
+    <frame>ßÄäöü4-7791.jpg</frame>
+  </set>
+  <set>
+    <frame>_void</frame>
+    <frame>4-7594.jpg</frame>
+    <frame>4-7746.jpg</frame>
+  </set>
+  <set>
+    <frame>_void</frame>
+    <frame>test.jpg</frame>
+    <frame>_void</frame>
+  </set>
+  <set>
+    <frame>_void</frame>
+    <frame>ßÄäöü4-7791.jpg</frame>
+    <frame>_void</frame>
+  </set>
+  <set>
+    <frame>_void</frame>
+    <frame>4-7601.jpg</frame>
+    <frame>4-7639.jpg</frame>
+  </set>
+ </presentation>
+</index>
+
+defaultpath=xml/
+defaultfile=index.xml
+mode=overwrite
+====command-exec of pipeCommands.PipeSave@1d4c61c:BEGIN======================
+Path=C:\Temp\2006-01-09__18-04\xml\ Filename=index.xml Writing to file C:\Temp\2006-01-09__18-04\xml\index.xml
+====command-exec ofpipeCommands.PipeSave@1d4c61c:END======================
+Client 127.0.0.1:3200 with ip 127.0.0.1: <=== Sending back: BEGIN-MESSAGE
+<PB_save><return>1</return>
+<message></message>
+</PB_save>
+END-MESSAGE
+Client 127.0.0.1:3201 connected to the server.
+Client 127.0.0.1:3201 with ip 127.0.0.1: ===> Got command: BEGIN-MESSAGE
+<PB_connect>
+<user>sid1136826406031</user>
+</PB_connect>
+
+END-MESSAGE
+====parsing parameters======================
+user=sid1136826406031
+====command-exec of pipeCommands.PipeConnect@1a626f:BEGIN======================
+Adding client Client 127.0.0.1:3201 to Rep sid1136826406031
+====command-exec ofpipeCommands.PipeConnect@1a626f:END======================
+Client 127.0.0.1:3201 with ip 127.0.0.1: <=== Sending back: BEGIN-MESSAGE
+<PB_connect><return>1</return>
+<message>OK</message>
+</PB_connect>
+END-MESSAGE
+Client 127.0.0.1:3201 with ip 127.0.0.1: ===> Got command: BEGIN-MESSAGE
+<PB_setflashurl>
+<url>file:///C|/Temp/2006%2D01%2D09%5F%5F18%2D04/dilpsEdit.exe</url>
+</PB_setflashurl>
+
+END-MESSAGE
+====parsing parameters======================
+url=file:///C|/Temp/2006%2D01%2D09%5F%5F18%2D04/dilpsEdit.exe
+====command-exec of pipeCommands.PipeSetFlashurl@176c74b:BEGIN======================
+Checking for wrong drive letter seperator character (non-rfc-conform uri) ...Fixed. Done.
+Checking if OS is Mac OS X (volume-name is in uri) ...Done.
+Got flashurl C:\Temp\2006-01-09__18-04\dilpsEdit.exe
+Beginning to strip away App-Name ...
+New workingdirectory: C:\Temp\2006-01-09__18-04\
+====command-exec ofpipeCommands.PipeSetFlashurl@176c74b:END======================
+Client 127.0.0.1:3201 with ip 127.0.0.1: <=== Sending back: BEGIN-MESSAGE
+<PB_setflashurl><return>1</return>
+<message>OK</message>
+</PB_setflashurl>
+END-MESSAGE
+Client 127.0.0.1:3200 has left the server.
+Client 127.0.0.1:3201 with ip 127.0.0.1: ===> Got command: BEGIN-MESSAGE
+<PB_save>
+<data><?xml version="1.0" encoding="UTF-8" ?>
+<index>
+ <presentation name="leer">
+  <set>
+    <frame>_void</frame>
+    <frame>_void</frame>
+    <frame>_void</frame>
+  </set>
+ </presentation>
+ <presentation name="simon">
+  <set>
+    <frame>4-7601</frame>
+    <frame>4-7746</frame>
+    <frame>_void</frame>
+  </set>
+  <set>
+    <frame>_void</frame>
+    <frame>4-7784</frame>
+    <frame>4-7791</frame>
+  </set>
+ </presentation>
+</index>
+</data>
+<defaultpath>xml/</defaultpath>
+<defaultfile>index.xml</defaultfile>
+<mode>overwrite</mode>
+</PB_save>
+
+END-MESSAGE
+====parsing parameters======================
+data=<?xml version="1.0" encoding="UTF-8" ?>
+<index>
+ <presentation name="leer">
+  <set>
+    <frame>_void</frame>
+    <frame>_void</frame>
+    <frame>_void</frame>
+  </set>
+ </presentation>
+ <presentation name="simon">
+  <set>
+    <frame>4-7601</frame>
+    <frame>4-7746</frame>
+    <frame>_void</frame>
+  </set>
+  <set>
+    <frame>_void</frame>
+    <frame>4-7784</frame>
+    <frame>4-7791</frame>
+  </set>
+ </presentation>
+</index>
+
+defaultpath=xml/
+defaultfile=index.xml
+mode=overwrite
+====command-exec of pipeCommands.PipeSave@116471f:BEGIN======================
+Path=C:\Temp\2006-01-09__18-04\xml\ Filename=index.xml Writing to file C:\Temp\2006-01-09__18-04\xml\index.xml
+====command-exec ofpipeCommands.PipeSave@116471f:END======================
+Client 127.0.0.1:3201 with ip 127.0.0.1: <=== Sending back: BEGIN-MESSAGE
+<PB_save><return>1</return>
+<message></message>
+</PB_save>
+END-MESSAGE
+Client 127.0.0.1:3202 connected to the server.
+Client 127.0.0.1:3202 with ip 127.0.0.1: ===> Got command: BEGIN-MESSAGE
+<PB_connect>
+<user>sid1136826406031</user>
+</PB_connect>
+
+END-MESSAGE
+====parsing parameters======================
+user=sid1136826406031
+====command-exec of pipeCommands.PipeConnect@1975b59:BEGIN======================
+Adding client Client 127.0.0.1:3202 to Rep sid1136826406031
+====command-exec ofpipeCommands.PipeConnect@1975b59:END======================
+Client 127.0.0.1:3202 with ip 127.0.0.1: <=== Sending back: BEGIN-MESSAGE
+<PB_connect><return>1</return>
+<message>OK</message>
+</PB_connect>
+END-MESSAGE
+Client 127.0.0.1:3202 with ip 127.0.0.1: ===> Got command: BEGIN-MESSAGE
+<PB_setflashurl>
+<url>file:///C|/Temp/2006%2D01%2D09%5F%5F18%2D04/dilpsEdit.exe</url>
+</PB_setflashurl>
+
+END-MESSAGE
+====parsing parameters======================
+url=file:///C|/Temp/2006%2D01%2D09%5F%5F18%2D04/dilpsEdit.exe
+====command-exec of pipeCommands.PipeSetFlashurl@e5855a:BEGIN======================
+Checking for wrong drive letter seperator character (non-rfc-conform uri) ...Fixed. Done.
+Checking if OS is Mac OS X (volume-name is in uri) ...Done.
+Got flashurl C:\Temp\2006-01-09__18-04\dilpsEdit.exe
+Beginning to strip away App-Name ...
+New workingdirectory: C:\Temp\2006-01-09__18-04\
+====command-exec ofpipeCommands.PipeSetFlashurl@e5855a:END======================
+Client 127.0.0.1:3202 with ip 127.0.0.1: <=== Sending back: BEGIN-MESSAGE
+<PB_setflashurl><return>1</return>
+<message>OK</message>
+</PB_setflashurl>
+END-MESSAGE
+Client 127.0.0.1:3201 has left the server.
+Client 127.0.0.1:3202 with ip 127.0.0.1: ===> Got command: BEGIN-MESSAGE
+<PB_save>
+<data><?xml version="1.0" encoding="UTF-8" ?>
+<index>
+ <presentation name="leer">
+  <set>
+    <frame>_void</frame>
+    <frame>_void</frame>
+    <frame>_void</frame>
+  </set>
+ </presentation>
+</index>
+</data>
+<defaultpath>xml/</defaultpath>
+<defaultfile>index.xml</defaultfile>
+<mode>overwrite</mode>
+</PB_save>
+
+END-MESSAGE
+====parsing parameters======================
+data=<?xml version="1.0" encoding="UTF-8" ?>
+<index>
+ <presentation name="leer">
+  <set>
+    <frame>_void</frame>
+    <frame>_void</frame>
+    <frame>_void</frame>
+  </set>
+ </presentation>
+</index>
+
+defaultpath=xml/
+defaultfile=index.xml
+mode=overwrite
+====command-exec of pipeCommands.PipeSave@95fd19:BEGIN======================
+Path=C:\Temp\2006-01-09__18-04\xml\ Filename=index.xml Writing to file C:\Temp\2006-01-09__18-04\xml\index.xml
+====command-exec ofpipeCommands.PipeSave@95fd19:END======================
+Client 127.0.0.1:3202 with ip 127.0.0.1: <=== Sending back: BEGIN-MESSAGE
+<PB_save><return>1</return>
+<message></message>
+</PB_save>
+END-MESSAGE
+Client 127.0.0.1:3204 connected to the server.
+Client 127.0.0.1:3204 with ip 127.0.0.1: ===> Got command: BEGIN-MESSAGE
+<PB_connect>
+<user>sid1136826406031</user>
+</PB_connect>
+
+END-MESSAGE
+====parsing parameters======================
+user=sid1136826406031
+====command-exec of pipeCommands.PipeConnect@1f934ad:BEGIN======================
+Adding client Client 127.0.0.1:3204 to Rep sid1136826406031
+====command-exec ofpipeCommands.PipeConnect@1f934ad:END======================
+Client 127.0.0.1:3204 with ip 127.0.0.1: <=== Sending back: BEGIN-MESSAGE
+<PB_connect><return>1</return>
+<message>OK</message>
+</PB_connect>
+END-MESSAGE
+Client 127.0.0.1:3204 with ip 127.0.0.1: ===> Got command: BEGIN-MESSAGE
+<PB_setflashurl>
+<url>file:///C|/Temp/2006%2D01%2D09%5F%5F18%2D04/dilpsEdit.exe</url>
+</PB_setflashurl>
+
+END-MESSAGE
+====parsing parameters======================
+url=file:///C|/Temp/2006%2D01%2D09%5F%5F18%2D04/dilpsEdit.exe
+====command-exec of pipeCommands.PipeSetFlashurl@f0eed6:BEGIN======================
+Checking for wrong drive letter seperator character (non-rfc-conform uri) ...Fixed. Done.
+Checking if OS is Mac OS X (volume-name is in uri) ...Done.
+Got flashurl C:\Temp\2006-01-09__18-04\dilpsEdit.exe
+Beginning to strip away App-Name ...
+New workingdirectory: C:\Temp\2006-01-09__18-04\
+====command-exec ofpipeCommands.PipeSetFlashurl@f0eed6:END======================
+Client 127.0.0.1:3204 with ip 127.0.0.1: <=== Sending back: BEGIN-MESSAGE
+<PB_setflashurl><return>1</return>
+<message>OK</message>
+</PB_setflashurl>
+END-MESSAGE
+Client 127.0.0.1:3202 has left the server.
+Client 127.0.0.1:3204 with ip 127.0.0.1: ===> Got command: BEGIN-MESSAGE
+<PB_save>
+<data><?xml version="1.0" encoding="UTF-8" ?>
+<index>
+</index>
+</data>
+<defaultpath>xml/</defaultpath>
+<defaultfile>index.xml</defaultfile>
+<mode>overwrite</mode>
+</PB_save>
+
+END-MESSAGE
+====parsing parameters======================
+data=<?xml version="1.0" encoding="UTF-8" ?>
+<index>
+</index>
+
+defaultpath=xml/
+defaultfile=index.xml
+mode=overwrite
+====command-exec of pipeCommands.PipeSave@1d05c81:BEGIN======================
+Path=C:\Temp\2006-01-09__18-04\xml\ Filename=index.xml Writing to file C:\Temp\2006-01-09__18-04\xml\index.xml
+====command-exec ofpipeCommands.PipeSave@1d05c81:END======================
+Client 127.0.0.1:3204 with ip 127.0.0.1: <=== Sending back: BEGIN-MESSAGE
+<PB_save><return>1</return>
+<message></message>
+</PB_save>
+END-MESSAGE
+Client 127.0.0.1:3204 with ip 127.0.0.1: ===> Got command: BEGIN-MESSAGE
+<PB_goodbye>
+</PB_goodbye>
+
+END-MESSAGE
+====parsing parameters======================
+====command-exec of pipeCommands.PipeGoodbye@691f36:BEGIN======================
+Removing client Client 127.0.0.1:3204
+Client 127.0.0.1:3204 with ip 127.0.0.1: <=== Sending back: BEGIN-MESSAGE
+
+END-MESSAGE
+Client 127.0.0.1:3204 has left the server.

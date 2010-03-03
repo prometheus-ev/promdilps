@@ -1,0 +1,84 @@
+PipeBeamaClone 0.8rc-alpha2 started (c) Simon Frettloeh
+Attempting to Start Server
+Server Started on Port: 2000
+Client 127.0.0.1:49171 connected to the server.
+Client 127.0.0.1:49171 with ip 127.0.0.1: ===> Got command: BEGIN-MESSAGE
+<PB_connect>
+<user>sid1134652214648.93</user>
+</PB_connect>
+
+END-MESSAGE
+====parsing parameters======================
+user=sid1134652214648.93
+====command-exec of pipeCommands.PipeConnect@d520c4:BEGIN======================
+Adding client Client 127.0.0.1:49171 to Rep sid1134652214648.93
+Rep-Username-Mapping N/A. Creating sid1134652214648.93
+====command-exec ofpipeCommands.PipeConnect@d520c4:END======================
+Client 127.0.0.1:49171 with ip 127.0.0.1: <=== Sending back: BEGIN-MESSAGE
+<PB_connect><return>1</return>
+<message>OK</message>
+</PB_connect>
+END-MESSAGE
+Client 127.0.0.1:49171 with ip 127.0.0.1: ===> Got command: BEGIN-MESSAGE
+<PB_setflashurl>
+<url>file:///LWG/work/hfg%2Djuergen/v%20alpha%2Drelease%2D2/dilps/mac/dilpsEdit</url>
+</PB_setflashurl>
+
+END-MESSAGE
+====parsing parameters======================
+url=file:///LWG/work/hfg%2Djuergen/v%20alpha%2Drelease%2D2/dilps/mac/dilpsEdit
+====command-exec of pipeCommands.PipeSetFlashurl@df503:BEGIN======================
+Checking for wrong drive letter seperator character (non-rfc-conform uri) ...Done.
+Checking if OS is Mac OS X (volume-name is in uri) ...Fixed. Done.
+Got flashurl /Volumes/LWG/work/hfg-juergen/v alpha-release-2/dilps/mac/dilpsEdit
+Beginning to strip away App-Name ...
+New workingdirectory: /Volumes/LWG/work/hfg-juergen/v alpha-release-2/dilps/mac/
+====command-exec ofpipeCommands.PipeSetFlashurl@df503:END======================
+Client 127.0.0.1:49171 with ip 127.0.0.1: <=== Sending back: BEGIN-MESSAGE
+<PB_setflashurl><return>1</return>
+<message>OK</message>
+</PB_setflashurl>
+END-MESSAGE
+Client 127.0.0.1:49171 with ip 127.0.0.1: ===> Got command: BEGIN-MESSAGE
+<PB_getdirs>
+<path>images/</path>
+<recursive>false</recursive>
+<filefilter>*.jp*</filefilter>
+<showfolders>false</showfolders>
+<maxfiles>300</maxfiles>
+</PB_getdirs>
+
+END-MESSAGE
+====parsing parameters======================
+path=images/
+recursive=false
+filefilter=*.jp*
+showfolders=false
+maxfiles=300
+====command-exec of pipeCommands.PipeGetDirs@f73c1:BEGIN======================
+recursiveString=false::
+showfoldersString=false::
+Args are /Volumes/LWG/work/hfg-juergen/v alpha-release-2/dilps/mac/images/ false *.jp* false 300
+Trying to read directory /Volumes/LWG/work/hfg-juergen/v alpha-release-2/dilps/mac/images/
+====command-exec ofpipeCommands.PipeGetDirs@f73c1:END======================
+Client 127.0.0.1:49171 with ip 127.0.0.1: <=== Sending back: BEGIN-MESSAGE
+<PB_getdirs><return>-1</return>
+<message>nullPath argument :/Volumes/LWG/work/hfg-juergen/v alpha-release-2/dilps/mac/images/: is not a directory.</message>
+</PB_getdirs>
+END-MESSAGE
+Client 127.0.0.1:49171 with ip 127.0.0.1: ===> Got command: BEGIN-MESSAGE
+<PB_goodbye>
+</PB_goodbye>
+
+END-MESSAGE
+====parsing parameters======================
+====command-exec of pipeCommands.PipeGoodbye@5b9e68:BEGIN======================
+Removing client Client 127.0.0.1:49171
+Client 127.0.0.1:49171 with ip 127.0.0.1: <=== Sending back: BEGIN-MESSAGE
+
+END-MESSAGE
+Client 127.0.0.1:49171 has left the server.
+Server Stopped
+Server Error...Stopping Server
+Timeout: No Request since 30000 ms. Exiting.
+Server Stopped

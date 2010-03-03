@@ -1,0 +1,1 @@
+smarty default directory for template caching - not used in dilps

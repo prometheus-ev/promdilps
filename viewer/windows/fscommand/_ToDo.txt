@@ -1,0 +1,31 @@
+####################################
+PipeBeama und Pipescript
+(c) 2004 - 2005 www.webmechaniker.de
+####################################
+
+the pipeline...
+
+<PB_mp3info>		Gibt alle ID-Taginformationen eines MP3-Files zurück
+<PB_getpeakmeter>	Gibt die Pegelinforamtionen eines MP3 Files zur Laufzeit zurück
+<PB_xxxtoswf>		Wandelt Grafikformate 'on the fly' in ein SWF-File um
+<PB_search>		Durchsucht Files nach einem String
+
+
+*	<PB_execute> um folgende Parameter erweitern: Fenstergröße und Fensterposition 
+	des auszuführenden Programmes
+
+*	PipeBeama nach x Minuten beenden
+
+*	Datei Upload
+
+*	Kontextmenu ausschalten
+
+*	Projektor Fenster Manipulation erweitern
+
+*	Dynamisches Pop-Up Menü und Balloon Tip (> IE 5.0) für <PB_fpsendtotray>
+	
+*	Erweiterung der Midifunktionalität
+	
+	
+
+

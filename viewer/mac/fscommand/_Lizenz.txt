@@ -1,0 +1,28 @@
+###################################
+PipeBeama und Pipescript
+(c)2004 - 2005 www.webmechaniker.de
+###################################
+
+
+Rechtliches
+===========
+PipeBeama und Pipescript ist Freeware, also frei kopier- und verwendbar.
+Der Autor behält alle Rechte am Programm. Trotzdem wird nicht für Funktion 
+oder nicht-Funktion des Programms, Schäden materieller oder geistiger Art 
+in irgendeiner Art Haftung übernommen.
+
+
+Moral
+=====
+Damit PipeBeama einer großen Zielgruppe zugänglich wird, wäre es ein feiner Zug 
+die Text- und HTML-Dateien (_ChangeLog.txt, _FAQ.txt, _Lizenz.txt, _ToDo.txt, HowTo.htm) 
+mit in den fscommand Ordner eurer Produktion abzulegen.
+Ein Flasher, der diese Produktion in die Finger bekommt, wird es euch danken!!!
+
+
+Autor
+=====
+Lars Besmer
+www.webmechaniker.de
+pipebeama@webmechaniker.de
+

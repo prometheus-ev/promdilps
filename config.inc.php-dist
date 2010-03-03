@@ -1,0 +1,12 @@
+<?php
+
+// you may use this file to repair your dilps installation manually in case somebody accidentially 
+// edited or deleted your configuration file (but the database is still there)
+
+$db_prefix='ng_';
+$config['includepath']="C:\\Programme\\xampp\\htdocs\\dilps\\include\\";
+$db_host='localhost';
+$db_user='root';
+$db_pwd='mysql';
+$db_db='dilps';
+?>

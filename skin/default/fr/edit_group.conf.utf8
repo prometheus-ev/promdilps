@@ -1,0 +1,49 @@
+all = tous les champs
+name = nom
+title = titre
+search = chercher
+collection = collection
+all_collections = toutes les collections
+year = année
+level = niveau
+detail = détails
+groupmanagement = administration des groupes
+groupselection = selection des groupes
+notselected = aucun groupe n'est sélectionné
+notavailable = aucun groupe n'est défini
+mode = mode
+owner = propriétaire
+edit = éditer
+add = ajouter
+select = choisir 
+delete = supprimer
+groupid = groupe ID
+valna = n/v
+supergroupselect = choisir un groupe supérieur
+submit = envoyer
+status = statut
+E_ADD_FAILED = erreur dans l'ajout d'un groupe
+R_ADD_SUCCESS = ajout d'un groupe réussi
+E_EDIT_FAILED = erreur dans le changement d'un groupe
+R_EDIT_SUCCESS = changement de groupe réussi
+E_DELETE_FAILED = Ferreur dans la destruction d'un groupe
+R_DELETE_SUCCESS = destruction d'un groupe réussie
+E_NOT_UNIQUE = le nom des groupes doit être identique à l'intérieur d'un niveau
+R_SEL_SUCCESS = choisir du groupe réussi
+
+selecthere = pour choisir, cliquer ici 
+selectgrouponlevel1and2 = choisir une groupe sur niveau 1 et 2
+
+pleaseselect = veuillez choisir
+group = groupe
+newandselect = nouvelle & accepter
+doselect = accepter
+new = nouvelle?
+closewindow = fermer la fenêtre
+
+newgroup = nouvelle groupe
+
+pleaseentergroupname = Veuillez suggérer des noms de groupe!
+invalidname = Nom invalide!
+deletegroup = Supprimez ce groupe
+deletegroupandsubgroups = Supprimez ce groupe et tous ses sous-groupes

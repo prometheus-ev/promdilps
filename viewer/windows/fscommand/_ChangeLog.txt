@@ -1,0 +1,209 @@
+####################################
+PipeBeama und Pipesrcipt
+(c) 2004 - 2005 www.webmechaniker.de
+Autor: Lars Besmer
+####################################
+
+
+
+13.05.2005
+==========
+Version 2.0 
+
+PipeScript:
+- Neuer Rückgabewert <message> in <PB_Connect> aufgenommen -> Hinweis ob es den User schon gibt -> Die Weiterverarbeitung wird dem Anwender überlassen.
+- Implementierung <PB_getpbusers>
+- Implementierung <PB_getpbuser>
+- Implementierung <PB_sendto>
+
+
+12.12.2004
+==========
+Version 1.9a 
+PipeBeama:
+- Bugfixing Buffer: Der Buffer wird nun dynamisch, theoretisch <= FreeRam angelegt.
+PipeScript:
+- Implementierung <PB_messagebox>
+
+06.12.2004
+==========
+Version 1.8a (Release)
+PipeBeama:
+Socket Heap Bugfix MX Projektor 7
+
+31.10.2004
+==========
+Version 1.8a
+PipeScript:
+- Neuer Parameter <menubar> in <PB_fpsetproperties> aufgenommen.
+- Neuer Parameter <titlebar> in <PB_fpsetproperties> aufgenommen.
+- Bugfixing Filedialoge: Die Ausklappmenüs wurden nach einer Zeitspanne zugeklappt.
+
+27.10.2004
+==========
+Version 1.7a
+PipeScript:
+- Implementierung <PB_fpcenterwindow>
+- Implementierung <PB_fpgetproperties>
+- Implementierung <PB_fpsetproperties>
+
+24.10.2004
+==========
+Version 1.6a
+PipeScript:
+- Implementierung <PB_fileexists>
+- Implementierung <PB_pathexists>
+- Implementierung <PB_fileinfo>
+
+17.10.2004
+==========
+Version 1.5a
+PipeScript:
+- Implementierung <PB_runcontrolpanel>
+- Neuer Parameter <showfolders> in <PB_getdirs> aufgenommen.
+PipeBeama:
+- Bugfixing PB_getdirs (Maxfiles und Filefilter führte zum Absturz)
+- Anpassung an Fullscreenprojektoren -> Set toplevel Window
+
+27.05.2004
+==========
+Version 1.4a
+PipeBeama:
+Wegen Kompatibilitätsproblemen zu FLash MX 2004 wurde der Port auf 2000 umgestellt!!!
+
+23.05.2004
+==========
+Version 1.3a
+PipeScript:
+- Implementierung <PB_httpdownload>
+- Beispielfile (Exe und Fla) für Flash 5 Projektoren. Diese Datei wird nicht weiter gepflegt.
+
+19.03.2004
+==========
+Version 1.2a
+PipeScript:
+- Neuer Parameter <param> in <PB_execute> aufgenommen.
+- Implementierung <PB_midiplayfile>
+- Implementierung <PB_midistop>
+
+07.03.2004
+==========
+Version 1.1a
+PipeScript:
+- Implementierung <PB_fpminimize>
+- Implementierung <PB_fpsendtotray>
+
+22.02.2004
+==========
+Version 1.0a
+PipeScript:
+- Neuer Parameter <maxfiles> in <PB_getdirs> aufgenommen.
+- Implementierung <PB_load>
+PipeBeama:
+- Bugfixing PB_save (defaultpath, defaultfile)
+
+20.02.2004
+==========
+Version 0.9a
+PipeScript:
+- Neuer Parameter <rename> in <PB_filecopy> aufgenommen.
+
+16.02.2004
+==========
+Version 0.9a
+PipeScript:
+- Implementierung <PB_open>
+- Implementierung <PB_getsystemmetrics>
+
+08.02.2004
+==========
+Version 0.8a
+PipeScript:
+- Implementierung <PB_getdirs>
+- <PB_explorefolder> -> Set toplevel Window
+- Anpassungen "Speichern unter Dialoge" PB_saveas und PB_copyto -> Set toplevel Window	 
+PipeBeama: 
+- Umstellung des Socketservers auf Port 35 (ja das geht, sorry Macromedia)
+  Da auf einigen Systemen Firewalls, Virenkiller etc. den Betrieb von PipeBeama
+  blockieren können, ist das der erste Schritt dem entgegen zu wirken.
+  Ich werde mich jetzt von Zeit zur Zeit mit dieser Problematik beschäftigen.
+  Also warm anziehen Herr Norton und Co. ;-)
+
+01.02.2004
+==========
+Version 0.7a
+PipeScript:
+- Implementierung <PB_driveinfo>
+- Implementierung <PB_cpuspeed>
+
+31.01.2004
+==========
+Version 0.6a
+PipeScript:
+- Implementierung <PB_mailto>
+
+27.01.2004
+==========
+Version 0.6a
+PipeScript:
+- Implementierung <PB_readregkey>
+
+25.01.2004
+==========
+Version 0.5a
+PipeBeama: 
+- Kleinere Anpassungen an 9.x Betriebssysteme
+PipeScript:
+- Implementierung <PB_explorefolder>
+
+25.01.2004
+==========
+Version: 0.4a
+PipeBeama:
+Statische Verlinkung der Laufzeitbibliotheken o.T. ich liebe C++ ...Hello VB Dudes... ;-) 
+
+PipeScript:
+- Implementierung <PB_getcomputername>
+- Implementierung <PB_getsystemdir>
+- Implementierung <PB_getusername>
+- "Speichern unter Dialoge" PB_saveas und PB_copyto -> Set toplevel Window
+
+18.01.2004
+==========
+Version: 0.3a
+PipeScript:
+- Der Befehl PB_open wurde in PB_execute umbenannt (Parameter bleiben erhalten)
+- Der Befehl PB_saveas wurde in PB_copyto umbenannt (Parameter bleiben erhalten)
+- Der Befehl PB_datasaveas wurde in PB_save umbenannt (Parameter bleiben erhalten)
+
+17.01.2004
+==========
+Version: 0.3a
+PipeBeama:
+- Erstellung Socketserver (Sender)
+- Pipescript-Befehle mit Rückgabewerte versehen
+
+15.01.2004
+==========
+Version: 0.2a
+PipeScript:
+- Implementierung <PB_saveas>
+- Implementierung <PB_datasaveas>
+
+14.01.2004
+==========
+Version: 0.2a
+PipeScript:
+- Implementierung <PB_about>
+- Implementierung <PB_createdir>
+- Implementierung <PB_filecopy>
+
+14.01.2004
+==========
+Version: 0.1a
+PipeBeama erblickt das Licht der Computerwelt
+PipeBeama:
+- Erstellung Socketserver (Empfänger)
+PipeScript:
+- Implementierung <PB_open>
+- Implementierung <PB_goodbye>

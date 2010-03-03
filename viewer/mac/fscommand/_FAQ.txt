@@ -1,0 +1,34 @@
+####################################
+PipeBeama und Pipesrcipt FAQ
+(c) 2004 - 2005 www.webmechaniker.de
+####################################
+
+
+###############################################################################################
+
+Frage:
+Bei dem Versuch eine neuere Version von PipeBeama zu kopieren, 
+also zu überschreiben, kommt immer die Meldung:
+
+"Fehler beim Kopieren der Datei oder des Ordners.
+Pipebeama kann nicht kopiert werden: Eine Zugriffsverletzung ist aufgetreten.
+Die Quell- oder Zieldatei ist möglicherweise geöffnet."
+
+Antwort:
+PipeBeama ist noch im Hintergrund aktiv.
+a) PipeBeama über den Task-Manager schließen
+b) Pipebeama über das Beispielfile oder dem Pipescript-Befehl <PB_goodbye></PB_goodbye> beenden
+
+###############################################################################################
+
+Frage:
+Bei mir passiert garnichts, wenn ich auf einer Schaltfläche in dem Beispielfile klicke?
+
+Antwort:
+- PipeBeama muß in dem Beispielfile über die Schaltfläche 'PipeBeama starten' gestartet werden.
+- PipeBeama befindet sich noch im Alpha-Release, sodaß Fehler nicht ausgeschlossen werden können. 
+  Hinweise bitte unter Angabe des Betriebssystems, der PipeBeama Versionsnummer etc. an
+  pipebeama@webmechaniker.de
+- Vielleicht blockiert eine Firewall / Virenschutzprogramm etc. PipeBeama
+
+###############################################################################################

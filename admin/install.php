@@ -727,7 +727,7 @@
 
 </head>
 
-<body onLoad="document.forms[0].admin_password.focus()">
+<body onLoad="document.forms[0].go.focus()">
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#ffffff">
 
@@ -1852,7 +1852,7 @@ if ( 1 == $t_install_state ) {
 
 	<td>
 
-		<input  size="80" name="admin_username" type="textbox" value="root"></input>
+		<input  size="80" name="admin_username" type="textbox" value="<?php echo (!empty($f_db_username ) ? $f_db_username : $t_db_username ); ?>"></input>
 
 	</td>
 
@@ -1870,7 +1870,7 @@ if ( 1 == $t_install_state ) {
 
 	<td>
 
-		<input  size="80" name="admin_password" type="password" value="" style="background-color: red"></input>
+		<input  size="80" name="admin_password" type="password" value="<?php echo (!empty($f_db_password ) ? $f_db_password : $t_db_password ); ?>"></input>
 
 	</td>
 

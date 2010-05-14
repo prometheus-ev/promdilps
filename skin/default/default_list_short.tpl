@@ -30,7 +30,7 @@ BEGIN default_list_short.tpl
 	      <table border="0" cellspacing="0" cellpadding="0">
 	      <tr>
 	         <td><img src="/icons/blank.gif" width="1" height="90"></td>
-	         <td width="100%" style="text-align: center; vertical-align: middle;"><a onClick="showDetail('{$sessionid}','{$row.collectionid}:{$row.imageid}', '{$result.remoteCollection}');"><img src="image.php?PHPSESSID={$sessionid}&id={$row.collectionid}:{$row.imageid}&resolution=120x90&remoteCollection={$result.remoteCollection}" border="0"></a></td>
+	         <td width="100%" style="text-align: center; vertical-align: middle;"><a onClick="showDetail('{$sessionid}','{$row.collectionid}:{$row.imageid}', '{$result.remoteCollection}');"><img src="image.php?PHPSESSID={$sessionid}&id={$row.collectionid}:{$row.imageid}&resolution=140x140&remoteCollection={$result.remoteCollection}" border="0"></a></td>
 	      </tr>
 	      </table>
 	   </td>

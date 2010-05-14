@@ -41,7 +41,7 @@ BEGIN default_detail.tpl
       <tr>
         <td colspan="2" class="result_detail_data_image">
         <div class="outer">
-        <a href="image.php?PHPSESSID={$sessionid}&id={$result.id}&resolution=original&remoteCollection={$query.remoteCollection}" target="_blank" title="Zur Vollanzeige"><img src="image.php?PHPSESSID={$sessionid}&id={$result.id}&resolution=640x480&remoteCollection={$query.remoteCollection}" border="0"></a>
+        <a href="image.php?PHPSESSID={$sessionid}&id={$result.id}&resolution=original&remoteCollection={$query.remoteCollection}" target="_blank" title="Zur Vollanzeige"><img src="image.php?PHPSESSID={$sessionid}&id={$result.id}&resolution=400x400&remoteCollection={$query.remoteCollection}" border="0"></a>
         </div>
         </td>
       </tr>

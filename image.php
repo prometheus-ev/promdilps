@@ -71,7 +71,7 @@ $id = $_REQUEST['id'];
 
 if( !isset( $_REQUEST['resolution'] ))
 {
-	$resolution = "640x480";
+	$resolution = "400x400";
 }
 else
 {

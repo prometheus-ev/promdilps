@@ -892,12 +892,8 @@
 			echo ("Database conversion complete. Your old files will now be copied.\n<br>\n");
 
 			$resolutions = array(
-				"0"	=>	"120x90",
-				"1"	=>	"640x480",
-				"2"	=>	"800x600",
-				"3"	=>	"1024x768",
-				"4"	=>	"1280x1024",
-				"5"	=>	"1600x1200"
+				"0"	=>	"140x140",
+				"1"	=>	"400x400"
 			);
 
 			$ng_sql = "SELECT * FROM ".$ng_prefix."img WHERE collectionid = ".$ng_db->qstr($_REQUEST['ng_collection']);

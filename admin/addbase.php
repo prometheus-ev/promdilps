@@ -503,17 +503,9 @@ $status = 0;
 
         mkdir($path.DIRECTORY_SEPARATOR.'cache');
 
-        mkdir($path.DIRECTORY_SEPARATOR.'cache'.DIRECTORY_SEPARATOR.'120x90');
+        mkdir($path.DIRECTORY_SEPARATOR.'cache'.DIRECTORY_SEPARATOR.'140x140');
 
-//        mkdir($path.DIRECTORY_SEPARATOR.'cache'.DIRECTORY_SEPARATOR.'1600x1200');
-
-//        mkdir($path.DIRECTORY_SEPARATOR.'cache'.DIRECTORY_SEPARATOR.'1280x1024');
-
-//        mkdir($path.DIRECTORY_SEPARATOR.'cache'.DIRECTORY_SEPARATOR.'1024x768');
-
-        mkdir($path.DIRECTORY_SEPARATOR.'cache'.DIRECTORY_SEPARATOR.'640x480');
-
-//        mkdir($path.DIRECTORY_SEPARATOR.'cache'.DIRECTORY_SEPARATOR.'800x600');
+        mkdir($path.DIRECTORY_SEPARATOR.'cache'.DIRECTORY_SEPARATOR.'400x400');
 
 
    	    $failure = !is_writable($path);

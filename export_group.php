@@ -335,7 +335,7 @@ if ($export)
 			echo ("\n<br>\n");
 		}
 
-		$source = $path.DIRECTORY_SEPARATOR.'cache'.DIRECTORY_SEPARATOR.'120x90'.DIRECTORY_SEPARATOR.$copyfilename;
+		$source = $path.DIRECTORY_SEPARATOR.'cache'.DIRECTORY_SEPARATOR.'140x140'.DIRECTORY_SEPARATOR.$copyfilename;
 
 		$dest = $exportdir.$user['login'].DIRECTORY_SEPARATOR.$date.DIRECTORY_SEPARATOR.'thumbnails'.DIRECTORY_SEPARATOR.$copyfilename;
 

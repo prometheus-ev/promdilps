@@ -93,7 +93,7 @@ BEGIN default_grid.tpl
 </tr>
 <tr>
 	<td style="text-align: center">
-		<a href="javascript:{$viewFunc}('{$sessionid}','{$row.collectionid}:{$row.imageid}', '{$result.remoteCollection}');"><img src="image.php?PHPSESSID={$sessionid}&id={$row.collectionid}:{$row.imageid}&resolution=120x90&remoteCollection={$result.remoteCollection}" border="0"></a>
+		<a href="javascript:{$viewFunc}('{$sessionid}','{$row.collectionid}:{$row.imageid}', '{$result.remoteCollection}');"><img src="image.php?PHPSESSID={$sessionid}&id={$row.collectionid}:{$row.imageid}&resolution=140x140&remoteCollection={$result.remoteCollection}" border="0"></a>
 	</td>
 </tr>
 <tr>

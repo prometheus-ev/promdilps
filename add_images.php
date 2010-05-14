@@ -314,7 +314,7 @@ if ($process == 2) {
 										die ($errorstring);
 									}
 
-									if ($res == '120x90')
+									if ($res == '140x140')
 									{
 										$is_thumbnail = true;
 									}
@@ -774,7 +774,7 @@ if ($process == 2) {
 							die ($errorstring);
 						}
 	
-						if ($res == '120x90')
+						if ($res == '140x140')
 						{
 							$is_thumbnail = true;
 						}

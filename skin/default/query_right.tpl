@@ -119,7 +119,7 @@ BEGIN easy_query.tpl
 	       <tr><td colspan=2>
 	       {#searchtext#}
 	       </td></tr>
-			           <input type="hidden" name="query[collectionid]" value="#COLLID#">
+			           <input type="hidden" name="query[collectionid]" value="1">
 		</tr>
 		<tr>
 		<td>&nbsp;

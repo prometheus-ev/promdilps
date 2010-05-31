@@ -368,7 +368,7 @@ $status = 0;
 
 	<td bgcolor="#ffffff">
 
-	  <input type="text" name="name" size="80" value="#COLL#"></input>	  
+	  <input type="text" name="name" size="80" value="default"></input>	  
 
 	</td>
 

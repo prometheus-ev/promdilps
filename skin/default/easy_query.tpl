@@ -99,7 +99,7 @@ document.forms["Main"].submit();
 {foreach from=$basedirs item=row}
 <input type="text" name="query[baseid]" value="{$row.img_baseid}">
 {/foreach}//-->
-<input type="hidden" name="query[baseid]" value="#BASEID#">
+<input type="hidden" name="query[baseid]" value="1">
 <input type="hidden" name="query[collectionid]" value="{$query.collectionid}">
 <input type="hidden" name="query[group1id]" value="{$query.group1id}">
 <input type="hidden" name="query[group1level]" value="{$query.group1level}">

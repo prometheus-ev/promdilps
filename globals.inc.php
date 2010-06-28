@@ -40,6 +40,9 @@
     
 	// activate compatibility mode
 	ini_set( 'zend.ze1_compatibility_mode', 'On' );
+
+  // increase upload file size
+  ini_set('upload_max_filesize','16M');
 	
 	// set the default timezone - you may want to adjust this according to your needs
 	//date_default_timezone_set('Europe/Berlin');

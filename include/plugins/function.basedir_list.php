@@ -40,7 +40,7 @@ function smarty_function_basedir_list($params, &$smarty)
     }
     
     if (empty($params['cid'])) {
-    	$smarty->trigger_error("assign: missing 'cid' parameter");
+    	//$smarty->trigger_error("assign: missing 'cid' parameter");
     	return;
     }
 
